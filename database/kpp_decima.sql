@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2020 at 03:40 PM
+-- Generation Time: May 21, 2020 at 05:33 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -93,7 +93,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@admin.com', NULL, '$2y$10$MhXGycBiWmM8I9pw7Vof2.f.stB.LoMlsfMDQG8gUoQs.bs6.Wytq', 'admin', NULL, '2020-05-14 04:41:48', '2020-05-14 04:41:48');
+(1, 'Admin', 'admin@admin.com', NULL, '$2y$10$MhXGycBiWmM8I9pw7Vof2.f.stB.LoMlsfMDQG8gUoQs.bs6.Wytq', 'admin', NULL, '2020-05-14 04:41:48', '2020-05-14 04:41:48'),
+(2, 'Pegawai', 'emp@mail.com', NULL, '$2y$10$R2enRcNRG53Kv9OSosSK3uvVXPNAwvTwvV4b1s3KlG7Z.7E/voLd.', 'pegawai', NULL, '2020-05-21 06:58:56', '2020-05-21 06:58:56');
 
 --
 -- Indexes for dumped tables
@@ -144,7 +145,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
