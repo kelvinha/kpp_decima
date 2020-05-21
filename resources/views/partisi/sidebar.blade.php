@@ -41,19 +41,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-              <a href="{{ route('wp.index') }}" class="nav-link {{Request::is('admin/kelola-wajib-pajak')? 'active' : null }}">
+              <a href="{{ route('wp.index') }}" class="nav-link {{Request::is('admin/*/kelola-wajib-pajak')? 'active' : null }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kelola Data WP</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('sudahlapor.index')}}" class="nav-link {{Request::is('admin/sudah-lapor-spt')? 'active' : null }}">
+                <a href="{{ route('sudahlapor.index')}}" class="nav-link {{Request::is('admin/*/sudah-lapor-spt')? 'active' : null }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Sudah Lapor SPT</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('belomlapor.index')}}" class="nav-link {{Request::is('admin/belom-lapor-spt')? 'active' : null }}">
+                <a href="{{ route('belomlapor.index')}}" class="nav-link {{Request::is('admin/*/belom-lapor-spt')? 'active' : null }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Belum Lapor SPT</p>
                 </a>
