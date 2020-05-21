@@ -21,8 +21,6 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="/home" class="nav-link {{Request::is('home')? 'active' : null }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -31,6 +29,7 @@
               </p>
             </a>
           </li>
+          @if (Auth::user()->role === 'admin')
           <li class="nav-item has-treeview {{Request::is('admin/data-wajib-pajak/*')? 'menu-open' : null }}">
             <a href="#" class="nav-link {{Request::is('admin/data-wajib-pajak/*')? 'active' : null }}">
               <i class="nav-icon fas fa-copy"></i>
@@ -76,6 +75,9 @@
               </p>
             </a>
           </li>
+          @else
+          
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

@@ -17,21 +17,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::match(['GET', 'POST'], '/register', function () {
-       return redirect('/login');
-})->name('register');
+// Route::match(['GET', 'POST'], '/register', function () {
+//        return redirect('/login');
+// })->name('register');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('admin')->group(function (){
-    // wajib pajak
-    Route::get('/data-wajib-pajak/kelola-wajib-pajak','backend\WajibPajakController@index')->name('wp.index');
-    Route::get('/data-wajib-pajak/sudah-lapor-spt','backend\WajibPajakController@indexSudahlapor')->name('sudahlapor.index');
-    Route::get('/data-wajib-pajak/belom-lapor-spt','backend\WajibPajakController@indexBelumlapor')->name('belomlapor.index');
 
-    // laporan spt
-    Route::get('/laporan-spt','backend\LaporanSptController@index')->name('laporanspt.index');
+        // wajib pajak
+        Route::get('/data-wajib-pajak/kelola-wajib-pajak','backend\WajibPajakController@index')->name('wp.index');
+        Route::get('/data-wajib-pajak/sudah-lapor-spt','backend\WajibPajakController@indexSudahlapor')->name('sudahlapor.index');
+        Route::get('/data-wajib-pajak/belom-lapor-spt','backend\WajibPajakController@indexBelumlapor')->name('belomlapor.index');
     
-    // forum
-    Route::get('/forum','backend\ForumController@index')->name('forum.index');
-
+        // laporan spt
+        Route::get('/laporan-spt','backend\LaporanSptController@index')->name('laporanspt.index');
+        
+        // forum
+        Route::get('/forum','backend\ForumController@index')->name('forum.index');
 });

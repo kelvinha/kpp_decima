@@ -4,10 +4,16 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Auth;
 class WajibPajakController extends Controller
 {
  
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('role:admin');
+    }
+
     public function index()
     {
         return view('backend.wajib_pajak.kelola_wajib_pajak.index');

@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 
 class LaporanSptController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('role:admin');
+    }
+
     public function index()
     {
         return view('backend.laporan_spt.index');
