@@ -1,5 +1,6 @@
 <nav class="main-header navbar navbar-expand" style="background-color: #1e2f5f;">
     <!-- Left navbar links -->
+    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars" style="color: yellow;"></i></a>
     <div class="mr-auto">
         <h5 style="color: #fcd511;">Kantor Pelayanan Pajak Depok Cimanggis</h5>
     </div>

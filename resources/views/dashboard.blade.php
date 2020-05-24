@@ -1,7 +1,6 @@
 @extends('layouts.backend')
 
 @section('content')
-<!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -21,69 +20,65 @@
 
 
 <!-- Main content -->
-<section class="content">
+<section class="content px-4 py-4">
     <div class="container-fluid">
-
         <div class="row">
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box">
-                    <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Admin</span>
-                        <span class="info-box-number">
-                            10
-                            <small>%</small>
-                        </span>
+            <div class="col-lg-6 col-sm-6 col-md-3">
+                <div class="card bg-kpp elevation-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-2 col-md-4">
+                                    <i class="fas fa-id-card fa-4x"></i>
+                            </div>
+                            <div class="col-sm-10 col-md-8">
+                                <h4 class="font-weight-light">Total Admin</h4>
+                                <span class="h4">10 Orang</span>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Warga/ WP</span>
-                        <span class="info-box-number">41,410</span>
+                <div class="card bg-kpp elevation-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-2 col-md-4">
+                                <i class="fa fa-eye fa-4x"></i>
+                            </div>
+                            <div class="col-sm-10 col-md-8">
+                                <h4 class="font-weight-light">Total Sudah Lapor SPT</h4>
+                                <span class="h4">760 Orang</span>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box -->
             </div>
-            <!-- /.col -->
-
-            <!-- fix for small devices only -->
-            <div class="clearfix hidden-md-up"></div>
-
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Sudah Lapor SPT</span>
-                        <span class="info-box-number">760</span>
+            <div class="col-lg-6 col-sm-6 col-md-3">
+                <div class="card bg-kpp elevation-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-2 col-md-4">
+                                <i class="fas fa-user-friends fa-4x"></i>
+                            </div>
+                            <div class="col-sm-10 col-md-8">
+                                <h4 class="font-weight-light">Total Warga / WP</h4>
+                                <span class="h4">41,410 Orang</span>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-                <div class="info-box mb-3">
-                    <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Belum Lapor SPT</span>
-                        <span class="info-box-number">2,000</span>
+                <div class="card bg-kpp elevation-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-2 col-md-4">
+                                <i class="fa fa-eye fa-4x"></i>
+                            </div>
+                            <div class="col-sm-10 col-md-8">
+                                <h4 class="font-weight-light">Total Belum Lapor SPT</h4>
+                                <span class="h4">2,000 Orang</span>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box -->
             </div>
-            <!-- /.col -->
         </div>
     </div>
 </section>

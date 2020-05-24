@@ -21,12 +21,12 @@ class WajibPajakController extends Controller
     
     public function indexSudahlapor()
     {
-        return view('backend.wajib_pajak.belum_laporSpt.index');
+        return view('backend.wajib_pajak.sudah_laporSpt.index');
     }
     
     public function indexBelumlapor()
     {
-        return view('backend.wajib_pajak.sudah_laporSpt.index');
+        return view('backend.wajib_pajak.belum_laporSpt.index');
     }
 
     /**

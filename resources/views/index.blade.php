@@ -6,7 +6,7 @@
             <div class="col-sm-6 offset-sm-6">
                 <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Sudah Lapor SPT</li>
+                    <li class="breadcrumb-item active">Kelola Data Wajib Pajak</li>
                 </ol>
             </div>
         </div>
@@ -17,26 +17,13 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                      <div class="card-title"><span class="font-weight-w500">Sudah Lapor SPT</span></div>
-                </div>
-                <div class="card-body">
-                    <div class="row mb-2">
-                        <form class="form-inline" action="" method="" style="margin-left: -9px;">
-                            <div class="form-group mx-sm-3">
-                                <select class="form-control">
-                                    <option disabled selected>Pilih Tahun</option>
-                                    <option>2020</option>
-                                    <option>2019</option>
-                                    <option>2018</option>
-                                </select>
-                            </div>
-                            <div class="form-group mx-sm-3">
-                                <button class="btn btn-success" type="submit">Tampilkan</button>
-                            </div>
-                        </form>
-                        <button class="btn btn-primary"><i class="fa fa-upload"></i> &nbsp;Export to Excel</button>
+                      <div class="card-title"><span class="font-weight-light">Kelola Data Wajib Pajak</span></div>
+                      <div class="d-flex justify-content-end">
+                        <button class="btn btn-success">Tambah Data</button>
+                      </div>  
                     </div>
-                      <table id="example1" class="table table-bordered table-striped text-center">
+                    <div class="card-body">
+                      <table id="example1" class="table table-bordered table-striped">
                         <thead>
                                 <tr>
                                     <th>No.</th>
@@ -45,9 +32,6 @@
                                     <th>Kategori</th>
                                     <th>Alamat</th>
                                     <th>Jenis SPT</th>
-                                    <th>Tahun Pajak</th>
-                                    <th>Status Lapor</th>
-                                    <th>Tanggal</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -60,13 +44,10 @@
                                   <td> Not found</td>
                                   <td>Bekasi</td>
                                   <td>Sudah Lapor</td>
-                                  <td>2020</td>
-                                  <td>Sudah Lapor</td>
-                                  <td>23-05-2020</td>
-                                  <td class="text-nowrap">
-                                    <button class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></button>
-                                    <button class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-danger" title="Hapus"><i class="fa fa-trash"></i></button>
+                                  <td>
+                                      <button class="btn btn-info">Detail</button>
+                                      <button class="btn btn-warning">Ubah</button>
+                                      <button class="btn btn-danger">Hapus</button>
                                   </td>
                               </tr>
                                 @endfor
@@ -79,9 +60,6 @@
                                     <th>Kategori</th>
                                     <th>Alamat</th>
                                     <th>Jenis SPT</th>
-                                    <th>Tahun Pajak</th>
-                                    <th>Status Lapor</th>
-                                    <th>Tanggal</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>

@@ -6,6 +6,7 @@
 <!-- AdminLTE App -->
 <script src="{{asset('vendor')}}/dist/js/adminlte.js"></script>
 
+@yield('js')
 <!- OPTIONAL SCRIPTS -->
 <script src="{{asset('vendor')}}/dist/js/demo.js"></script>
 
@@ -17,6 +18,3 @@
 <script src="{{asset('vendor')}}/plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <!-- ChartJS -->
 <script src="{{asset('vendor')}}/plugins/chart.js/Chart.min.js"></script>
-
-<!- PAGE SCRIPTS -->
-<script src="{{asset('vendor')}}/dist/js/pages/dashboard2.js"></script>
