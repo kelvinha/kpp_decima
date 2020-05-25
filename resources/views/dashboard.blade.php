@@ -41,7 +41,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-2 col-md-4">
-                                <i class="fa fa-eye fa-4x"></i>
+                                <i class="fas fa-user-check fa-4x"></i>
                             </div>
                             <div class="col-sm-10 col-md-8">
                                 <h4 class="font-weight-light">Total Sudah Lapor SPT</h4>
@@ -69,7 +69,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-2 col-md-4">
-                                <i class="fa fa-eye fa-4x"></i>
+                                <i class="fas fa-user-slash fa-4x"></i>
                             </div>
                             <div class="col-sm-10 col-md-8">
                                 <h4 class="font-weight-light">Total Belum Lapor SPT</h4>

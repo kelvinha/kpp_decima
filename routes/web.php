@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login1');
+    return view('forget_pass');
 });
 
 Auth::routes();
