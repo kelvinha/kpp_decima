@@ -30,6 +30,10 @@
         label {
             text-align: left;
         }
+        .form-inline.ps {
+                margin-left: -18px;
+                white-space: nowrap;
+        }
         /* selesai style baru */
 
         /* untuk responsif */
@@ -43,6 +47,10 @@
                 margin-left: -52%;
                 white-space: nowrap;
 
+            }
+            .form-inline.ps {
+                margin-left: 1%;
+                white-space: nowrap;
             }
         }
         /* tutup responsif */

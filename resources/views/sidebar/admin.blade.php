@@ -74,8 +74,8 @@
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview {{Request::is('admin/data-wajib-pajak/*')? 'menu-open' : null }}">
-            <a href="#" class="nav-link {{Request::is('admin/data-wajib-pajak/*')? 'active' : null }}">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Konten

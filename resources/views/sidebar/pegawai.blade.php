@@ -29,10 +29,9 @@
               </p>
             </a>
           </li>
-          {{-- @if (Auth::user()->role === 'admin') --}}
           <li class="nav-item has-treeview {{Request::is('admin/data-wajib-pajak/*')? 'menu-open' : null }}">
             <a href="#" class="nav-link {{Request::is('admin/data-wajib-pajak/*')? 'active' : null }}">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon far fa-folder-open"></i>
               <p>
                 Data Wajib Pajak
                 <i class="fas fa-angle-left right"></i>
@@ -41,19 +40,19 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
               <a href="{{ route('wp.index') }}" class="nav-link {{Request::is('admin/*/kelola-wajib-pajak')? 'active' : null }}">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-dot-circle nav-icon"></i>
                   <p>Kelola Data WP</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('sudahlapor.index')}}" class="nav-link {{Request::is('admin/*/sudah-lapor-spt')? 'active' : null }}">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-dot-circle nav-icon"></i>
                   <p>Sudah Lapor SPT</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('belomlapor.index')}}" class="nav-link {{Request::is('admin/*/belom-lapor-spt')? 'active' : null }}">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-dot-circle nav-icon"></i>
                   <p>Belum Lapor SPT</p>
                 </a>
               </li>
@@ -61,7 +60,7 @@
           </li>
           <li class="nav-item">
           <a href="{{ route('laporanspt.index')}}" class="nav-link {{Request::is('admin/laporan-spt')? 'active' : null }}">
-              <i class="nav-icon fas fa-file"></i>
+              <i class="nav-icon far fa-file-alt"></i>
               <p>
                 Laporan SPT
               </p>
@@ -75,9 +74,6 @@
               </p>
             </a>
           </li>
-          {{-- @else
-          
-          @endif --}}
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

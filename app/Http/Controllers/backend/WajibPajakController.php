@@ -11,7 +11,7 @@ class WajibPajakController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:admin');
+        // $this->middleware('role:admin');
     }
 
     public function index()
@@ -29,14 +29,9 @@ class WajibPajakController extends Controller
         return view('backend.wajib_pajak.belum_laporSpt.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('backend.wajib_pajak.kelola_wajib_pajak.create');
     }
 
     /**
@@ -69,7 +64,7 @@ class WajibPajakController extends Controller
      */
     public function edit($id)
     {
-        //
+        // return view('backend.wajib_pajak.kelola_wajib_pajak.edit');
     }
 
     /**

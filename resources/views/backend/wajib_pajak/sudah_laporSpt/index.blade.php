@@ -21,20 +21,27 @@
                 </div>
                 <div class="card-body">
                     <div class="row mb-2">
-                        <form class="form-inline" action="" method="" style="margin-left: -9px;">
-                            <div class="form-group mx-sm-3">
-                                <select class="form-control">
-                                    <option disabled selected>Pilih Tahun</option>
-                                    <option>2020</option>
-                                    <option>2019</option>
-                                    <option>2018</option>
-                                </select>
-                            </div>
-                            <div class="form-group mx-sm-3">
-                                <button class="btn btn-success" type="submit">Tampilkan</button>
-                            </div>
-                        </form>
-                        <button class="btn btn-primary"><i class="fa fa-upload"></i> &nbsp;Export to Excel</button>
+                        <div class="col-sm-6 col-md-4">
+                            <form class="form-inline ps" action="" method="">
+                                <div class="form-group mx-sm-3">
+                                    <select class="form-control">
+                                        <option disabled selected>Pilih Tahun</option>
+                                        @php 
+                                        $years = range(date('Y'), 1990);
+                                        @endphp
+                                        @foreach ($years as $item)
+                                        <option value="{{ $item }}">{{ $item }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-success" type="submit">Tampilkan</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-6 col-md-4"> 
+                            <button class="btn btn-primary"><i class="fa fa-upload"></i> &nbsp;Export to Excel</button>
+                        </div>
                     </div>
                       <table id="example1" class="table table-bordered table-striped text-center">
                         <thead>
@@ -66,10 +73,13 @@
                                   <td class="text-nowrap">
                                     <button class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></button>
                                     <button class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></button>
-                                    <button class="btn btn-danger" title="Hapus"><i class="fa fa-trash"></i></button>
-                                  </td>
-                              </tr>
-                                @endfor
+                                    <button type="button" class="btn btn-danger" title="Hapus" data-toggle="modal"
+                                            data-target="#modal-default">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                    </tr>
+                                    @endfor
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -87,16 +97,30 @@
                             </tfoot>
                         </table>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.container-fluid -->
 </section>
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-kpp">
+                <h4 class="modal-title">Perhatian ! </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah anda yakin ingin menghapus ?</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                <button type="button" class="btn btn-danger">Ya, Hapus</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('js')
 <!-- DataTables -->
