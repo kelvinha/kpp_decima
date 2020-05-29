@@ -27,6 +27,7 @@ Route::prefix('admin')->group(function (){
         // wajib pajak
         Route::get('/data-wajib-pajak/kelola-wajib-pajak','backend\WajibPajakController@index')->name('wp.index');
         Route::get('/data-wajib-pajak/kelola-wajib-pajak/create','backend\WajibPajakController@create')->name('wp.create');
+        Route::post('/data-wajib-pajak/kelola-wajib-pajak/store','backend\WajibPajakController@store')->name('wp.store');
         // sudah lapor
         Route::get('/data-wajib-pajak/sudah-lapor-spt','backend\WajibPajakController@indexSudahlapor')->name('sudahlapor.index');
         // belum lapor

@@ -20,40 +20,50 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
+            @if ($message = Session::get('error'))
+                <div class="col-12">
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="close">×</button> 
+                        <h4 class="alert-heading">Maaf !</h4>
+                        <p>{{ $message }}</p>
+                      </div>
+                </div>
+                @endif
             <div class="col-md-12 col-sm-6 col-lg-12">
                 <div class="card">
                     <div class="card-header bg-kpp">
                         <h3 class="card-title">Form Tambah Data</h3>
                     </div>
-                    <form action="" method="">
+                    <form action="{{ route('wp.store') }}" method="POST">
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="npwp">Nomor Pokok Wajib Pajak (NPWP) <span
                                                 class="font-weight-w300 text-red">*</span> </label>
-                                        <input type="text" class="form-control" id="npwp"
+                                        <input type="text" name="npwp" maxlength="15" class="form-control" id="npwp"
                                             placeholder="Masukan Nomor Pokok Wajib Pajak..." required
                                             onkeyup="this.value=this.value.replace(/[^\d]/,'')">
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama Lengkap <span class="font-weight-w300 text-red">*</span>
                                         </label>
-                                        <input type="text" class="form-control" id="nama"
+                                        <input type="text" name="nama" class="form-control" id="nama"
                                             placeholder="Masukan Nama Lengkap..." required>
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Email <span class="font-weight-w300 text-red">*</span>
                                         </label>
-                                        <input type="email" class="form-control" id="email"
+                                        <input type="email" name="email" class="form-control" id="email"
                                             placeholder="Masukan Email..." required>
                                     </div>
                                     <div class="form-group">
                                         <label for="nohp">No Hp <span class="font-weight-w300 text-red">*</span>
                                         </label>
-                                        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')"
-                                            maxlength="12" class="form-control" id="nohp" placeholder="Masukan No Hp..."
-                                            required>
+                                        <input type="text" name="no_hp"
+                                            onkeyup="this.value=this.value.replace(/[^\d]/,'')" maxlength="12"
+                                            class="form-control" id="nohp" placeholder="Masukan No Hp..." required>
                                     </div>
                                 </div>
                             </div>
@@ -62,35 +72,48 @@
                                     <div class="form-group">
                                         <label for="alamat">Alamat<span
                                                 class="font-weight-w300 text-red">*</span></label>
-                                        <textarea rows="1" class="form-control" placeholder="Masukan Alamat"
-                                            required></textarea>
+                                        <textarea rows="1" name="alamat" class="form-control"
+                                            placeholder="Masukan Alamat" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="kategori">Kategori <span class="font-weight-w300 text-red">*</span>
                                         </label>
-                                        <select class="form-control" id="kategori" required>
+                                        <select class="form-control" name="kategori_wp" id="kategori" required>
                                             <option disabled selected>Pilih Kategori</option>
-                                            <option>coba 1</option>
-                                            <option>coba 2</option>
+                                            <option disabled class="font-weight-bold">• Wajib Pajak Orang Pribadi
+                                            </option>
+                                            <option value="Orang Pribadi (Induk)">Orang Pribadi (Induk)</option>
+                                            <option value="Hidup Berpisah (HB)">Hidup Berpisah (HB)</option>
+                                            <option value="Pisah Harta (PH)">Pisah Harta (PH)</option>
+                                            <option value="Memilih Terpisah (MT)">Memilih Terpisah (MT)</option>
+                                            <option value="Warga Belum Terbagi (WBT)">Warga Belum Terbagi (WBT)</option>
+                                            <option disabled class="font-weight-bold">• Wajib Pajak Badan </option>
+                                            <option value="Badan">Badan</option>
+                                            <option value="Joint Operation">Joint Operation</option>
+                                            <option value="Kantor Perwakilan Perusahaan Asing">Kantor Perwakilan
+                                                Perusahaan Asing</option>
+                                            <option value="Bendahara">Bendahara</option>
+                                            <option value="Penyelenggara Kegiatan">Penyelenggara Kegiatan</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="jenisspt">Jenis SPT <span class="font-weight-w300 text-red">*</span>
                                         </label>
-                                        <select class="form-control" id="jenisspt" required>
+                                        <select class="form-control" name="jenis_spt" id="jenisspt" required>
                                             <option disabled selected>Pilih Jenis SPT</option>
-                                            <option>coba 1</option>
-                                            <option>coba 2</option>
+                                            <option value="SPT Tahunan">SPT Tahunan</option>
+                                            <option value="SPT Masa">SPT Masa</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="tahunpjk">Tahun Pajak <span
                                                 class="font-weight-w300 text-red">*</span>
                                         </label>
-                                        <select class="form-control" id="tahunpjk" required>
+                                        <select class="form-control" name="tahun_pajak" id="tahunpjk" required>
                                             <option disabled selected>Pilih Tahun Pajak</option>
-                                            <option>coba 1</option>
-                                            <option>coba 2</option>
+                                            @foreach ($tahun as $item)
+                                            <option value="{{ $item }}">{{ $item }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -105,4 +128,14 @@
             </div>
         </div>
 </section>
+@endsection
+@section('js')
+    <script>
+        $(function () {
+            $('.close').click(function(){
+                $('.alert').slideUp(500);
+            });
+            $('.alert').delay(6000).slideUp(500);
+    });
+    </script>
 @endsection

@@ -26,14 +26,9 @@
                                     <div class="form-group mx-sm-3">
                                         <select class="form-control">
                                             <option disabled selected>Pilih Tahun</option>
-                                            @php
-                                            $years = range(date('Y'), 1990);
-                                            @endphp
-                                            @foreach ($years as $item)
-                                            <option>{{ $item }}</option>
+                                            @foreach ($tahun as $item)
+                                            <option value="{{ $item }}" >{{ $item }}</option>
                                             @endforeach
-                                            {{-- <option>2019</option>
-                                        <option>2018</option> --}}
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -64,16 +59,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for($i = 1; $i <= 20; $i++) <tr>
-                                    <td>{{ $i }}</td>
-                                    <td>31233034</td>
-                                    <td>Dunno</td>
-                                    <td> Not found</td>
-                                    <td>Bekasi</td>
-                                    <td>Belum Lapor</td>
-                                    <td>2020</td>
-                                    <td>Belum Lapor</td>
-                                    <td>23-05-2020</td>
+                                @foreach($laporan as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->npwp }}</td>
+                                    <td>{{ $item->nama}}</td>
+                                    <td>{{ $item->kategori_wp }}</td>
+                                    <td class="text-nowrap" >{{ $item->alamat}}</td>
+                                    <td>{{ $item->jenis_spt }}</td>
+                                    <td>{{ $item->tahun_pajak }}</td>
+                                    <td>{{ $item->status_lapor }}</td>
+                                    <td>{{ $item->tanggal }}</td>
                                     <td class="text-nowrap">
                                         <button class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></button>
                                         <button class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></button>
@@ -82,8 +78,8 @@
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
-                                    </tr>
-                                    @endfor
+                                </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>

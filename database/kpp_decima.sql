@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2020 at 05:33 PM
+-- Generation Time: May 29, 2020 at 05:45 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -73,6 +73,29 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `spt`
+--
+
+CREATE TABLE `spt` (
+  `id_spt` int(11) NOT NULL,
+  `npwp_wp` varchar(15) DEFAULT NULL,
+  `status_lapor` varchar(20) DEFAULT 'Belum Lapor',
+  `tanggal_lapor` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `spt`
+--
+
+INSERT INTO `spt` (`id_spt`, `npwp_wp`, `status_lapor`, `tanggal_lapor`, `created_at`, `updated_at`) VALUES
+(1, '121210291201921', 'Belum Lapor', NULL, '2020-05-29 08:12:17', '2020-05-29 08:12:17'),
+(2, '131313131312121', 'Belum Lapor', NULL, '2020-05-29 08:26:16', '2020-05-29 08:26:16');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -95,6 +118,34 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin@admin.com', NULL, '$2y$10$MhXGycBiWmM8I9pw7Vof2.f.stB.LoMlsfMDQG8gUoQs.bs6.Wytq', 'admin', NULL, '2020-05-14 04:41:48', '2020-05-14 04:41:48'),
 (2, 'Pegawai', 'emp@mail.com', NULL, '$2y$10$R2enRcNRG53Kv9OSosSK3uvVXPNAwvTwvV4b1s3KlG7Z.7E/voLd.', 'pegawai', NULL, '2020-05-21 06:58:56', '2020-05-21 06:58:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wajib_pajak`
+--
+
+CREATE TABLE `wajib_pajak` (
+  `id_wp` int(11) NOT NULL,
+  `npwp` varchar(16) DEFAULT NULL,
+  `nama` varchar(20) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `no_hp` varchar(15) NOT NULL,
+  `alamat` text NOT NULL,
+  `kategori_wp` varchar(25) NOT NULL,
+  `jenis_spt` varchar(25) NOT NULL,
+  `tahun_pajak` varchar(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `wajib_pajak`
+--
+
+INSERT INTO `wajib_pajak` (`id_wp`, `npwp`, `nama`, `email`, `no_hp`, `alamat`, `kategori_wp`, `jenis_spt`, `tahun_pajak`, `created_at`, `updated_at`) VALUES
+(1, '121210291201921', 'suho', 'suh@mail.com', '089898989898', 'Jakarta Selatan', 'Orang Pribadi (Induk)', 'SPT Masa', '2018', '2020-05-29 08:12:17', '2020-05-29 08:12:17'),
+(2, '131313131312121', 'badang', 'badang@mail.com', '089898989898', 'Land Of Dawn', 'Badan', 'SPT Masa', '2019', '2020-05-29 08:26:15', '2020-05-29 08:26:15');
 
 --
 -- Indexes for dumped tables
@@ -119,11 +170,23 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `spt`
+--
+ALTER TABLE `spt`
+  ADD PRIMARY KEY (`id_spt`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- Indexes for table `wajib_pajak`
+--
+ALTER TABLE `wajib_pajak`
+  ADD PRIMARY KEY (`id_wp`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -142,10 +205,22 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `spt`
+--
+ALTER TABLE `spt`
+  MODIFY `id_spt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `wajib_pajak`
+--
+ALTER TABLE `wajib_pajak`
+  MODIFY `id_wp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

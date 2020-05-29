@@ -42,25 +42,22 @@
                                     <th>Jenis SPT</th>
                                     <th>Tahun Pajak</th>
                                     <th>Status Lapor</th>
-                                    <th>Tanggal</th>
+                                    <th>Tanggal Lapor</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @for($i = 1; $i <= 20; $i++) <tr>
-                                    <td>{{ $i }}</td>
-                                    <td>31233034</td>
-                                    <td>Dunno</td>
-                                    <td> Not found</td>
-                                    <td>Bekasi</td>
-                                    <td>Sudah Lapor</td>
-                                    <td>2020</td>
-                                    @if($i % 2 == 0)
-                                    <td>Sudah Lapor</td>
-                                    @else
-                                    <td>Belum Lapor</td>
-                                    @endif
-                                    <td>23-05-2020</td>
+                                @foreach ($laporan as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->npwp_wp }}</td>
+                                    <td>{{ $item->nama }}</td>
+                                    <td>{{ $item->kategori_wp }}</td>
+                                    <td>{{ $item->alamat }}</td>
+                                    <td>{{ $item->jenis_spt }}</td>
+                                    <td>{{ $item->tahun_pajak }}</td>
+                                    <td>{{ $item->status_lapor }}</td>
+                                    <td>{{ $item->tanggal_lapor }}</td>
                                     <td class="text-nowrap">
                                         <button class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></button>
                                         <button class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></button>
@@ -70,8 +67,8 @@
                                         </button>
 
                                     </td>
-                                    </tr>
-                                    @endfor
+                                </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>

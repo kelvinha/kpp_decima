@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\WajibPajak;
+use App\Models\LaporanSpt;
 use Illuminate\Http\Request;
 
 class LaporanSptController extends Controller
@@ -15,14 +17,14 @@ class LaporanSptController extends Controller
 
     public function index()
     {
-        return view('backend.laporan_spt.index');
+        $laporanspt = LaporanSpt::join('wajib_pajak','spt.npwp_wp','wajib_pajak.npwp')
+                      ->select('wajib_pajak.*','spt.*')
+                      ->get();
+        // dd($laporanspt);
+        $data['laporan'] = $laporanspt;
+        return view('backend.laporan_spt.index',$data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //

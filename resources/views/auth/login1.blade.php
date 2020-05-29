@@ -1,6 +1,6 @@
 @include('partisi.header')
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page bg-new">
     <div class="login-box">
         <!-- /.login-logo -->
         <div class="card">

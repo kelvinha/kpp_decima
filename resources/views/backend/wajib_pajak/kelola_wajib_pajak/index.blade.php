@@ -15,6 +15,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="close success">×</button> 
+                    <h4 class="alert-heading">Selamat !</h4>
+                    <p>{{ $message }}</p>
+                  </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
@@ -42,13 +49,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for($i = 1; $i <= 20; $i++) <tr>
-                                    <td>{{ $i }}</td>
-                                    <td>31233034</td>
-                                    <td>Dunno</td>
-                                    <td> Not found</td>
-                                    <td>Bekasi</td>
-                                    <td>Sudah Lapor</td>
+                                @foreach ($data_wp as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->npwp }}</td>
+                                    <td>{{ $item->nama }}</td>
+                                    <td> {{$item->kategori_wp}}</td>
+                                    <td>{{ $item->alamat }}</td>
+                                    <td>{{ $item->jenis_spt }}</td>
                                     <td>
                                         <button class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></button>
                                         <button class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></button>
@@ -57,8 +65,8 @@
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
-                                    </tr>
-                                    @endfor
+                                </tr>
+                                @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -120,6 +128,13 @@
             "autoWidth": false,
             "responsive": true,
         });
+        $('.close .success').click(function(){
+            $('.alert').slideUp(500);
+        });
+        $('.close .error').click(function(){
+            $('.alert').slideUp(500);
+        });
+        $('.alert').delay(2000).slideUp(500);
     });
 
 </script>

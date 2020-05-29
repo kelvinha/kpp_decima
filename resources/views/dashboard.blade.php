@@ -32,7 +32,7 @@
                             </div>
                             <div class="col-sm-10 col-md-8">
                                 <h4 class="font-weight-light">Total Admin</h4>
-                                <span class="h4">10 Orang</span>
+                                <span class="h4">{{ $totaladmin }} Orang</span>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-sm-10 col-md-8">
                                 <h4 class="font-weight-light">Total Sudah Lapor SPT</h4>
-                                <span class="h4">760 Orang</span>
+                                <span class="h4">{{ $totalsudahlapor }} Orang</span>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
                             </div>
                             <div class="col-sm-10 col-md-8">
                                 <h4 class="font-weight-light">Total Warga / WP</h4>
-                                <span class="h4">41,410 Orang</span>
+                                <span class="h4">{{$totalwp}} Orang</span>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                             </div>
                             <div class="col-sm-10 col-md-8">
                                 <h4 class="font-weight-light">Total Belum Lapor SPT</h4>
-                                <span class="h4">2,000 Orang</span>
+                                <span class="h4">{{$totalbelumlapor}} Orang</span>
                             </div>
                         </div>
                     </div>
