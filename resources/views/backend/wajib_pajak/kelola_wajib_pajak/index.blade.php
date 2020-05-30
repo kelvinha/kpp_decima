@@ -22,6 +22,13 @@
                     <p>{{ $message }}</p>
                   </div>
                 @endif
+                @if ($message = Session::get('deleted'))
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="close success">×</button> 
+                    <h4 class="alert-heading">Selamat !</h4>
+                    <p>{{ $message }}</p>
+                  </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
@@ -54,14 +61,14 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->npwp }}</td>
                                     <td>{{ $item->nama }}</td>
-                                    <td> {{$item->kategori_wp}}</td>
+                                    <td>{{$item->kategori_wp}}</td>
                                     <td>{{ $item->alamat }}</td>
                                     <td>{{ $item->jenis_spt }}</td>
                                     <td>
                                         <button class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></button>
-                                        <button class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></button>
+                                    <a href="{{ route('wp.edit',['id' => $item->id_wp]) }}" class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></a>
                                         <button type="button" class="btn btn-danger" title="Hapus" data-toggle="modal"
-                                            data-target="#modal-default">
+                                    data-target="#delete" data-myid="{{ $item->npwp }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
@@ -86,7 +93,7 @@
         </div>
     </div>
 </section>
-<div class="modal fade" id="modal-default">
+<div class="modal fade" id="delete">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-kpp">
@@ -95,13 +102,16 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <p>Apakah anda yakin ingin menghapus ?</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-                <button type="button" class="btn btn-danger">Ya, Hapus</button>
-            </div>
+            <form action="{{ route('wp.destroy') }}" method="GET">
+                <div class="modal-body">
+                    <p>Apakah anda yakin ingin menghapus ?</p>
+                <input type="hidden" id="idnpwp" name="idnpwp" value="">
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                    <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -72,7 +72,7 @@
                                         <button class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></button>
                                         <button class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></button>
                                         <button type="button" class="btn btn-danger" title="Hapus" data-toggle="modal"
-                                            data-target="#modal-default">
+                                        data-target="#hapus" data-myid="{{ $item->npwp }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
@@ -100,7 +100,7 @@
         </div>
     </div>
 </section>
-<div class="modal fade" id="modal-default">
+<div class="modal fade" id="hapus">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-kpp">
@@ -109,13 +109,17 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <p>Apakah anda yakin ingin menghapus ?</p>
-            </div>
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-                <button type="button" class="btn btn-danger">Ya, Hapus</button>
-            </div>
+            <form action="{{ route('wp.destroy') }}" method="POST">
+                <div class="modal-body">
+                    {{ csrf_field() }}
+                    <p>Apakah anda yakin ingin menghapus ?</p>
+                    <input type="text" id="idnpwp" name="idnpwp">
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+                    <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -135,7 +135,7 @@
             $('.close').click(function(){
                 $('.alert').slideUp(500);
             });
-            $('.alert').delay(6000).slideUp(500);
+            $('.alert').slideUp(500);
     });
     </script>
 @endsection

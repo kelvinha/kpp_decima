@@ -76,54 +76,57 @@ class WajibPajakController extends Controller
     
             $new_laporan_spt = new LaporanSpt;
             $new_laporan_spt->npwp_wp = $request->get('npwp');
+            $new_laporan_spt->id_wp = $new_wp->id_wp;
             $new_laporan_spt->save();
     
             return redirect()->route('wp.index')->with(['success' => 'Data Berhasil Ditambah']);
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        // return view('backend.wajib_pajak.kelola_wajib_pajak.edit');
+        $data['wp'] = WajibPajak::where('id_wp',$id)->first();
+        $data['tahun'] = range(date('Y'), 1990);
+        return view('backend.wajib_pajak.kelola_wajib_pajak.edit',$data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        // dd($request);
+
+        $wp_update = WajibPajak::where('id_wp', $id)->first();
+        // dd($wp_update);
+        $wp_update->npwp = $request->get('npwp');
+        $wp_update->nama = $request->get('nama');
+        $wp_update->email = $request->get('email');
+        $wp_update->no_hp = $request->get('no_hp');
+        $wp_update->alamat = $request->get('alamat');
+        $wp_update->kategori_wp = $request->get('kategori_wp');
+        $wp_update->jenis_spt = $request->get('jenis_spt');
+        $wp_update->tahun_pajak = $request->get('tahun_pajak');
+        $wp_update->save();
+
+        $laporanspt_update = LaporanSpt::where('id_wp',$id)->first();
+        $laporanspt_update->npwp_wp = $request->get('npwp');
+        $laporanspt_update->save();
+
+        return redirect()->route('wp.index')->with(['success' => 'Data berhasil diperbarui']);        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Request $req)
     {
-        //
+        // dd($req);
+        $npwp = WajibPajak::where('npwp',$req->idnpwp);
+        $npwp->delete();
+
+        $npwp_wp = LaporanSpt::where('npwp_wp',$req->idnpwp);
+        $npwp_wp->delete();
+
+        return redirect()->route('wp.index')->with('deleted','Data Berhasil Dihapus !');
     }
 }
