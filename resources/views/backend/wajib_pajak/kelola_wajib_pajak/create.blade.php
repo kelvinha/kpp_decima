@@ -30,7 +30,7 @@
                 </div>
                 @endif
             <div class="col-md-12 col-sm-6 col-lg-12">
-                <div class="card">
+                <div class="card elevation-2">
                     <div class="card-header bg-kpp">
                         <h3 class="card-title">Form Tambah Data</h3>
                     </div>

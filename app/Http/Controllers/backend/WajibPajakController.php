@@ -85,12 +85,18 @@ class WajibPajakController extends Controller
 
     public function show($id)
     {
-        //
+        // $data['wp'] = WajibPajak::findOrFail($id);
+        $data['wp'] = WajibPajak::join('spt','wajib_pajak.id_wp','spt.id_wp')
+                                ->where('wajib_pajak.id_wp',$id)
+                                ->select('wajib_pajak.*','spt.*')
+                                ->first();
+
+        return view('backend.wajib_pajak.kelola_wajib_pajak.show',$data);
     }
 
     public function edit($id)
     {
-        $data['wp'] = WajibPajak::where('id_wp',$id)->first();
+        $data['wp'] = WajibPajak::findOrFail($id);
         $data['tahun'] = range(date('Y'), 1990);
         return view('backend.wajib_pajak.kelola_wajib_pajak.edit',$data);
     }
@@ -99,7 +105,8 @@ class WajibPajakController extends Controller
     {
         // dd($request);
 
-        $wp_update = WajibPajak::where('id_wp', $id)->first();
+        // $wp_update = WajibPajak::where('id_wp', $id)->first();
+        $wp_update = WajibPajak::findOrFail($id);
         // dd($wp_update);
         $wp_update->npwp = $request->get('npwp');
         $wp_update->nama = $request->get('nama');

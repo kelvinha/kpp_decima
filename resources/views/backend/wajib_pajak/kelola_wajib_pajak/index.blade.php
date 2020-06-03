@@ -32,18 +32,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-sm-6 col-md-10">
+                            <div class="col-sm-6 col-md-8">
                                 <div class="card-title"><span class="font-weight-w500">Kelola Data Wajib Pajak</span>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-md-2">
+                            <div class="col-sm-6 col-md-4 ps-right" align="right">
                                 <a href="{{ route('wp.create') }}" class="btn btn-success"> <i class="fa fa-plus"></i>
                                     &nbsp; Tambah Data</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped text-center text-nowrap">
+                        <table id="example1" class="table table-bordered table-striped text-center">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -64,8 +64,8 @@
                                     <td>{{$item->kategori_wp}}</td>
                                     <td>{{ $item->alamat }}</td>
                                     <td>{{ $item->jenis_spt }}</td>
-                                    <td>
-                                        <button class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></button>
+                                    <td class="text-nowrap">
+                                    <a href="{{ route('wp.show',['id' => $item->id_wp]) }}" class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></a>
                                     <a href="{{ route('wp.edit',['id' => $item->id_wp]) }}" class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></a>
                                         <button type="button" class="btn btn-danger" title="Hapus" data-toggle="modal"
                                     data-target="#delete" data-myid="{{ $item->npwp }}">

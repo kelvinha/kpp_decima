@@ -29,6 +29,7 @@ Route::prefix('admin')->group(function (){
         Route::get('/data-wajib-pajak/kelola-wajib-pajak/create','backend\WajibPajakController@create')->name('wp.create');
         Route::post('/data-wajib-pajak/kelola-wajib-pajak/store','backend\WajibPajakController@store')->name('wp.store');
         Route::get('/data-wajib-pajak/kelola-wajib-pajak/edit/{id}','backend\WajibPajakController@edit')->name('wp.edit');
+        Route::get('/data-wajib-pajak/kelola-wajib-pajak/detail/{id}','backend\WajibPajakController@show')->name('wp.show');
         Route::post('/data-wajib-pajak/kelola-wajib-pajak/update/{id}','backend\WajibPajakController@update')->name('wp.update');
         Route::get('/data-wajib-pajak/kelola-wajib-pajak/destroy','backend\WajibPajakController@destroy')->name('wp.destroy');
         // sudah lapor

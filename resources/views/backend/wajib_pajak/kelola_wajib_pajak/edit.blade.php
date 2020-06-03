@@ -5,12 +5,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Tambah data Wajib Pajak</h1>
+                <h1>Edit Data Wajib Pajak</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Tambah data Wajib Pajak</li>
+                    <li class="breadcrumb-item active">Edit Data Wajib Pajak</li>
                 </ol>
             </div>
         </div>
@@ -21,12 +21,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 col-sm-6 col-lg-12">
-                <div class="card">
+                <div class="card elevation-2">
                     <div class="card-header bg-kpp">
-                        <h3 class="card-title">Form Tambah Data</h3>
+                        <h3 class="card-title">Form Edit Data</h3>
                     </div>
-                <form action="{{ route('wp.update',['id' => $wp->id_wp]) }}" method="POST">
-                    {{ csrf_field() }}
+                    <form action="{{ route('wp.update',['id' => $wp->id_wp]) }}" method="POST">
+                        {{ csrf_field() }}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="card-body">
@@ -35,26 +35,29 @@
                                                 class="font-weight-w300 text-red">*</span> </label>
                                         <input type="text" class="form-control" id="npwp"
                                             placeholder="Masukan Nomor Pokok Wajib Pajak..." required
-                                        onkeyup="this.value=this.value.replace(/[^\d]/,'')" name="npwp" value="{{ $wp->npwp }}">
+                                            onkeyup="this.value=this.value.replace(/[^\d]/,'')" name="npwp"
+                                            value="{{ $wp->npwp }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="nama">Nama Lengkap <span class="font-weight-w300 text-red">*</span>
                                         </label>
                                         <input type="text" class="form-control" id="nama"
-                                            placeholder="Masukan Nama Lengkap..." name="nama" required value="{{ $wp->nama }}">
+                                            placeholder="Masukan Nama Lengkap..." name="nama" required
+                                            value="{{ $wp->nama }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Email <span class="font-weight-w300 text-red">*</span>
                                         </label>
                                         <input type="email" class="form-control" id="email"
-                                            placeholder="Masukan Email..." required name="email" value="{{ $wp->email }}" >
+                                            placeholder="Masukan Email..." required name="email"
+                                            value="{{ $wp->email }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="nohp">No Hp <span class="font-weight-w300 text-red">*</span>
                                         </label>
                                         <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')"
                                             maxlength="12" class="form-control" id="nohp" placeholder="Masukan No Hp..."
-                                            required name="no_hp" value="{{ $wp->no_hp }}" >
+                                            required name="no_hp" value="{{ $wp->no_hp }}">
                                     </div>
                                 </div>
                             </div>
@@ -63,14 +66,15 @@
                                     <div class="form-group">
                                         <label for="alamat">Alamat<span
                                                 class="font-weight-w300 text-red">*</span></label>
-                                        <textarea rows="1" class="form-control" placeholder="Masukan Alamat"
-                                            required name="alamat" value="{{ $wp->alamat }}" >{{ $wp->alamat }}</textarea>
+                                        <textarea rows="1" class="form-control" placeholder="Masukan Alamat" required
+                                            name="alamat" value="{{ $wp->alamat }}">{{ $wp->alamat }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="kategori">Kategori <span class="font-weight-w300 text-red">*</span>
                                         </label>
                                         <select class="form-control" name="kategori_wp" id="kategori" required>
-                                            <option value="{{ $wp->kategori_wp}}" selected>{{ $wp->kategori_wp }}</option>
+                                            <option value="{{ $wp->kategori_wp}}" selected>{{ $wp->kategori_wp }}
+                                            </option>
                                             <option disabled>Pilih Kategori</option>
                                             <option disabled class="font-weight-bold">• Wajib Pajak Orang Pribadi
                                             </option>
@@ -91,7 +95,8 @@
                                     <div class="form-group">
                                         <label for="jenisspt">Jenis SPT <span class="font-weight-w300 text-red">*</span>
                                         </label>
-                                        <select class="form-control" name="jenis_spt" id="jenisspt" required name="jenis_spt">
+                                        <select class="form-control" name="jenis_spt" id="jenisspt" required
+                                            name="jenis_spt">
                                             <option value="{{ $wp->jenis_spt }}" selected>{{ $wp->jenis_spt }}</option>
                                             <option disabled>Pilih Kategori</option>
                                             <option value="SPT Tahunan">SPT Tahunan</option>
@@ -103,7 +108,8 @@
                                                 class="font-weight-w300 text-red">*</span>
                                         </label>
                                         <select class="form-control" id="tahunpjk" required name="tahun_pajak">
-                                            <option value="{{ $wp->tahun_pajak }}" selected>{{ $wp->tahun_pajak }}</option>
+                                            <option value="{{ $wp->tahun_pajak }}" selected>{{ $wp->tahun_pajak }}
+                                            </option>
                                             <option disabled>Pilih Tahun</option>
                                             @foreach ($tahun as $item)
                                             <option value="{{ $item }}">{{ $item }}</option>

@@ -20,9 +20,21 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <style>
         /* mulai style baru */
+        /* body {
+            font-family: 'Poppins';
+            font-size: 89%;
+        } */
         .dataTables_filter {
             text-align: right;
         }
+        p {
+            font-family: 'Poppins';
+        }
+        .main-footer {
+            background-color: #253664;
+            color: #ffffff
+        }
+
         .bg-kpp {
             background-color: #253664;
             color: #ffffff;
@@ -50,6 +62,11 @@
             }
             .form-inline.ps {
                 margin-left: 1%;
+                white-space: nowrap;
+            }
+            .ps-right{
+                margin-top: 5px;
+                margin-left: -45%;
                 white-space: nowrap;
             }
         }
