@@ -49,7 +49,7 @@
                                     <th>No.</th>
                                     <th>NPWP</th>
                                     <th>Nama</th>
-                                    <th>Kategori</th>
+                                    <th>Kategori Wajib Pajak</th>
                                     <th>Alamat</th>
                                     <th>Jenis SPT</th>
                                     <th>Aksi</th>
@@ -80,7 +80,7 @@
                                     <th>No.</th>
                                     <th>NPWP</th>
                                     <th>Nama</th>
-                                    <th>Kategori</th>
+                                    <th>Kategori Wajib Pajak</th>
                                     <th>Alamat</th>
                                     <th>Jenis SPT</th>
                                     <th>Aksi</th>

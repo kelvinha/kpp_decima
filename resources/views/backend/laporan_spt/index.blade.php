@@ -57,9 +57,14 @@
                                     <td>{{ $item->jenis_spt }}</td>
                                     <td>{{ $item->tahun_pajak }}</td>
                                     <td>{{ $item->status_lapor }}</td>
+                                    @if ($item->tanggal_lapor === NULL)
+                                    <td> - </td>
+                                    @else
                                     <td>{{ $item->tanggal_lapor }}</td>
+                                    @endif
                                     <td class="text-nowrap">
-                                        <button class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></button>
+                                        <a href="{{ route('laporanspt.show',['id' => $item->id_wp]) }}"
+                                            class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></a>
                                         <button class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></button>
                                         <button type="button" class="btn btn-danger" title="Hapus" data-toggle="modal"
                                             data-target="#modal-default">

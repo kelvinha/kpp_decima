@@ -53,7 +53,7 @@
                                     <th>Tahun Pajak</th>
                                     <th>Status Lapor</th>
                                     <th>Tanggal</th>
-                                    <th>Aksi</th>
+                                    {{-- <th>Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,15 +67,19 @@
                                     <td>{{ $item->jenis_spt }}</td>
                                     <td>{{ $item->tahun_pajak }}</td>
                                     <td>{{ $item->status_lapor }}</td>
+                                    @if ($item->tanggal === NULL)
+                                        <td> - </td>
+                                    @else
                                     <td>{{ $item->tanggal }}</td>
-                                    <td class="text-nowrap">
+                                    @endif
+                                    {{-- <td class="text-nowrap">
                                         <button class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></button>
                                         <button class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></button>
                                         <button type="button" class="btn btn-danger" title="Hapus" data-toggle="modal"
                                         data-target="#hapus" data-myid="{{ $item->npwp }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -90,7 +94,7 @@
                                     <th>Tahun Pajak</th>
                                     <th>Status Lapor</th>
                                     <th>Tanggal</th>
-                                    <th>Aksi</th>
+                                    {{-- <th>Aksi</th> --}}
                                 </tr>
                             </tfoot>
                         </table>

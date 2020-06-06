@@ -39,7 +39,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-              <a href="{{ route('wp.index') }}" class="nav-link {{Request::is('admin/*/kelola-wajib-pajak')? 'active' : null }}">
+              <a href="{{ route('wp.index') }}" class="nav-link {{Request::is('admin/*/kelola-wajib-pajak')? 'active' : Request::is('admin/*/kelola-wajib-pajak/*')? 'active' : null }}">
                   <i class="far fa-dot-circle nav-icon"></i>
                   <p>Kelola Data WP</p>
                 </a>
@@ -59,7 +59,7 @@
             </ul>
           </li>
           <li class="nav-item">
-          <a href="{{ route('laporanspt.index')}}" class="nav-link {{Request::is('admin/laporan-spt')? 'active' : null }}">
+          <a href="{{ route('laporanspt.index')}}" class="nav-link {{Request::is('admin/laporan-spt')? 'active' : Request::is('admin/laporan-spt/*')? 'active' : null }}">
               <i class="nav-icon far fa-file-alt"></i>
               <p>
                 Laporan SPT

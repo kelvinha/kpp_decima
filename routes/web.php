@@ -32,13 +32,16 @@ Route::prefix('admin')->group(function (){
         Route::get('/data-wajib-pajak/kelola-wajib-pajak/detail/{id}','backend\WajibPajakController@show')->name('wp.show');
         Route::post('/data-wajib-pajak/kelola-wajib-pajak/update/{id}','backend\WajibPajakController@update')->name('wp.update');
         Route::get('/data-wajib-pajak/kelola-wajib-pajak/destroy','backend\WajibPajakController@destroy')->name('wp.destroy');
+        
         // sudah lapor
         Route::get('/data-wajib-pajak/sudah-lapor-spt','backend\WajibPajakController@indexSudahlapor')->name('sudahlapor.index');
+        
         // belum lapor
         Route::get('/data-wajib-pajak/belom-lapor-spt','backend\WajibPajakController@indexBelumlapor')->name('belomlapor.index');
     
         // laporan spt
         Route::get('/laporan-spt','backend\LaporanSptController@index')->name('laporanspt.index');
+        Route::get('/laporan-spt/detail/{id}','backend\LaporanSptController@show')->name('laporanspt.show');
         
         // forum
         Route::get('/forum','backend\ForumController@index')->name('forum.index');

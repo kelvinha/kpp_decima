@@ -25,17 +25,6 @@ class LaporanSptController extends Controller
         return view('backend.laporan_spt.index',$data);
     }
 
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
@@ -49,7 +38,11 @@ class LaporanSptController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['laporan'] = LaporanSpt::join('wajib_pajak','spt.npwp_wp','wajib_pajak.npwp')
+                      ->where('wajib_pajak.id_wp',$id)
+                      ->select('wajib_pajak.*','spt.*')
+                      ->first();
+        return view('backend.laporan_spt.show',$data);
     }
 
     /**
