@@ -13,6 +13,13 @@
 </section>
 <section class="content">
     <div class="container-fluid">
+        @if($pesan = Session::get('sukses'))
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="close close-success">×</button>
+            <h4 class="alert-heading">Selamat!</h4>
+            <p>{{ $pesan }}</p>
+        </div>
+        @endif
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -65,7 +72,8 @@
                                     <td class="text-nowrap">
                                         <a href="{{ route('laporanspt.show',['id' => $item->id_wp]) }}"
                                             class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></a>
-                                        <button class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></button>
+                                        <a href="{{ route('laporanspt.edit',['id' => $item->id_spt]) }}"
+                                            class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></a>
                                         <button type="button" class="btn btn-danger" title="Hapus" data-toggle="modal"
                                             data-target="#modal-default">
                                             <i class="fa fa-trash"></i>
@@ -137,6 +145,9 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
+        });
+        $('.close-success').click(function () {
+            $('.alert').delay().slideUp();
         });
     });
 

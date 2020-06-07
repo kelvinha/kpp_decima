@@ -42,6 +42,8 @@ Route::prefix('admin')->group(function (){
         // laporan spt
         Route::get('/laporan-spt','backend\LaporanSptController@index')->name('laporanspt.index');
         Route::get('/laporan-spt/detail/{id}','backend\LaporanSptController@show')->name('laporanspt.show');
+        Route::get('/laporan-spt/edit/{id}','backend\LaporanSptController@edit')->name('laporanspt.edit');
+        Route::post('/laporan-spt/update/{id}','backend\LaporanSptController@update')->name('laporanspt.update');
         
         // forum
         Route::get('/forum','backend\ForumController@index')->name('forum.index');

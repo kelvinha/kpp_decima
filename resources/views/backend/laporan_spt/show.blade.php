@@ -82,7 +82,7 @@
                                                 Export
                                                 PDF</button>
                                             <hr>
-                                            <a href="#"
+                                            <a href="{{ route('laporanspt.edit',['id' => $laporan->id_spt]) }}"
                                                 class="btn elevation-2 btn-info"><i class="fas fa-edit"></i> Edit
                                                 Laporan</a>
                                         </div>

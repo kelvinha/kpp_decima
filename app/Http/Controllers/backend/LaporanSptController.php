@@ -45,27 +45,32 @@ class LaporanSptController extends Controller
         return view('backend.laporan_spt.show',$data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        // $data['laporan'] = LaporanSpt::find($id);
+        $data['laporan'] = LaporanSpt::join('wajib_pajak','spt.npwp_wp','wajib_pajak.npwp')
+                                     ->where('id_spt',$id)
+                                     ->select('spt.*','wajib_pajak.nama')
+                                     ->first();
+
+        return view('backend.laporan_spt.edit',$data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $tanggal = date('d F Y');
+        // dd($tanggal);
+        $update_laporan = LaporanSpt::find($id);
+        $update_laporan->status_lapor = $request->get('status_lapor');
+        if( $request->get('status_lapor') == 'Belum Lapor' ) {
+            $update_laporan->tanggal_lapor = "-";
+        }
+        else {
+            $update_laporan->tanggal_lapor = $tanggal;
+        }
+        $update_laporan->save();
+
+        return redirect()->route('laporanspt.index')->with('sukses','Laporan Berhasil Diperbarui');
     }
 
     /**
