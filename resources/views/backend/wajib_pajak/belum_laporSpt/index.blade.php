@@ -69,10 +69,10 @@
                                     <td>{{ $item->jenis_spt }}</td>
                                     <td>{{ $item->tahun_pajak }}</td>
                                     <td>{{ $item->status_lapor }}</td>
-                                    @if ($item->tanggal === NULL)
+                                    @if ($item->tanggal_lapor === NULL)
                                         <td> - </td>
                                     @else
-                                    <td>{{ $item->tanggal }}</td>
+                                    <td>{{ $item->tanggal_lapor }}</td>
                                     @endif
                                     {{-- <td class="text-nowrap">
                                         <button class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></button>
