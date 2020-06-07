@@ -63,7 +63,7 @@ class LaporanSptController extends Controller
         $update_laporan = LaporanSpt::find($id);
         $update_laporan->status_lapor = $request->get('status_lapor');
         if( $request->get('status_lapor') == 'Belum Lapor' ) {
-            $update_laporan->tanggal_lapor = "-";
+            $update_laporan->tanggal_lapor = NULL;
         }
         else {
             $update_laporan->tanggal_lapor = $tanggal;

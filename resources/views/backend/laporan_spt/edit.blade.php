@@ -51,10 +51,10 @@
                                         <br>
                                         <input type="radio" id="blm" name="status_lapor" value="Belum Lapor" 
                                         {{ $laporan->status_lapor == "Belum Lapor" ? "checked" : ""  }}>
-                                        <label for="blm">Belum Lapor</label>
+                                        <label for="blm"><span class="badge badge-danger"><h6>Belum Lapor</h6></span></label>
                                         <br>
                                         <input type="radio" id="sdh" name="status_lapor" value="Sudah Lapor" {{ $laporan->status_lapor == "Sudah Lapor" ? "checked" : ""  }} >
-                                        <label for="sdh">Sudah Lapor</label>
+                                        <label for="sdh"><span class="badge badge-success"><h6>Sudah Lapor</h6></span></label>
                                     </div>
                                 </div>
                             </div>
