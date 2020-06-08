@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2020 at 05:45 PM
+-- Generation Time: Jun 08, 2020 at 07:57 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -78,6 +78,7 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `spt` (
   `id_spt` int(11) NOT NULL,
+  `id_wp` int(11) NOT NULL,
   `npwp_wp` varchar(15) DEFAULT NULL,
   `status_lapor` varchar(20) DEFAULT 'Belum Lapor',
   `tanggal_lapor` varchar(20) DEFAULT NULL,
@@ -89,9 +90,10 @@ CREATE TABLE `spt` (
 -- Dumping data for table `spt`
 --
 
-INSERT INTO `spt` (`id_spt`, `npwp_wp`, `status_lapor`, `tanggal_lapor`, `created_at`, `updated_at`) VALUES
-(1, '121210291201921', 'Belum Lapor', NULL, '2020-05-29 08:12:17', '2020-05-29 08:12:17'),
-(2, '131313131312121', 'Belum Lapor', NULL, '2020-05-29 08:26:16', '2020-05-29 08:26:16');
+INSERT INTO `spt` (`id_spt`, `id_wp`, `npwp_wp`, `status_lapor`, `tanggal_lapor`, `created_at`, `updated_at`) VALUES
+(1, 1, '121210291201921', 'Sudah Lapor', '07 June 2020', '2020-05-29 08:12:17', '2020-06-07 06:29:52'),
+(2, 2, '131313131312121', 'Sudah Lapor', '07 June 2020', '2020-05-29 08:26:16', '2020-06-07 06:28:07'),
+(4, 5, '222222222222222', 'Belum Lapor', NULL, '2020-05-30 08:58:31', '2020-05-30 08:58:31');
 
 -- --------------------------------------------------------
 
@@ -132,7 +134,7 @@ CREATE TABLE `wajib_pajak` (
   `email` varchar(20) NOT NULL,
   `no_hp` varchar(15) NOT NULL,
   `alamat` text NOT NULL,
-  `kategori_wp` varchar(25) NOT NULL,
+  `kategori_wp` varchar(40) NOT NULL,
   `jenis_spt` varchar(25) NOT NULL,
   `tahun_pajak` varchar(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -144,8 +146,9 @@ CREATE TABLE `wajib_pajak` (
 --
 
 INSERT INTO `wajib_pajak` (`id_wp`, `npwp`, `nama`, `email`, `no_hp`, `alamat`, `kategori_wp`, `jenis_spt`, `tahun_pajak`, `created_at`, `updated_at`) VALUES
-(1, '121210291201921', 'suho', 'suh@mail.com', '089898989898', 'Jakarta Selatan', 'Orang Pribadi (Induk)', 'SPT Masa', '2018', '2020-05-29 08:12:17', '2020-05-29 08:12:17'),
-(2, '131313131312121', 'badang', 'badang@mail.com', '089898989898', 'Land Of Dawn', 'Badan', 'SPT Masa', '2019', '2020-05-29 08:26:15', '2020-05-29 08:26:15');
+(1, '121210291201921', 'Kris', 'suh@mail.com', '089898989898', 'Jakarta Selatan', 'Orang Pribadi (Induk)', 'SPT Masa', '2018', '2020-05-29 08:12:17', '2020-06-06 06:56:04'),
+(2, '131313131312121', 'Budi', 'badang@mail.com', '089898989898', 'Depok', 'Memilih Terpisah (MT)', 'SPT Tahunan', '2019', '2020-05-29 08:26:15', '2020-06-07 06:31:48'),
+(5, '222222222222222', 'Susi Susanti', 'rose@mail.com', '089999999999', 'Jakarta Selatan', 'Kantor Perwakilan Perusahaan Asing', 'SPT Masa', '2020', '2020-05-30 08:58:31', '2020-06-06 06:56:41');
 
 --
 -- Indexes for dumped tables
@@ -208,7 +211,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `spt`
 --
 ALTER TABLE `spt`
-  MODIFY `id_spt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_spt` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -220,7 +223,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wajib_pajak`
 --
 ALTER TABLE `wajib_pajak`
-  MODIFY `id_wp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_wp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
