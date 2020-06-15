@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1e2f5f;">
     <!-- Brand Logo -->
    <a href="{{ url('/home')}}" class="brand-link navbar-warning d-flex justify-content-center">
-      <img src="{{asset('vendor')}}/dist/img/logo-kpp.png" alt="KPP Logo" style="height: 65%;" class="brand-image"
+      <img src="{{asset('vendor')}}/dist/img/djp.png" alt="KPP Logo" style="height: 65%;" class="brand-image"
            style="opacity: .8">
       {{-- <h6 class="font-weight-bold" style="color: #1e2f5f;">Dirjen Pajak</h6> --}}
     </a>

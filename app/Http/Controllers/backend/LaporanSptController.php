@@ -22,6 +22,7 @@ class LaporanSptController extends Controller
                       ->get();
         // dd($laporanspt);
         $data['laporan'] = $laporanspt;
+        $data['tahun'] = range(date('Y'), 1990);
         return view('backend.laporan_spt.index',$data);
     }
 
