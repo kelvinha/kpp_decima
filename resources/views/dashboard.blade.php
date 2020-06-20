@@ -26,7 +26,7 @@
             <div class="col-md-3">
                 <div class="card bg-light elevation-3">
                     <div class="card-header">
-                        <h4 class="font-weight-light">Total Admin</h4>
+                        <h4 class="font-weight-light">Total Pegawai</h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -35,6 +35,23 @@
                             </div>
                             <div class="col-sm-10 col-md-8 pt-1">
                                 <span class="h4">{{ $totaladmin }} Orang</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-light elevation-3">
+                    <div class="card-header">
+                        <h4 class="font-weight-light">Data Wajib Pajak</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-2 col-md-4">
+                                <i class="fas fa-user-friends fa-3x"></i>
+                            </div>
+                            <div class="col-sm-10 col-md-8">
+                                <span class="h4">{{$totalwp}} Orang</span>
                             </div>
                         </div>
                     </div>
@@ -69,23 +86,6 @@
                             </div>
                             <div class="col-sm-10 col-md-8 pt-1">
                                 <span class="h4">{{ $totalbelumlapor }} Orang</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card bg-light elevation-3">
-                    <div class="card-header">
-                        <h4 class="font-weight-light">Data Wajib Pajak</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-2 col-md-4">
-                                <i class="fas fa-user-friends fa-3x"></i>
-                            </div>
-                            <div class="col-sm-10 col-md-8">
-                                <span class="h4">{{$totalwp}} Orang</span>
                             </div>
                         </div>
                     </div>

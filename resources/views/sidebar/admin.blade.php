@@ -29,39 +29,46 @@
                         </p>
                     </a>
                 </li>
-                {{-- <li class="nav-item has-treeview {{Request::is('admin/data-wajib-pajak/*')? 'menu-open' : null }}">
-                <a href="#" class="nav-link {{Request::is('admin/data-wajib-pajak/*')? 'active' : null }}">
-                    <i class="nav-icon far fa-folder-open"></i>
-                    <p>
-                        Data Wajib Pajak
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
-                </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('wp.index') }}"
-                            class="nav-link {{Request::is('admin/*/kelola-wajib-pajak')? 'active' : Request::is('admin/*/kelola-wajib-pajak/*')? 'active' : null }}">
-                            <i class="far fa-dot-circle nav-icon"></i>
-                            <p>Kelola Data WP</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('sudahlapor.index')}}"
-                            class="nav-link {{Request::is('admin/*/sudah-lapor-spt')? 'active' : null }}">
-                            <i class="far fa-dot-circle nav-icon"></i>
-                            <p>Sudah Lapor SPT</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('belomlapor.index')}}"
-                            class="nav-link {{Request::is('admin/*/belom-lapor-spt')? 'active' : null }}">
-                            <i class="far fa-dot-circle nav-icon"></i>
-                            <p>Belum Lapor SPT</p>
-                        </a>
-                    </li>
-                </ul>
-                </li> --}}
                 <li class="nav-item">
+                    <a href="{{ route('wp.index') }}"
+                        class="nav-link {{Request::is('admin/data-wajib-pajak')? 'active' : Request::is('admin/data-wajib-pajak/*')? 'active' : null }}">
+                        <i class="nav-icon fas fa-user-friends"></i>
+                        <p>Data Wajib Pajak</p>
+                    </a>
+                </li>
+                <!-- <li class="nav-item has-treeview {{Request::is('admin/data-wajib-pajak/*')? 'menu-open' : null }}">
+                    <a href="#" class="nav-link {{Request::is('admin/data-wajib-pajak/*')? 'active' : null }}">
+                        <i class="nav-icon far fa-folder-open"></i>
+                        <p>
+                            Data Wajib Pajak
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('wp.index') }}"
+                                class="nav-link {{Request::is('admin/*/kelola-wajib-pajak')? 'active' : Request::is('admin/*/kelola-wajib-pajak/*')? 'active' : null }}">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Kelola Data WP</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('sudahlapor.index')}}"
+                                class="nav-link {{Request::is('admin/*/sudah-lapor-spt')? 'active' : null }}">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Sudah Lapor SPT</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('belomlapor.index')}}"
+                                class="nav-link {{Request::is('admin/*/belom-lapor-spt')? 'active' : null }}">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Belum Lapor SPT</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li> -->
+                <!-- <li class="nav-item">
                     <a href="{{ route('laporanspt.index')}}"
                         class="nav-link {{Request::is('admin/laporan-spt')? 'active' : Request::is('admin/laporan-spt/*')? 'active' : null }}">
                         <i class="nav-icon far fa-file-alt"></i>
@@ -69,7 +76,7 @@
                             Laporan SPT
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
@@ -77,35 +84,6 @@
                             Pegawai
                         </p>
                     </a>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Konten
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="far fa-dot-circle nav-icon"></i>
-                                <p>FAQ</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="far fa-dot-circle nav-icon"></i>
-                                <p>Forum</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="far fa-dot-circle nav-icon"></i>
-                                <p>Konten</p>
-                            </a>
-                        </li>
-                    </ul>
                 </li>
             </ul>
         </nav>

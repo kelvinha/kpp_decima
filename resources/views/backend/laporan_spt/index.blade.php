@@ -37,12 +37,13 @@
                                 </form>
                             </div>
                             <div class="col-sm-6 col-md-8" align="right">
-                                <button class="btn btn-success"><i class="fa fa-upload"></i> &nbsp;Export to
+                                <button class="btn btn-info"><i class="fa fa-upload"></i> &nbsp;Export to
                                     Excel</button>
-                                <button class="btn btn-danger"><i class="fa fa-upload"></i> &nbsp;Print to PDF</button>
+                                <button class="btn btn-success"><i class="fa fa-download"></i> &nbsp;Import from
+                                    Excel</button>
                             </div>
                         </div>
-                        <table id="example1" class="table table-bordered table-striped text-center">
+                        <table id="example1" class="table table-bordered table-striped text-center table-responsive">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -57,7 +58,6 @@
                                     <th>Status</th>
                                     <th>Tanggal Lapor</th>
                                     <th>Aksi</th>
-                                    {{-- <th>Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,59 +72,31 @@
                                     <td>SPT Tahunan</td>
                                     <td>2020</td>
                                     <td>
-                                        Belum Lapor
+                                        <span class="badge badge-danger">Belum Lapor</span>
                                     </td>
                                     <td>-</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>323456789143457</td>
-                                    <td>Bunga</td>
-                                    <td>Badan</td>
-                                    <td>Depok</td>
-                                    <td>Sintya</td>
-                                    <td>Pengawasan dan Konsultasi</td>
-                                    <td>SPT Masa</td>
-                                    <td>2020</td>
-                                    <td>
-                                        Sudah Lapor
+                                    <td class="text-nowrap">
+                                        <button class="btn btn-info"><i class="fas fa-info-circle"></i></button>
                                     </td>
-                                    <td>{{ date('d F Y') }}</td>
-                                    <td>-</td>
                                 </tr>
                                 {{-- @foreach($laporan as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->npwp }}</td>
-                                    <td>{{ $item->nama}}</td>
-                                    <td>{{ $item->kategori_wp }}</td>
-                                    <td class="text-nowrap" >{{ $item->alamat}}</td>
-                                    <td>{{ $item->jenis_spt }}</td>
-                                    <td>{{ $item->tahun_pajak }}</td>
-                                    <td>{{ $item->status_lapor }}</td>
-                                    @if ($item->tanggal_lapor === NULL)
-                                        <td> - </td>
-                                    @else
-                                    <td>{{ $item->tanggal_lapor }}</td>
-                                    @endif
+                                <td>{{ $item->npwp }}</td>
+                                <td>{{ $item->nama}}</td>
+                                <td>{{ $item->kategori_wp }}</td>
+                                <td class="text-nowrap">{{ $item->alamat}}</td>
+                                <td>{{ $item->jenis_spt }}</td>
+                                <td>{{ $item->tahun_pajak }}</td>
+                                <td>{{ $item->status_lapor }}</td>
+                                @if ($item->tanggal_lapor === NULL)
+                                <td> - </td>
+                                @else
+                                <td>{{ $item->tanggal_lapor }}</td>
+                                @endif
                                 </tr>
                                 @endforeach --}}
                             </tbody>
-                            {{-- <tfoot>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>NPWP</th>
-                                    <th>Nama</th>
-                                    <th>Kategori</th>
-                                    <th>Alamat</th>
-                                    <th>Jenis SPT</th>
-                                    <th>Tahun Pajak</th>
-                                    <th>Status Lapor</th>
-                                    <th>Tanggal</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </tfoot> --}}
                         </table>
                     </div>
                 </div>
