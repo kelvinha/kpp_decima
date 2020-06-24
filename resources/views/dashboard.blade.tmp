@@ -62,7 +62,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="{{ route('sudahlapor.index') }}">
+            <a href="{{ route('sudahlapor.index') }}">
                     <div class="card bg-light elevation-3" id="tes3">
                         <div class="card-header">
                             <h4 class="font-weight-light">Sudah Lapor SPT</h4>
@@ -81,7 +81,7 @@
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="{{ route('belomlapor.index') }}">
+            <a href="{{ route('belomlapor.index') }}">
                     <div class="card bg-light elevation-3" id="tes4">
                         <div class="card-header">
                             <h4 class="font-weight-light">Belum Lapor SPT</h4>
@@ -99,6 +99,62 @@
                     </div>
                 </a>
             </div>
+            <!-- <div class="col-lg-6 col-sm-6 col-md-3">
+                <div class="card bg-kpp elevation-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-2 col-md-4">
+                                    <i class="fas fa-id-card fa-4x"></i>
+                            </div>
+                            <div class="col-sm-10 col-md-8">
+                                <h4 class="font-weight-light">Total Admin</h4>
+                                <span class="h4">{{ $totaladmin }} Orang</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-kpp elevation-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-2 col-md-4">
+                                <i class="fas fa-user-check fa-4x"></i>
+                            </div>
+                            <div class="col-sm-10 col-md-8">
+                                <h4 class="font-weight-light">Total Sudah Lapor SPT</h4>
+                                <span class="h4">{{ $totalsudahlapor }} Orang</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-md-3">
+                <div class="card bg-kpp elevation-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-2 col-md-4">
+                                <i class="fas fa-user-friends fa-4x"></i>
+                            </div>
+                            <div class="col-sm-10 col-md-8">
+                                <h4 class="font-weight-light">Total Warga / WP</h4>
+                                <span class="h4">{{$totalwp}} Orang</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-kpp elevation-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-2 col-md-4">
+                                <i class="fas fa-user-slash fa-4x"></i>
+                            </div>
+                            <div class="col-sm-10 col-md-8">
+                                <h4 class="font-weight-light">Total Belum Lapor SPT</h4>
+                                <span class="h4">{{$totalbelumlapor}} Orang</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -225,24 +281,21 @@
                                 Target Lapor SPT
                                 <span class="float-right"><b>160</b>/200</span>
                                 <div class="progress progress-sm">
-                                    <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
-                                        style="width: 20%"></div>
+                                    <div class="progress-bar bg-primary" style="width: 20%"></div>
                                 </div>
                             </div>
                             <div class="progress-group">
                                 Sudah Lapor SPT
-                                <span class="float-right"><b>{{ $totalsudahlapor }}</b>/{{ $totalwp}}</span>
-                                <div class="progress progress-sm ">
-                                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
-                                        style="width: {{ $totalsudahlapor }}%;" aria-valuemax="{{ $totalwp }}"></div>
+                                <span class="float-right"><b>160</b>/200</span>
+                                <div class="progress progress-sm">
+                                    <div class="progress-bar bg-success" style="width: 50%"></div>
                                 </div>
                             </div>
                             <div class="progress-group">
                                 Belom Lapor SPT
-                                <span class="float-right"><b>{{ $totalbelumlapor }}</b>/{{ $totalwp }}</span>
+                                <span class="float-right"><b>160</b>/200</span>
                                 <div class="progress progress-sm">
-                                    <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"
-                                        style="width: {{ $totalbelumlapor }}%" aria-valuemax="{{ $totalwp }}"></div>
+                                    <div class="progress-bar bg-danger" style="width: 80%"></div>
                                 </div>
                             </div>
                         </div>

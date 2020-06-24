@@ -71,7 +71,8 @@ class LaporanSptController extends Controller
         }
         $update_laporan->save();
 
-        return redirect()->route('laporanspt.index')->with('sukses','Laporan Berhasil Diperbarui');
+        return redirect()->route('wp.index')->with(['success' => 'Data berhasil diperbarui']);  
+        // return redirect()->route('laporanspt.index')->with('sukses','Laporan Berhasil Diperbarui');
     }
 
     /**

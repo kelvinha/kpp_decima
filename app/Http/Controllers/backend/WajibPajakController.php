@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\WajibPajak;
 use App\Models\LaporanSpt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Auth;
 class WajibPajakController extends Controller
 {
@@ -18,7 +19,11 @@ class WajibPajakController extends Controller
 
     public function index()
     {
-        $data['data_wp'] = WajibPajak::GET();
+        $data['data_wp'] = WajibPajak::join('spt','wajib_pajak.npwp','spt.npwp_wp')
+                                    ->select('wajib_pajak.*','spt.*')
+                                    ->orderBy('wajib_pajak.created_at','ASC')
+                                    ->paginate(10);
+        $data['total'] = WajibPajak::get()->count();
         
         return view('backend.wajib_pajak.kelola_wajib_pajak.index', $data);
     }
@@ -83,6 +88,44 @@ class WajibPajakController extends Controller
         }
     }
 
+    public function TambahData()
+    {
+        for($i = 1; $i <= 15; $i++)
+        {
+            $tes1 = rand(1000000000,(int) 9999999999);
+            $tes2 = rand(10000,99999);
+            $npwp = $tes1 . $tes2;
+
+            $new_wp = new WajibPajak;
+            $new_wp->npwp = $npwp;   
+            $new_wp->nama = "User ". rand(0,100);   
+            $new_wp->alamat = Str::random(20);   
+            if($i % 3 == 0)
+            {
+                $new_wp->kategori_wp = "Orang Pribadi (Non-Karyawan)";
+            }
+            else if($i % 2 == 1)
+            {
+                $new_wp->kategori_wp = "Orang Pribadi (Karyawan)";
+            }
+            else if($i % 2 == 0)
+            {
+                $new_wp->kategori_wp = "Badan";
+            }   
+            $new_wp->jenis_spt= rand(1770,1780);
+            $new_wp->nama_seksi = "waskon " . rand(1,4);
+            $new_wp->tahun_pajak = rand(2014,2021);
+            $new_wp->save();
+
+            $new_spt = new LaporanSpt;
+            $new_spt->npwp_wp = $new_wp->npwp;
+            $new_spt->id_wp = $new_wp->id_wp;
+            $new_spt->save();
+        }
+        return redirect()->route('wp.index')->with(['success' => 'Data Berhasil Ditambah']);
+    }
+
+
     public function show($id)
     {
         // $data['wp'] = WajibPajak::findOrFail($id);
@@ -96,8 +139,14 @@ class WajibPajakController extends Controller
 
     public function edit($id)
     {
-        $data['wp'] = WajibPajak::findOrFail($id);
-        $data['tahun'] = range(date('Y'), 1990);
+        // $data['wp'] = WajibPajak::findOrFail($id);
+        // $data['tahun'] = range(date('Y'), 1990);
+
+        $data['laporan'] = WajibPajak::join('spt','wajib_pajak.npwp','spt.npwp_wp')
+                                     ->where('wajib_pajak.id_wp',$id)
+                                     ->select('spt.*','wajib_pajak.nama')
+                                     ->first();
+
         return view('backend.wajib_pajak.kelola_wajib_pajak.edit',$data);
     }
 

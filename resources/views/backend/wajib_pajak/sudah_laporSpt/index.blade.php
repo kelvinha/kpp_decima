@@ -17,22 +17,34 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title"><span class="font-weight-w500">Sudah Lapor SPT</span></div>
+                        <div class="card-title"><p><span class="font-weight-w500">Belom Lapor SPT</span></p></div>
                     </div>
                     <div class="card-body">
                         <div class="row mb-2">
-                            <div class="col-sm-6 col-md-4">
-                                <form class="form-inline ps" action="" method="">
-                                    <div class="form-group mx-sm-3">
-                                        <select class="form-control">
-                                            <option disabled selected>Pilih Tahun</option>
-                                            @foreach ($tahun as $item)
-                                            <option value="{{ $item }}">{{ $item }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-success" type="submit">Tampilkan</button>
+                            <div class="col-sm-6 col-md-12">
+                                <p>Cari Berdasarkan: </p>
+                                <form class="form" action="" method="">
+                                    <div class="row">
+                                        <div class="form-group col-md-5">
+                                            <select name="kategori_wp" class="form-control">
+                                                <option selected disabled>Pilih Kategori WP</option>
+                                                <option value="Badan">Badan</option>
+                                                <option value="Orang Pribadi (Karyawan)">Orang Pribadi (Karyawan)</option>
+                                                <option value="Orang Pribadi (Non-Karyawan)">Orang Pribadi (Non-Karyawan)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-5">
+                                            <select name="nama_seksi" class="form-control">
+                                                <option selected disabled>Nama Seksi</option>
+                                                <option value="waskon 1">Waskon 1</option>
+                                                <option value="waskon 2">Waskon 2</option>
+                                                <option value="waskon 3">Waskon 3</option>
+                                                <option value="waskon 4">Waskon 4</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <button class="btn btn-success" type="submit">Submit</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -47,13 +59,13 @@
                                     <th>No.</th>
                                     <th>NPWP</th>
                                     <th>Nama</th>
-                                    <th>Kategori</th>
+                                    <th>Kategori WP</th>
+                                    <th>Nama Seksi</th>
                                     <th>Alamat</th>
                                     <th>Jenis SPT</th>
                                     <th>Tahun Pajak</th>
                                     <th>Status Lapor</th>
                                     <th>Tanggal</th>
-                                    {{-- <th>Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,10 +75,15 @@
                                     <td>{{ $item->npwp }}</td>
                                     <td>{{ $item->nama}}</td>
                                     <td>{{ $item->kategori_wp }}</td>
-                                    <td class="text-nowrap" >{{ $item->alamat}}</td>
+                                    <td>{{ $item->nama_seksi}}</td>
+                                    <td>{{ $item->alamat}}</td>
                                     <td>{{ $item->jenis_spt }}</td>
                                     <td>{{ $item->tahun_pajak }}</td>
-                                    <td>{{ $item->status_lapor }}</td>
+                                    <td>
+                                        <span class="badge badge-success">
+                                            {{ $item->status_lapor }}
+                                        </span>
+                                    </td>
                                     @if ($item->tanggal_lapor === NULL)
                                         <td> - </td>
                                     @else
@@ -83,20 +100,6 @@
                                 </tr>
                                 @endforeach
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>NPWP</th>
-                                    <th>Nama</th>
-                                    <th>Kategori</th>
-                                    <th>Alamat</th>
-                                    <th>Jenis SPT</th>
-                                    <th>Tahun Pajak</th>
-                                    <th>Status Lapor</th>
-                                    <th>Tanggal</th>
-                                    {{-- <th>Aksi</th> --}}
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>

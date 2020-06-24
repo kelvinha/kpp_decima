@@ -49,9 +49,9 @@
                         <!-- /.col -->
                     </div>
                 </form>
-                <p class="mb-1 mt-3">
+                {{-- <p class="mb-1 mt-3">
                     <a href="" class="text-link">I forgot my password</a>
-                </p>
+                </p> --}}
             </div>
             <!-- /.login-card-body -->
         </div>
