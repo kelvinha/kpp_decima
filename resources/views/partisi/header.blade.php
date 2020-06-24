@@ -39,6 +39,11 @@
             background-color: #253664;
             color: #ffffff;
         }
+
+        .bg-kpp-1 {
+            background-color: #253664;
+            color: #ffc107;
+        }
         label {
             text-align: left;
         }

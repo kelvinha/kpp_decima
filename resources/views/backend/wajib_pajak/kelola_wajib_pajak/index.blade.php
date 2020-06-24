@@ -15,6 +15,20 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="close success">×</button> 
+                    <h4 class="alert-heading">Selamat !</h4>
+                    <p>{{ $message }}</p>
+                  </div>
+                @endif
+                @if ($message = Session::get('deleted'))
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="close success">×</button> 
+                    <h4 class="alert-heading">Selamat !</h4>
+                    <p>{{ $message }}</p>
+                  </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title"><span class="font-weight-w500">Data Wajib Pajak</span></div>
@@ -38,6 +52,7 @@
                                     Excel</button>
                                 <button class="btn btn-success"><i class="fa fa-download"></i> &nbsp;Import from
                                     Excel</button>
+                                <a href="{{ route('wp.tambah') }}" class="btn btn-primary"><i class="fa fa-plus"></i> &nbsp;Tambah Data Dummy</a>
                             </div>
                             <div class="col-md-4 col-lg-4 mb-2 mt-3">
                                 <form action="" method="" class="form-inline">
@@ -49,8 +64,8 @@
                                 </form>
                             </div>
                         </div>
-                        <table class="table table-bordered table-striped text-center">
-                            {{-- <thead>
+                        <table class="table table-bordered table-striped text-center table-responsive">
+                            <thead>
                                 <tr>
                                     <th>No.</th>
                                     <th>NPWP</th>
@@ -66,48 +81,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>123456789123456</td>
-                                    <td>Dadang</td>
-                                    <td>Joint Operation</td>
-                                    <td>Bekasi</td>
-                                    <td>Pengawasan dan Konsultasi</td>
-                                    <td>SPT Tahunan</td>
-                                    <td>2020</td>
-                                    <td>
-                                        <span class="badge badge-danger">Belum Lapor</span>
-                                    </td>
-                                    <td>-</td>
-                                    <td class="text-nowrap">
-                                        <button class="btn btn-info"><i class="fas fa-info-circle"></i></button>
-                                    </td>
-                                </tr>
-                            </tbody> --}}
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>NPWP</th>
-                                    <th>Nama</th>
-                                    <th>Kategori Wajib Pajak</th>
-                                    <th>Alamat</th>
-                                    <th>Jenis SPT</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($data_wp as $item)
+                                @foreach ($data_wp as $i => $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->npwp }}</td>
                                     <td>{{ $item->nama }}</td>
-                                    <td>{{$item->kategori_wp}}</td>
+                                    <td>{{ $item->kategori_wp }}</td>
                                     <td>{{ $item->alamat }}</td>
+                                    <td>{{ $item->nama_seksi }}</td>
                                     <td>{{ $item->jenis_spt }}</td>
+                                    <td>{{ $item->tahun_pajak }}</td>
+                                    @if ($item->status_lapor == "Sudah Lapor")
+                                    <td> <span class="badge badge-success">{{ $item->status_lapor }}</span> </td>
+                                    @else
+                                    <td> <span class="badge badge-danger">{{ $item->status_lapor }}</span> </td>  
+                                    @endif
+                                    @if ( $item->tanggal_lapor == NULL)
+                                        <td> - </td>
+                                    @else
+                                    <td>{{ $item->tanggal_lapor }}</td>
+                                    @endif
                                     <td class="text-nowrap">
                                     <a href="{{ route('wp.show',['id' => $item->id_wp]) }}" class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></a>
                                     <a href="{{ route('wp.edit',['id' => $item->id_wp]) }}" class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></a>
-                                        <button type="button" class="btn btn-danger" title="Hapus" data-toggle="modal"
+                                    <button type="button" class="btn btn-danger" title="Hapus" data-toggle="modal"
                                     data-target="#delete" data-myid="{{ $item->npwp }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
@@ -116,13 +113,25 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-4">
+                                    <p class="mt-4 font-weight-w500">Showing 1 to {{ $data_wp->count() }} of {{ $total }} entries</p>
+                                </div>
+                                <div class="col-8">
+                                    <div class="d-flex justify-content-end mt-4">
+                                        {{ $data_wp->links() }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<div class="modal fade" id="hapus">
+<div class="modal fade" id="delete">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-kpp">
@@ -131,11 +140,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('wp.destroy') }}" method="POST">
+            <form action="{{ route('wp.destroy') }}" method="GET">
                 <div class="modal-body">
-                    {{ csrf_field() }}
                     <p>Apakah anda yakin ingin menghapus ?</p>
-                    <input type="text" id="idnpwp" name="idnpwp">
+                <input type="hidden" id="idnpwp" name="idnpwp" value="">
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
@@ -168,6 +176,13 @@
             "autoWidth": false,
             "responsive": true,
         });
+        $('.close .success').click(function(){
+            $('.alert').slideUp(500);
+        });
+        $('.close .error').click(function(){
+            $('.alert').slideUp(500);
+        });
+        $('.alert').delay(2000).slideUp(500);
     });
 
 </script>

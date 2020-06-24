@@ -29,6 +29,20 @@
         modal.find('.modal-body #idnpwp').val(id);
         // console.log( id );
         });
+    
+      for($i = 1; $i <=4; $i++)
+      {
+          $('#tes'+$i).mouseover(function(){
+          $(this).removeClass('bg-light elevation-3');
+          $(this).addClass('bg-kpp-1 elevation-5');
+
+          $(this).mouseleave(function(){
+            $(this).removeClass('bg-kpp-1 elevation-5');
+            $(this).addClass('bg-light elevation-3');
+          });
+        });
+      }
+    
     $('.areaChart').hide();
     $('.donutChart').hide();
     $('.pieChart').hide();

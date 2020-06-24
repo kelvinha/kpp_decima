@@ -41,24 +41,24 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <h6 class="font-weight-bold text-gray">NAMA SEKSI</h6>
-                                        <p>Waskon 2</p>
+                                        <p>{{ $wp->nama_seksi }}</p>
                                         <h6 class="font-weight-bold text-gray">JENIS SPT</h6>
-                                        <p>1770 SS</p>
+                                        <p>{{ $wp->jenis_spt }}</p>
                                     </div>
                                     <div class="col-sm-6">
                                         <h6 class="font-weight-bold text-gray">TAHUN PAJAK</h6>
-                                        <p>2020</p>
+                                        <p>{{ $wp->tahun_pajak }}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-2">
                                 <h6 class="font-weight-bold text-gray">STATUS & TAHUN PAJAK</h6>
                                 <ul>
-                                    <li><span class="badge badge-danger">2016</span>&nbsp;kurang bayar</li>
-                                    <li><span class="badge badge-success">2017</span>&nbsp;lebih bayar</li>
+                                    @if ($wp->status_lapor == 'Sudah Lapor')
                                     <li><span class="badge badge-success">{{ $wp->tahun_pajak }}</span>&nbsp;pas</li>
-                                    <li><span class="badge badge-danger">2019</span>&nbsp;kurang bayar</li>
-                                    <li><span class="badge badge-danger">{{ date('Y') }}</span>&nbsp;nihil</li>
+                                    @else
+                                    <li><span class="badge badge-danger">{{ $wp->tahun_pajak }}</span>&nbsp;pas</li> 
+                                    @endif
                                 </ul>
                             </div>
                         </div>
