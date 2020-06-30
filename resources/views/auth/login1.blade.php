@@ -6,12 +6,13 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <div class="d-flex justify-content-center mb-2 mt-2">
-                    <img src="{{ asset('vendor') }}/dist/img/djp-logo.jpg" style="width: 45%;" class="img-fluid" alt="logo">
+                    <img src="{{ asset('vendor') }}/dist/img/djp-logo.jpg" style="width: 45%;" class="img-fluid"
+                        alt="logo">
                 </div>
                 <p class="login-box-msg">Monitoring Kepatuhan Wajib Pajak <br> KPP Pratama Depok Cimanggis</p>
                 <h3 class="font-weight-bold text-primary mb-4" align="center">Login</h3>
 
-                <form action="{{ route('login') }}" method="POST">
+                <form action="{{ route('login') }}" method="POST" class="mb-5">
                     {{ csrf_field() }}
                     <div class="input-group mb-3">
                         <input type="email" name="email" class="form-control" required autocomplete="off"

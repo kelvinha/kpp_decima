@@ -224,26 +224,16 @@
                             <div class="progress-group">
                                 Target Lapor SPT
                                 <span class="float-right"><b>160</b>/200</span>
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
-                                        style="width: 20%"></div>
-                                </div>
-                            </div>
+                                <progress value="20" max="25"></progress>
                             <div class="progress-group">
                                 Sudah Lapor SPT
-                                <span class="float-right"><b>{{ $totalsudahlapor }}</b>/{{ $totalwp}}</span>
-                                <div class="progress progress-sm ">
-                                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
-                                        style="width: {{ $totalsudahlapor }}%;" aria-valuemax="{{ $totalwp }}"></div>
-                                </div>
+                                <span class="float-right"><b>{{ $totalsudahlapor }} orang </b>/ {{ $totalwp }} orang</span>
+                                <progress value="{{ $totalsudahlapor }}" max="{{ $totalwp }}" class="sudah-lapor"></progress>
                             </div>
                             <div class="progress-group">
                                 Belom Lapor SPT
-                                <span class="float-right"><b>{{ $totalbelumlapor }}</b>/{{ $totalwp }}</span>
-                                <div class="progress progress-sm">
-                                    <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"
-                                        style="width: {{ $totalbelumlapor }}%" aria-valuemax="{{ $totalwp }}"></div>
-                                </div>
+                                <span class="float-right"><b>{{ $totalbelumlapor }} orang </b>/ {{ $totalwp }} orang</span>
+                                <progress value="{{ $totalbelumlapor }}" max="{{ $totalwp }}" class="belum-lapor"></progress>
                             </div>
                         </div>
                     </div>

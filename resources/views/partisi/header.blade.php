@@ -51,6 +51,58 @@
                 margin-left: -18px;
                 white-space: nowrap;
         }
+
+        progress {
+            border-radius: 20px;
+            width: 100%;
+            height: 22px;
+            background-color: #e9ecef;
+        }
+
+        progress::-webkit-progress-bar {
+            background-color: #e9ecef;
+            border-radius: 20px;
+        }
+
+        progress::-webkit-progress-value {
+            background-color: #17a2b8;
+            border-radius: 20px;
+        }
+        
+        progress.sudah-lapor::-webkit-progress-bar {
+            background-color: #e9ecef;
+            border-radius: 20px;
+        }
+
+        progress.sudah-lapor::-webkit-progress-value {
+            background-color: #28a745;
+            border-radius: 20px;
+        }
+        
+        progress.belum-lapor::-webkit-progress-bar {
+            background-color: #e9ecef;
+            border-radius: 20px;
+        }
+
+        progress.belum-lapor::-webkit-progress-value {
+            background-color: #dc3545;
+            border-radius: 20px;
+        }
+
+        progress::-moz-progress-bar {
+            background-color: #17a2b8;
+            border-radius: 20px;
+        }
+        
+        progress.sudah-lapor::-moz-progress-bar{
+            background-color: #28a745;
+            border-radius: 20px;
+        }
+        progress.belum-lapor::-moz-progress-bar{
+            background-color: #dc3545;
+            border-radius: 20px;
+        }
+
         /* selesai style baru */
 
         /* untuk responsif */
