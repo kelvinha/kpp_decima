@@ -5,6 +5,9 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\WajibPajak;
 use App\Models\LaporanSpt;
+use App\User;
+use App\Imports\UserImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Auth;
@@ -125,7 +128,6 @@ class WajibPajakController extends Controller
         return redirect()->route('wp.index')->with(['success' => 'Data Berhasil Ditambah']);
     }
 
-
     public function show($id)
     {
         // $data['wp'] = WajibPajak::findOrFail($id);
@@ -184,5 +186,18 @@ class WajibPajakController extends Controller
         $npwp_wp->delete();
 
         return redirect()->route('wp.index')->with('deleted','Data Berhasil Dihapus !');
+    }
+
+    public function ImportPegawai(Request $request)
+    {
+        $this->validate($request, [
+            'import-pegawai' => 'required|mimes:csv,xls,xlsx'
+        ]);
+        
+        $pegawai = $request->file('import-pegawai');
+        // dd($pegawai);
+        Excel::import(new UserImport, $pegawai);
+
+        return redirect()->back();
     }
 }
