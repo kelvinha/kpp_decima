@@ -48,10 +48,8 @@
                                 </form>
                             </div>
                             <div class="col-sm-6 col-md-8" align="right">
-                                <button class="btn btn-info"><i class="fa fa-upload"></i> &nbsp;Export to
-                                    Excel</button>
-                                <button class="btn btn-success"><i class="fa fa-download"></i> &nbsp;Import from
-                                    Excel</button>
+                                <button class="btn btn-success" data-target="#import-excel" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Pegawai</button>
+                                <button class="btn btn-success"><i class="fa fa-download"></i> &nbsp;Import from Excel</button>
                                 <a href="{{ route('wp.tambah') }}" class="btn btn-primary"><i class="fa fa-plus"></i> &nbsp;Tambah Data Dummy</a>
                             </div>
                             <div class="col-md-4 col-lg-4 mb-2 mt-3">
@@ -148,6 +146,29 @@
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
                     <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="import-excel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-kpp">
+                <h4 class="modal-title">Perhatian ! </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('import.pegawai') }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="modal-body">
+                    <p>Masukan file bertipe <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv</p>
+                    <input type="file" class="form-control" name="import-pegawai">
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
             </form>
         </div>

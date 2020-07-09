@@ -103,7 +103,7 @@
     </div>
 </section>
 
-<section class="content px-3 py-2">
+{{-- <section class="content px-3 py-2">
     <div class="container">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="card elevation-2">
@@ -241,7 +241,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- /.content -->
 @endsection
 {{-- chart js --}}

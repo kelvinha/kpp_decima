@@ -23,6 +23,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/tambah-data','backend\WajibPajakController@TambahData')->name('wp.tambah');
+Route::post('/import-pegawai','backend\WajibPajakController@ImportPegawai')->name('import.pegawai');
 Route::prefix('admin')->group(function (){
 
         // wajib pajak
