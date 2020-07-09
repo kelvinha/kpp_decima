@@ -32,7 +32,7 @@
                 <li class="nav-item">
                     <a href="{{ route('wp.index') }}"
                         class="nav-link {{Request::is('admin/data-wajib-pajak')? 'active' : Request::is('admin/data-wajib-pajak/*')? 'active' : null }}">
-                        <i class="nav-icon fas fa-user-friends"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>Data Wajib Pajak</p>
                     </a>
                 </li>
@@ -78,10 +78,11 @@
                     </a>
                 </li> -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
+                    <a href="{{route('user.index')}}"
+                        class="nav-link {{Request::is('admin/user')? 'active' : Request::is('admin/user/*')? 'active' : null }}">
+                        <i class="nav-icon fas fa-user-friends"></i>
                         <p>
-                            Pegawai
+                            Data Pegawai
                         </p>
                     </a>
                 </li>

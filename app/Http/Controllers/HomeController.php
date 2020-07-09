@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\WajibPajak;
 use App\Models\LaporanSpt;
 use App\User;
-use Auth;
+use Auth; 
+
 class HomeController extends Controller
 {
     /**
