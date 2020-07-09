@@ -14,14 +14,14 @@
                 <form action="{{ route('login') }}" method="POST">
                     {{ csrf_field() }}
                     <div class="input-group mb-3">
-                        <input type="email" name="email" class="form-control" required autocomplete="off"
-                            placeholder="Email">
+                        <input type="text" name="nip" class="form-control" required autocomplete="off"
+                            placeholder="NIP">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope" style="color: #1e2f5f"></span>
                             </div>
                         </div>
-                        @error('email')
+                        @error('nip')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

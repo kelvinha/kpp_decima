@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login1');
+    return redirect('login');
 });
 
 Auth::routes();
@@ -45,4 +45,11 @@ Route::prefix('admin')->group(function (){
         Route::get('/laporan-spt/detail/{id}','backend\LaporanSptController@show')->name('laporanspt.show');
         Route::get('/laporan-spt/edit/{id}','backend\LaporanSptController@edit')->name('laporanspt.edit');
         Route::post('/laporan-spt/update/{id}','backend\LaporanSptController@update')->name('laporanspt.update');
+
+        // pegawai
+        Route::get('/data-pegawai','backend\UserController@index')->name('user.index');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
