@@ -32,31 +32,30 @@
                         </form>
                     </div>
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped text-center table-responsive">
+                        <table class="table table-striped table-striped text-center table-bordered">
                             <thead>
                                 <tr>
-                                    <th width="5%">No.</th>
+                                    <th>No</th>
                                     <th>NIP</th>
-                                    <th>Nama Pegawai</th>
-                                    <th>Seksi</th>
+                                    <th>Nama</th>
                                     <th>Email</th>
+                                    <th>Seksi</th>
                                     <th>Role</th>
-                                    <th>Aksi</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($user as $item)
+                                @foreach($user as $item)
                                 <tr>
-                                    {{-- <td>{{ $loop->iteration + ($user->perpage()* ($user->currentPage()-1)) }}</td> --}}
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nip }}<td> 
-                                    <td>{{ $item->name }}<td> 
-                                    <td>{{ $item->seksi }}<td> 
-                                    <td>{{ $item->email }}</td>
-                                    <td>{{ $item->role }}<td> 
-                                        <td class="text-nowrap">
-                                            <button class="btn btn-info"><i class="fas fa-info-circle"></i></button>
-                                        </td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->nip }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->email }}</td>
+                                <td>{{ $item->seksi }}</td>
+                                <td>{{ $item->role }}</td>
+                                <td class="text-nowrap">
+                                    <button class="btn btn-info"><i class="fas fa-info-circle"></i></button>
+                                </td>
                                 </tr>
                                 @endforeach
                             </tbody>
