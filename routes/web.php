@@ -49,6 +49,12 @@ Route::prefix('admin')->group(function (){
 
         // pegawai
         Route::get('/data-pegawai','backend\UserController@index')->name('user.index');
+        Route::get('/data-pegawai/create','backend\UserController@create')->name('user.create');
+        Route::post('/data-pegawai/store','backend\UserController@store')->name('user.store');
+        Route::get('/data-pegawai/edit/{id}','backend\UserController@edit')->name('user.edit');
+        Route::post('/data-pegawai/update/{id}','backend\UserController@update')->name('user.update');
+        Route::get('/data-pegawai/destroy/{id}','backend\UserController@destroy')->name('user.destroy');
+        Route::get('/data-pegawai/detail/{id}','backend\UserController@show')->name('user.show');
 });
 
 Auth::routes();
