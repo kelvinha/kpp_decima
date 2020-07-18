@@ -32,7 +32,6 @@
                                         <p>{{ $laporan->npwp }}</p>
                                         <h6 class="font-weight-bold text-gray">NAMA</h6>
                                         <p>{{ $laporan->nama }}</p>
-
                                     </div>
                                     <div class="col-sm-6">
                                         <h6 class="font-weight-bold text-gray">EMAIL</h6>
