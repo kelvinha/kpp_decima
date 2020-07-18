@@ -4,9 +4,15 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\WajibPajak;
+use App\Models\WajibSpt;
+use App\Models\MasterNpwp;
 use App\Models\LaporanSpt;
 use App\User;
 use App\Imports\UserImport;
+use App\Imports\MasterNpwpImport;
+use App\Imports\MasterSptImport;
+use App\Imports\DimWilayahImport;
+use App\Imports\WajibSptImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -20,14 +26,35 @@ class WajibPajakController extends Controller
         // $this->middleware('role:admin');
     }
 
-    public function index()
-    {
-        $data['data_wp'] = WajibPajak::join('spt','wajib_pajak.npwp','spt.npwp_wp')
-                                    ->select('wajib_pajak.*','spt.*')
-                                    ->orderBy('wajib_pajak.created_at','ASC')
-                                    ->paginate(10);
-        $data['total'] = WajibPajak::get()->count();
-        
+    public function index(Request $request)
+    {        
+        $cari = $request->get('cari');
+        $tahun = $request->get('tahun');
+        if($cari){
+            dd($cari);
+        }
+        elseif($tahun){
+            $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                        ->where('wajib_spt.tahun',$tahun)
+                                        ->select('master_npwp.*','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
+                                        ->paginate(1);
+            $data['data_wp']->appends(['tahun'=>$tahun]);
+            if($data['data_wp']->count() == 0)
+            {
+                $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                        ->select('master_npwp.*','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
+                                        ->paginate(10);
+                return redirect()->route('wp.index')->with('error','data tidak tersedia');
+            }
+        }
+        else{
+        $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                        ->select('master_npwp.*','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
+                                        ->paginate(10);
+        }
+        $data['total'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->select('master_npwp.*','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
+                                    ->get()->count();
         return view('backend.wajib_pajak.kelola_wajib_pajak.index', $data);
     }
     
@@ -187,6 +214,11 @@ class WajibPajakController extends Controller
 
         return redirect()->route('wp.index')->with('deleted','Data Berhasil Dihapus !');
     }
+    
+    public function Import()
+    {
+        return view('backend.import');
+    }
 
     public function ImportPegawai(Request $request)
     {
@@ -198,6 +230,59 @@ class WajibPajakController extends Controller
         // dd($pegawai);
         Excel::import(new UserImport, $pegawai);
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Data Berhasil Di import');
     }
+
+    
+    public function ImportMasterNpwp(Request $request)
+    {
+        $this->validate($request, [
+            'import-master-npwp' => 'required|mimes:csv,xls,xlsx'
+        ]);
+            
+        $masternpwp = $request->file('import-master-npwp');
+        // dd($masternpwp);
+        Excel::import(new MasterNpwpImport, $masternpwp);
+
+        return redirect()->back()->with('success','Data Berhasil Di import');
+    }
+    
+    public function ImportWajibSpt(Request $request)
+    {
+        $this->validate($request, [
+            'import-wajib-spt' => 'required|mimes:csv,xls,xlsx'
+        ]);
+        
+        $wajibspt = $request->file('import-wajib-spt');
+        // dd($wajibspt);
+        Excel::import(new WajibSptImport, $wajibspt);
+
+        return redirect()->back()->with('success','Data Berhasil Di import');
+    }
+    public function ImportWilayah(Request $request)
+    {
+        $this->validate($request, [
+            'import-wilayah' => 'required|mimes:csv,xls,xlsx'
+        ]);
+        
+        $dim_wilayah = $request->file('import-wilayah');
+        // dd($dim_wilayah);
+        Excel::import(new DimWilayahImport, $dim_wilayah);
+
+        return redirect()->back()->with('success','Data Berhasil Di import');
+    }
+
+    public function ImportMasterSpt(Request $request)
+    {
+        $this->validate($request, [
+            'import-master-spt' => 'required|mimes:csv,xls,xlsx'
+        ]);
+        
+        $masterspt = $request->file('import-master-spt');
+        // dd($masterspt);
+        Excel::import(new MasterSptImport, $masterspt);
+
+        return redirect()->back()->with('success','Data Berhasil Di import');
+    }
+
 }

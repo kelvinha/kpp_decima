@@ -23,33 +23,39 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/tambah-data','backend\WajibPajakController@TambahData')->name('wp.tambah');
-Route::post('/import-pegawai','backend\WajibPajakController@ImportPegawai')->name('import.pegawai');
 Route::prefix('admin')->group(function (){
-
-        // wajib pajak
-        Route::get('/data-wajib-pajak','backend\WajibPajakController@index')->name('wp.index');
-        Route::get('/data-wajib-pajak/create','backend\WajibPajakController@create')->name('wp.create');
-        Route::post('/data-wajib-pajak/store','backend\WajibPajakController@store')->name('wp.store');
-        Route::get('/data-wajib-pajak/edit/{id}','backend\WajibPajakController@edit')->name('wp.edit');
-        Route::get('/data-wajib-pajak/detail/{id}','backend\WajibPajakController@show')->name('wp.show');
-        Route::post('/data-wajib-pajak/update/{id}','backend\WajibPajakController@update')->name('wp.update');
-        Route::get('/data-wajib-pajak/destroy','backend\WajibPajakController@destroy')->name('wp.destroy');
-        
-        // sudah lapor
-        Route::get('/data-wajib-pajak/sudah-lapor-spt','backend\WajibPajakController@indexSudahlapor')->name('sudahlapor.index');
-        
-        // belum lapor
-        Route::get('/data-wajib-pajak/belom-lapor-spt','backend\WajibPajakController@indexBelumlapor')->name('belomlapor.index');
     
-        // laporan spt
-        Route::get('/laporan-spt','backend\LaporanSptController@index')->name('laporanspt.index');
-        Route::get('/laporan-spt/detail/{id}','backend\LaporanSptController@show')->name('laporanspt.show');
-        Route::get('/laporan-spt/edit/{id}','backend\LaporanSptController@edit')->name('laporanspt.edit');
-        Route::post('/laporan-spt/update/{id}','backend\LaporanSptController@update')->name('laporanspt.update');
+    // wajib pajak
+    Route::get('/data-wajib-pajak','backend\WajibPajakController@index')->name('wp.index');
+    Route::get('/data-wajib-pajak/create','backend\WajibPajakController@create')->name('wp.create');
+    Route::post('/data-wajib-pajak/store','backend\WajibPajakController@store')->name('wp.store');
+    Route::get('/data-wajib-pajak/edit/{id}','backend\WajibPajakController@edit')->name('wp.edit');
+    Route::get('/data-wajib-pajak/detail/{id}','backend\WajibPajakController@show')->name('wp.show');
+    Route::post('/data-wajib-pajak/update/{id}','backend\WajibPajakController@update')->name('wp.update');
+    Route::get('/data-wajib-pajak/destroy','backend\WajibPajakController@destroy')->name('wp.destroy');
 
-        // pegawai
-        Route::get('/data-pegawai','backend\UserController@index')->name('user.index');
-});
+    // import
+    Route::get('/import-data','backend\WajibPajakController@import')->name('index.import');
+    Route::post('/import-master-npwp','backend\WajibPajakController@ImportMasterNpwp')->name('import.master-npwp');
+    Route::post('/import-wajib-spt','backend\WajibPajakController@ImportWajibSpt')->name('import.wajib-spt');
+    Route::post('/import-master-spt','backend\WajibPajakController@ImportMasterSpt')->name('import.master-spt');
+    Route::post('/import-dim-wilayah','backend\WajibPajakController@ImportWilayah')->name('import.dim-wilayah');
+    Route::post('/import-pegawai','backend\WajibPajakController@ImportPegawai')->name('import.pegawai');
+
+    // sudah lapor
+    Route::get('/data-wajib-pajak/sudah-lapor-spt','backend\WajibPajakController@indexSudahlapor')->name('sudahlapor.index');
+    // belum lapor
+    Route::get('/data-wajib-pajak/belom-lapor-spt','backend\WajibPajakController@indexBelumlapor')->name('belomlapor.index');
+
+    // laporan spt
+    Route::get('/laporan-spt','backend\LaporanSptController@index')->name('laporanspt.index');
+    Route::get('/laporan-spt/detail/{id}','backend\LaporanSptController@show')->name('laporanspt.show');
+    Route::get('/laporan-spt/edit/{id}','backend\LaporanSptController@edit')->name('laporanspt.edit');
+    Route::post('/laporan-spt/update/{id}','backend\LaporanSptController@update')->name('laporanspt.update');
+
+    // pegawai
+    Route::get('/data-pegawai','backend\UserController@index')->name('user.index');
+    });
 
 Auth::routes();
 

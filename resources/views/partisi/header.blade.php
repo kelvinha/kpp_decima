@@ -51,6 +51,10 @@
                 margin-left: -18px;
                 white-space: nowrap;
         }
+        .form-inline.ps1 {
+                margin-left: 246px;
+                white-space: nowrap;
+        }
 
         progress {
             border-radius: 20px;
@@ -121,6 +125,10 @@
                 margin-left: 1%;
                 white-space: nowrap;
             }
+            .form-inline.ps1 {
+                margin-left: 1%;
+                white-space: nowrap;
+        }
             .ps-right{
                 margin-top: 5px;
                 margin-left: -45%;
