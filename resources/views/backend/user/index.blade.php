@@ -39,12 +39,15 @@
                         </form>
                     </div>
                     <div class="card-body">
+
                         @if(Request::get('keyword'))
                         <div class="callout callout-info">
                             <p>Hasil Pencarian Pegawai dengan Keyword : <b>{{Request::get('keyword')}}</b></p>
                         </div>
                         @endif
                         @include('backend.alert.success')
+
+
                         <table class="table table-striped table-striped text-center table-bordered">
                             <thead>
                                 <tr>
