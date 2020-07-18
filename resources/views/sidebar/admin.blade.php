@@ -1,9 +1,22 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1e2f5f;">
+<aside
+    class="main-sidebar sidebar-dark-primary elevation-4"
+    style="background-color: #1e2f5f;"
+>
     <!-- Brand Logo -->
-    <a href="{{ url('/home')}}" class="brand-link navbar-warning d-flex justify-content-center">
-        <img src="{{asset('vendor')}}/dist/img/djp.png" alt="KPP Logo" style="height: 65%;" class="brand-image"
-            style="opacity: .8">
-        {{-- <h6 class="font-weight-bold" style="color: #1e2f5f;">Dirjen Pajak</h6> --}}
+    <a
+        href="{{ url('/home') }}"
+        class="brand-link navbar-warning d-flex justify-content-center"
+    >
+        <img
+            src="{{ asset('vendor') }}/dist/img/djp.png"
+            alt="KPP Logo"
+            style="height: 65%;"
+            class="brand-image"
+            style="opacity: 0.8;"
+        />
+        {{--
+        <h6 class="font-weight-bold" style="color: #1e2f5f;">Dirjen Pajak</h6>
+        --}}
     </a>
 
     <!-- Sidebar -->
@@ -11,7 +24,11 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="{{asset('vendor')}}/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+                <img
+                    src="{{ asset('vendor') }}/dist/img/avatar5.png"
+                    class="img-circle elevation-2"
+                    alt="User Image"
+                />
             </div>
             <div class="info">
                 <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -20,9 +37,17 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul
+                class="nav nav-pills nav-sidebar flex-column"
+                data-widget="treeview"
+                role="menu"
+                data-accordion="false"
+            >
                 <li class="nav-item">
-                    <a href="{{route('home')}}" class="nav-link {{Request::is('home')? 'active' : null }}">
+                    <a
+                        href="{{ route('home') }}"
+                        class="nav-link {{Request::is('home')? 'active' : null }}"
+                    >
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -30,8 +55,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('wp.index') }}"
-                        class="nav-link {{Request::is('admin/data-wajib-pajak')? 'active' : Request::is('admin/data-wajib-pajak/*')? 'active' : null }}">
+                    <a
+                        href="{{ route('index.import') }}"
+                        class="nav-link {{ Request::is('admin/import-data')? 'active' : null }}"
+                    >
+                        <i class="nav-icon far fa-file-excel"></i>
+                        <p>
+                            Import File
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a
+                        href="{{ route('wp.index') }}"
+                        class="nav-link {{Request::is('admin/data-wajib-pajak')? 'active' : Request::is('admin/data-wajib-pajak/*')? 'active' : null }}"
+                    >
                         <i class="nav-icon fas fa-users"></i>
                         <p>Data Wajib Pajak</p>
                     </a>
@@ -78,8 +116,10 @@
                     </a>
                 </li> -->
                 <li class="nav-item">
-                    <a href="{{route('user.index')}}"
-                        class="nav-link {{Request::is('admin/user')? 'active' : Request::is('admin/user/*')? 'active' : null }}">
+                    <a
+                        href="{{ route('user.index') }}"
+                        class="nav-link {{Request::is('admin/data-pegawai')? 'active' : Request::is('admin/data-pegawai/*')? 'active' : null }}"
+                    >
                         <i class="nav-icon fas fa-user-friends"></i>
                         <p>
                             Data Pegawai

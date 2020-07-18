@@ -3,7 +3,10 @@
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
-            <div class="col-sm-6 offset-sm-6">
+            <div class="col-sm-6">
+                <h3>Data Wajib Pajak</h3>
+            </div>
+            <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                     <li class="breadcrumb-item active">Data Wajib Pajak</li>
@@ -35,11 +38,13 @@
                     </div>
                     <div class="card-body">
                         <div class="row mb-2">
-                            <div class="col-sm-6 col-md-4">
-                                <form class="form-inline ps" action="" method="">
+                            <div class="col-sm-6 col-md-6 mr-auto">
+                                <form class="form-inline ps" action="{{route('wp.index')}}" method="get">
                                     <div class="form-group mx-sm-3">
-                                        <select class="form-control">
+                                        <select class="form-control" name="tahun" required>
                                             <option disabled selected>Pilih Tahun</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2019">2019</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -47,66 +52,72 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-sm-6 col-md-8" align="right">
-                                <button class="btn btn-success" data-target="#import-excel" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Pegawai</button>
-                                <button class="btn btn-success"><i class="fa fa-download"></i> &nbsp;Import from Excel</button>
+                            {{-- <div class="col-sm-6 col-md-8" align="right">
                                 <a href="{{ route('wp.tambah') }}" class="btn btn-primary"><i class="fa fa-plus"></i> &nbsp;Tambah Data Dummy</a>
-                            </div>
-                            <div class="col-md-4 col-lg-4 mb-2 mt-3">
-                                <form action="" method="" class="form-inline">
+                            </div> --}}
+                            <div class="col-md-6 col-sm-4 mb-2">
+                                <form action="{{ route('wp.index') }}" method="get" class="form-inline ps1">
                                     <div class="form-group">
                                         <label for="">Search</label>
-                                        <input type="text" class="ml-2 form-control" placeholder="Search..">
+                                        <input type="text" name="cari" class="ml-2 form-control" placeholder="Search.." required>
                                         <button type="submit" class="btn btn-info ml-2">Cari</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
+                        @if ($message = Session::get('error'))
+                        <div class="alert alert-danger" role="alert">
+                            <button type="button" class="close success">×</button> 
+                            <h4 align="center">Maaf,{{ $message }}</h4>
+                        </div>
+                        @endif
+                        @if ($data_wp->count() == 0)
+                        <table class="table table-bordered table-striped text-center">
+                        @else
                         <table class="table table-bordered table-striped text-center table-responsive">
+                        @endif
                             <thead>
                                 <tr>
                                     <th>No.</th>
                                     <th>NPWP</th>
                                     <th>Nama</th>
-                                    <th>Kategori WP</th>
+                                    <th>Jenis WP</th>
                                     <th>Alamat</th>
-                                    <th>Nama Seksi</th>
-                                    <th>Jenis SPT</th>
+                                    <th>Nama AR</th>
+                                    <th>Seksi</th>
                                     <th>Tahun Pajak</th>
-                                    <th>Status</th>
-                                    <th>Tanggal Lapor</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @if ($data_wp->count() == 0)
+                                    <tr>
+                                        <td colspan="12" class="text-center">No Data Available</td>
+                                    </tr>
+                                @endif
                                 @foreach ($data_wp as $i => $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->npwp }}</td>
-                                    <td>{{ $item->nama }}</td>
-                                    <td>{{ $item->kategori_wp }}</td>
-                                    <td>{{ $item->alamat }}</td>
-                                    <td>{{ $item->nama_seksi }}</td>
-                                    <td>{{ $item->jenis_spt }}</td>
-                                    <td>{{ $item->tahun_pajak }}</td>
-                                    @if ($item->status_lapor == "Sudah Lapor")
-                                    <td> <span class="badge badge-success">{{ $item->status_lapor }}</span> </td>
-                                    @else
-                                    <td> <span class="badge badge-danger">{{ $item->status_lapor }}</span> </td>  
-                                    @endif
-                                    @if ( $item->tanggal_lapor == NULL)
-                                        <td> - </td>
-                                    @else
-                                    <td>{{ $item->tanggal_lapor }}</td>
-                                    @endif
-                                    <td class="text-nowrap">
+                                    <td>{{ $item->wajib_npwp }}</td>
+                                    <td>{{ $item->nama_wp }}</td>
+                                    <td>{{ $item->wajib_jeniswp }}</td>
+                                    <td>
+                                        {{ $item->kota }}.,{{ $item->kelurahan }},{{ $item->kecamatan }}, {{ $item->propinsi }}
+                                    </td>
+                                    <td>{{ $item->nama_ar }}</td>
+                                    <td>{{ $item->seksi }}</td>
+                                    <td>{{ $item->tahun }}</td>
+                                    <td>
+                                        <button class="btn btn-primary">View</button>
+                                    </td>
+                                    {{-- <td class="text-nowrap">
                                     <a href="{{ route('wp.show',['id' => $item->id_wp]) }}" class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></a>
                                     <a href="{{ route('wp.edit',['id' => $item->id_wp]) }}" class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></a>
                                     <button type="button" class="btn btn-danger" title="Hapus" data-toggle="modal"
                                     data-target="#delete" data-myid="{{ $item->npwp }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -114,7 +125,7 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-4">
-                                    <p class="mt-4 font-weight-w500">Showing 1 to {{ $data_wp->count() }} of {{ $total }} entries</p>
+                                <p class="mt-4 font-weight-w500">Showing 1 to {{ $data_wp->count() }} of {{ $total }} entries</p>
                                 </div>
                                 <div class="col-8">
                                     <div class="d-flex justify-content-end mt-4">
