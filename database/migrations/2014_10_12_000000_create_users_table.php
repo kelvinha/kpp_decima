@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('nip',9)->unique();
             $table->string('name',50);
-            $table->string('seksi',50);
+            $table->enum('seksi',['Seksi Pengawasan dan Konsultasi II','Seksi Pengawasan dan Konsultasi III','Seksi Pengawasan dan Konsultasi IV','Seksi Ekstensifikasi dan Penyuluhan']);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('email')->unique();
             $table->string('password');

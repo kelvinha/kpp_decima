@@ -14,8 +14,8 @@ class AdministratorSeeder extends Seeder
         $user = new \App\User;
         $user->nip="123456789";
         $user->name="Fajar Ary";
-        $user->seksi="Pengawasan dan Konsultasi II";
-        $user->email="fajar@admin.com";
+        $user->seksi="Seksi Pengawasan dan Konsultasi II";
+        $user->email="admin@admin.com";
         $user->password=\Hash::make("password");
         $user->role="admin";
         $user->save();
