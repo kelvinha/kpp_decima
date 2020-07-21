@@ -29,7 +29,7 @@
                 <div class="form-group row">
                     <label for="nip" class="col-sm-2 col-form-label">NIP</label>
                     <div class="col-sm-8">
-                    <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukkan NIP" value="{{$user->nip}}">
+                    <input type="text" class="form-control" id="nip" name="nip" readonly placeholder="Masukkan NIP" value="{{$user->nip}}">
                     </div>
                 </div>
                 <div class="form-group row">

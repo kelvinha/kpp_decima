@@ -27,13 +27,13 @@
                 {{csrf_field()}}
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="nip" class="col-sm-2 col-form-label">NIP</label>
+                        <label for="nip" class="col-sm-2 col-form-label">NIP*</label>
                         <div class="col-sm-8">
                         <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukkan NIP" value="{{old('nip')}}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="name" class="col-sm-2 col-form-label">Nama Pegawai</label>
+                        <label for="name" class="col-sm-2 col-form-label">Nama Pegawai*</label>
                         <div class="col-sm-8">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Nama Pegawai" value="{{old('name')}}">
                         </div>
@@ -45,16 +45,16 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="password" class="col-sm-2 col-form-label">Password</label>
+                        <label for="password" class="col-sm-2 col-form-label">Password*</label>
                         <div class="col-sm-8">
                         <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="seksi" class="col-sm-2 col-form-label">Seksi</label>
+                        <label for="seksi" class="col-sm-2 col-form-label">Seksi*</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="seksi" name="seksi">
-                                <option>Pilih Seksi...</option>
+                                <option value="">Pilih Seksi...</option>
                                 <option value="Seksi Pengawasan dan Konsultasi II">Seksi Pengawasan dan Konsultasi II</option>
                                 <option value="Seksi Pengawasan dan Konsultasi III">Seksi Pengawasan dan Konsultasi III</option>
                                 <option value="Seksi Pengawasan dan Konsultasi IV">Seksi Pengawasan dan Konsultasi IV</option>
@@ -63,20 +63,23 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="role" class="col-sm-2 col-form-label">Role</label>
+                        <label for="role" class="col-sm-2 col-form-label">Role*</label>
                         <div class="col-sm-8">
                             <select class="form-control" id="role" name="role">
-                                <option>Pilih Role...</option>
+                                <option value="">Pilih Role...</option>
                                 <option value="admin">Admin</option>
                                 <option value="pegawai">Pegawai</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                    <div class="card-footer">
+                <div class="card-body" >
+                    <p style="color: #ff0000;"><strong>Keterangan : * (harus diisi)</strong></p>
+                </div>
+                <div class="card-footer">
                     <button type="submit" name="tombol" class="btn btn-default float-right"><a href="{{route('user.index')}}">Cancel</a></button>
                     <button type="submit" name="tombol" class="btn btn-info float-right">Save</button>
-                    </div>
+                </div>
                 </form>
             </div>
         </div>
