@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h3>Data Wajib Pajak</h3>
+                <h3>Pengawasan dan Konsultasi IV</h3>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Data Wajib Pajak</li>
+                    <li class="breadcrumb-item active">Pengawasan dan Konsultasi IV</li>
                 </ol>
             </div>
         </div>
@@ -23,14 +23,14 @@
                     <button type="button" class="close success">×</button> 
                     <h4 class="alert-heading">Selamat !</h4>
                     <p>{{ $message }}</p>
-                  </div>
+                </div>
                 @endif
                 @if ($message = Session::get('deleted'))
                 <div class="alert alert-success" role="alert">
                     <button type="button" class="close success">×</button> 
                     <h4 class="alert-heading">Selamat !</h4>
                     <p>{{ $message }}</p>
-                  </div>
+                </div>
                 @endif
                 <div class="card">
                     <div class="card-body">
@@ -88,44 +88,36 @@
                             <h4 align="center">Maaf,{{ $message }}</h4>
                         </div>
                         @endif
-                        @if ($data_wp->count() == 0)
+                        @if ($ekspen->count() == 0)
                         <table class="table table-bordered table-striped text-center">
                         @else
-                        <table class="table table-bordered table-striped text-center table-responsive">
+                        <table class="table table-bordered table-striped text-center">
                         @endif
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>NPWP</th>
-                                    <th>Nama</th>
+                                    <th>NIP</th>
+                                    <th>Nama Ar</th>
                                     <th>Jenis WP</th>
-                                    <th>Alamat</th>
-                                    <th>Nama AR</th>
                                     <th>Seksi</th>
-                                    <th>Tahun Pajak</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if ($data_wp->count() == 0)
+                                @if ($ekspen->count() == 0)
                                     <tr>
                                         <td colspan="12" class="text-center">No Data Available</td>
                                     </tr>
                                 @endif
-                                @foreach ($data_wp as $i => $item)
+                                @foreach ($ekspen as $i => $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->wajib_npwp }}</td>
-                                    <td>{{ $item->nama_wp }}</td>
-                                    <td>{{ $item->wajib_jeniswp }}</td>
-                                    <td>
-                                        {{ $item->kota }}.,{{ $item->kelurahan }},{{ $item->kecamatan }}, {{ $item->propinsi }}
-                                    </td>
-                                    <td>{{ $item->nama_ar }}</td>
+                                    <td>{{ $item->nip }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->jenis_wp }}</td>
                                     <td>{{ $item->seksi }}</td>
-                                    <td>{{ $item->tahun }}</td>
                                     <td>
-                                        <a href="{{ route('wp.show',['id' => $item->wajib_spt_id]) }}" class="btn btn-primary" title="Detail"><i class="fa fa-info-circle"></i></a>
+                                        {{-- <a href="{{ route('wp.show',['id' => $item->wajib_spt_id]) }}" class="btn btn-primary" title="Detail"><i class="fa fa-info-circle"></i></a> --}}
                                     </td>
                                     {{-- <td class="text-nowrap">
                                     <a href="{{ route('wp.edit',['id' => $item->id_wp]) }}" class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></a>
@@ -141,11 +133,11 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-4">
-                                <p class="mt-4 font-weight-w500">Showing 1 to {{ $data_wp->count() }} of {{ $total }} entries</p>
+                                <p class="mt-4 font-weight-w500">Showing 1 to {{ $ekspen->count() }} of 10 entries</p>
                                 </div>
                                 <div class="col-8">
                                     <div class="d-flex justify-content-end mt-4">
-                                        {{ $data_wp->links() }}
+                                        {{-- {{ $ekspen->links() }} --}}
                                     </div>
                                 </div>
                             </div>
@@ -188,19 +180,6 @@
 <!-- page script -->
 <script>
     $(function () {
-        $("#example1").DataTable({
-            "responsive": true,
-            "autoWidth": false,
-        });
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
         $('.close .success').click(function(){
             $('.alert').slideUp(500);
         });

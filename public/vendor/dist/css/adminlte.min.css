@@ -13513,8 +13513,8 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active,
 [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus,
 [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover {
-    background-color: rgba(255, 255, 255, .9);
-    color: #343a40
+    background-color: #ffc107;
+    color: #1e2f5f
 }
 
 [class*=sidebar-dark-] .nav-flat .nav-item .nav-treeview .nav-treeview {
@@ -13552,7 +13552,6 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 .sidebar-light-success .nav-sidebar>.nav-item>.nav-link.active {
     background-color: #28a745;
     color: #fff
-    
 }
 
 .sidebar-dark-success .nav-sidebar.nav-legacy>.nav-item>.nav-link.active,

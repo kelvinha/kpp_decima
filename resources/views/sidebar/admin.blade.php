@@ -4,7 +4,7 @@
 >
     <!-- Brand Logo -->
     <a
-        href="{{ url('/home') }}"
+        href="{{ url('/dashboard') }}"
         class="brand-link navbar-warning d-flex justify-content-center"
     >
         <img
@@ -45,8 +45,8 @@
             >
                 <li class="nav-item">
                     <a
-                        href="{{ route('home') }}"
-                        class="nav-link {{Request::is('home')? 'active' : null }}"
+                        href="{{ route('dashboard') }}"
+                        class="nav-link {{Request::is('dashboard')? 'active' : null }}"
                     >
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -74,53 +74,62 @@
                         <p>Data Wajib Pajak</p>
                     </a>
                 </li>
-                <!-- <li class="nav-item has-treeview {{Request::is('admin/data-wajib-pajak/*')? 'menu-open' : null }}">
-                    <a href="#" class="nav-link {{Request::is('admin/data-wajib-pajak/*')? 'active' : null }}">
-                        <i class="nav-icon far fa-folder-open"></i>
+                <li class="nav-item has-treeview {{Request::is('admin/waskon-*')? 'menu-open' : Request::is('admin/ekstensifikasi-dan-penyuluhan')? 'menu-open' : null }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user-friends"></i>
                         <p>
-                            Data Wajib Pajak
+                            Data per Waskon
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('wp.index') }}"
-                                class="nav-link {{Request::is('admin/*/kelola-wajib-pajak')? 'active' : Request::is('admin/*/kelola-wajib-pajak/*')? 'active' : null }}">
+                            <a href="" class="nav-link">
                                 <i class="far fa-dot-circle nav-icon"></i>
-                                <p>Kelola Data WP</p>
+                                <p>Seksi Pengawasan </p>
+                                <br />
+                                <i class="far fa-space nav-icon"></i>
+                                <p>dan Konsultasi II</p>
+                            </a>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('sudahlapor.index')}}"
-                                class="nav-link {{Request::is('admin/*/sudah-lapor-spt')? 'active' : null }}">
+                            <a href="" class="nav-link">
                                 <i class="far fa-dot-circle nav-icon"></i>
-                                <p>Sudah Lapor SPT</p>
+                                <p>Seksi Pengawasan </p>
+                                <br />
+                                <i class="far fa-space nav-icon"></i>
+                                <p>dan Konsultasi III</p>
+                            </a>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('belomlapor.index')}}"
-                                class="nav-link {{Request::is('admin/*/belom-lapor-spt')? 'active' : null }}">
+                            <a href="{{ route('waskon4.index') }}" class="nav-link {{Request::is('admin/waskon-4')? 'active' : null }}">
                                 <i class="far fa-dot-circle nav-icon"></i>
-                                <p>Belum Lapor SPT</p>
+                                <p>Seksi Pengawasan </p>
+                                <br />
+                                <i class="far fa-space nav-icon"></i>
+                                <p>dan Konsultasi IV</p>
+                            </a>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('ekspen.index') }}" class="nav-link {{Request::is('admin/ekstensifikasi-dan-penyuluhan')? 'active' : null }}">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Seksi Ekstensifikasi</p>
+                                <br />
+                                <i class="far fa-space nav-icon"></i>
+                                <p>dan Penyuluhan</p>
                             </a>
                         </li>
                     </ul>
-                </li> -->
-                <!-- <li class="nav-item">
-                    <a href="{{ route('laporanspt.index')}}"
-                        class="nav-link {{Request::is('admin/laporan-spt')? 'active' : Request::is('admin/laporan-spt/*')? 'active' : null }}">
-                        <i class="nav-icon far fa-file-alt"></i>
-                        <p>
-                            Laporan SPT
-                        </p>
-                    </a>
-                </li> -->
+                </li>
                 <li class="nav-item">
                     <a
                         href="{{ route('user.index') }}"
                         class="nav-link {{Request::is('admin/data-pegawai')? 'active' : Request::is('admin/data-pegawai/*')? 'active' : null }}"
                     >
-                        <i class="nav-icon fas fa-user-friends"></i>
+                        <i class="nav-icon far fa-id-card"></i>
                         <p>
                             Data Pegawai
                         </p>

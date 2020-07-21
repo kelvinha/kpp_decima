@@ -31,29 +31,43 @@ class WajibPajakController extends Controller
         $cari = $request->get('cari');
         $tahun = $request->get('tahun');
         if($cari){
-            dd($cari);
+            $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                        ->where('wajib_spt.jenis_wp','LIKE','%'.$cari.'%')
+                                        ->orWhere('wajib_spt.nama_wp','LIKE','%'.$cari.'%')
+                                        ->orWhere('wajib_spt.npwp','LIKE','%'.$cari.'%')
+                                        ->orWhere('wajib_spt.tahun','LIKE','%'.$cari.'%')
+                                        ->orWhere('master_npwp.key_npwp','LIKE','%'.$cari.'%')
+                                        ->orWhere('master_npwp.kota','LIKE','%'.$cari.'%')
+                                        ->orWhere('master_npwp.kelurahan','LIKE','%'.$cari.'%')
+                                        ->orWhere('master_npwp.kecamatan','LIKE','%'.$cari.'%')
+                                        ->orWhere('master_npwp.propinsi','LIKE','%'.$cari.'%')
+                                        ->orWhere('master_npwp.nama_ar','LIKE','%'.$cari.'%')
+                                        ->orWhere('master_npwp.seksi','LIKE','%'.$cari.'%')
+                                        ->select('master_npwp.*','wajib_spt.id as wajib_spt_id','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
+                                        ->paginate(10);
+            $data['data_wp']->appends(['cari'=>$cari]);
         }
         elseif($tahun){
             $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                         ->where('wajib_spt.tahun',$tahun)
-                                        ->select('master_npwp.*','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
-                                        ->paginate(1);
+                                        ->select('master_npwp.*','wajib_spt.id as wajib_spt_id','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
+                                        ->paginate(10);
             $data['data_wp']->appends(['tahun'=>$tahun]);
             if($data['data_wp']->count() == 0)
             {
                 $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                        ->select('master_npwp.*','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
+                                        ->select('master_npwp.*','wajib_spt.id as wajib_spt_id','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
                                         ->paginate(10);
                 return redirect()->route('wp.index')->with('error','data tidak tersedia');
             }
         }
         else{
         $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                        ->select('master_npwp.*','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
+                                        ->select('master_npwp.*','wajib_spt.id as wajib_spt_id','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
                                         ->paginate(10);
         }
         $data['total'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                    ->select('master_npwp.*','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
+                                    ->select('master_npwp.*','wajib_spt.id as wajib_spt_id','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
                                     ->get()->count();
         return view('backend.wajib_pajak.kelola_wajib_pajak.index', $data);
     }
@@ -157,12 +171,11 @@ class WajibPajakController extends Controller
 
     public function show($id)
     {
-        // $data['wp'] = WajibPajak::findOrFail($id);
-        $data['wp'] = WajibPajak::join('spt','wajib_pajak.id_wp','spt.id_wp')
-                                ->where('wajib_pajak.id_wp',$id)
-                                ->select('wajib_pajak.*','spt.*')
-                                ->first();
-
+        // dd($id);
+        $data['wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->where('wajib_spt.id',$id)
+                                    ->select('master_npwp.*','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
+                                    ->first();
         return view('backend.wajib_pajak.kelola_wajib_pajak.show',$data);
     }
 

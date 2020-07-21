@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2020 at 03:42 PM
+-- Generation Time: Jul 21, 2020 at 06:47 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.19
 
@@ -105,7 +105,7 @@ CREATE TABLE `master_npwp` (
   `propinsi` varchar(50) DEFAULT NULL,
   `nama_ar` varchar(50) DEFAULT NULL,
   `seksi` varchar(50) DEFAULT NULL,
-  `nip_pendek` varchar(20) DEFAULT NULL,
+  `nip_pendek` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
