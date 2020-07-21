@@ -25,6 +25,11 @@ class UserController extends Controller
         if($filter)
         {
             $user = User::where('name','LIKE',"%$filter%")->paginate(10);
+            // dd($user->count());
+            if($user->count() === 0)
+            {
+                return redirect()->route('user.index')->with('error',$filter);
+            }
         }
         return view('backend.user.index', compact('user'));
     }

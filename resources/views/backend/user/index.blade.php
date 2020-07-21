@@ -37,7 +37,7 @@
                                     <div class="input-group">
                                         <input type="text" name="keyword" class="ml-2 form-control" placeholder="Search By Name.." value="{{Request::get('keyword')}}">
                                         <span class="input-group-btn">
-                                        <button type="submit" name="search" id="search-btn" class="btn btn-info ml-2">Cari</button>
+                                        <button type="submit" id="search-btn" class="btn btn-info ml-2">Cari</button>
                                         </span>
                                     </div>
                                 </form>
@@ -45,13 +45,17 @@
                         </div>
                     </div>                        
                     <div class="card-body">
-                        @if(Request::get('keyword'))
-                        <div class="callout callout-info" style="color: #ff0000;">
-                            <p>Hasil Pencarian Pegawai dengan Keyword : <b>{{Request::get('keyword')}}</b></p>
+                        @if($m = Request::get('keyword'))
+                        <div class="callout callout-info" style="color: green;">
+                            <p>Hasil Pencarian Pegawai dengan Keyword : <b>{{ $m }}</b></p>
+                        </div>
+                        @elseif($m = Session::get('error'))
+                        <div class="callout callout-info alert" style="color: green;">
+                            <p>Hasil Pencarian Pegawai dengan Keyword : <b style="color: red;">{{ $m }}</b> Tidak tersedia</p>
                         </div>
                         @endif
                         @include('backend.alert.success')
-                        <table class="table table-striped table-head-fixed table-striped text-center table-bordered">
+                        <table class="table table-striped table-striped text-center table-bordered">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -112,19 +116,6 @@
 <!-- page script -->
 <script>
     $(function () {
-        $("#example1").DataTable({
-            "responsive": true,
-            "autoWidth": false,
-        });
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
         $('.close .success').click(function(){
             $('.alert').slideUp(500);
         });

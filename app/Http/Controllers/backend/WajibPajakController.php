@@ -46,6 +46,10 @@ class WajibPajakController extends Controller
                                         ->select('master_npwp.*','wajib_spt.id as wajib_spt_id','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
                                         ->paginate(10);
             $data['data_wp']->appends(['cari'=>$cari]);
+            if($data['data_wp']->count() == 0)
+            {
+                return redirect()->route('wp.index')->with('error','data tidak tersedia');
+            }
         }
         elseif($tahun){
             $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
@@ -55,9 +59,6 @@ class WajibPajakController extends Controller
             $data['data_wp']->appends(['tahun'=>$tahun]);
             if($data['data_wp']->count() == 0)
             {
-                $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                        ->select('master_npwp.*','wajib_spt.id as wajib_spt_id','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
-                                        ->paginate(10);
                 return redirect()->route('wp.index')->with('error','data tidak tersedia');
             }
         }
