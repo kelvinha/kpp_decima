@@ -19,36 +19,39 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
+                    <div class="row">
+                        <div class="col-md-6">
                         @if(Request::get('keyword'))
-                        <div class="form-group col-sm-6 col-md-8">
+                        <div class="col-sm-6 col-md-6 mt-3 ml-3">
                             <a class="btn btn-primary" href="{{route('user.index')}}">Back</a>
                         </div>
                         @else
-                        <div class="form-group col-sm-6 col-md-8">
+                        <div class="col-sm-6 col-md-6 mt-3 ml-3">
                             <a class="btn btn-primary" href="{{route('user.create')}}"><span class="fas fa-plus"></span>Tambah Data</a>
                         </div>
                         @endif
-                    <div class="col-sm-6 col-md-8" align="right">
-                         <form action="{{route('user.index')}}" method="GET" class="form-inline">
-                            <div class="input-group">
-                                <input type="text" name="keyword" class="ml-2 form-control" placeholder="Search By Name.." value="{{Request::get('keyword')}}">
-                                <span class="input-group-btn">
-                                <button type="submit" name="search" id="search-btn" class="btn btn-info ml-2">Cari</button>
-                                </span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mt-3 d-flex justify-content-end mr-3 pr-1">
+                                <form action="{{route('user.index')}}" method="GET" class="form-inline">
+                                    <div class="input-group">
+                                        <input type="text" name="keyword" class="ml-2 form-control" placeholder="Search By Name.." value="{{Request::get('keyword')}}">
+                                        <span class="input-group-btn">
+                                        <button type="submit" name="search" id="search-btn" class="btn btn-info ml-2">Cari</button>
+                                        </span>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </div>                        
                     <div class="card-body">
-
                         @if(Request::get('keyword'))
-                        <div class="callout callout-info">
+                        <div class="callout callout-info" style="color: #ff0000;">
                             <p>Hasil Pencarian Pegawai dengan Keyword : <b>{{Request::get('keyword')}}</b></p>
                         </div>
                         @endif
                         @include('backend.alert.success')
-
-
-                        <table class="table table-striped table-striped text-center table-bordered">
+                        <table class="table table-striped table-head-fixed table-striped text-center table-bordered">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -81,7 +84,18 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{$user->appends(Request::all())->links()}}
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-4">
+                                <p class="mt-4 font-weight-w500">Showing 1 to {{ $user->count() }} of {{ $user->total() }} entries</p>
+                                </div>
+                                <div class="col-8">
+                                    <div class="d-flex justify-content-end mt-4">
+                                        {{ $user->links() }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

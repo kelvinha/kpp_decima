@@ -52,7 +52,11 @@
                 white-space: nowrap;
         }
         .form-inline.ps1 {
-                margin-left: 246px;
+                margin-left: 190px;
+                white-space: nowrap;
+        }
+        .form-inline.ps2 {
+                margin-left: 59px;
                 white-space: nowrap;
         }
 

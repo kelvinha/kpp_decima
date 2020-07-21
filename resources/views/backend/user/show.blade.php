@@ -18,40 +18,35 @@
 </section>
 
 <section class="content">
+<div class="container-fluid">
 <div class="row">
     <div class="col-md-12">
         <div class="card card-outline card-info">
             @include('backend.alert.error')
-        <div class="card-header">
-            <div class="card-body">
-                <div class="col-lg-8 col-md-4 col-sm-2">
+                <div class="col-md-12">
                     <div class="row">
-                        <div class="col-sm-6">
-                            <h6 class="font-weight-bold text-blue">NIP</h6>
-                            <p>{{ $user->nip }}</p><br>
-                            <h6 class="font-weight-bold text-blue">NAMA</h6>
-                            <p>{{ $user->name }}</p><br>
+                        <div class="col-md-5">
+                            <img src="{{ asset('vendor')}}/dist/img/info.png" class="img-fluid" alt="">
                         </div>
-                        <div class="col-sm-6">
-                            <h6 class="font-weight-bold text-blue">EMAIL</h6>
-                            <p>{{ $user->email }}</p><br>
-                            <h6 class="font-weight-bold text-blue">SEKSI</h6>
-                            <p>{{ $user->seksi }}</p><br>
+                        <div class="col-md-7">
+                            <div class="card-body">
+                                <div class="col-sm-6">
+                                    <h6 class="font-weight-bold text-blue">NIP</h6>
+                                    <p>{{ $user->nip }}</p><br>
+                                    <h6 class="font-weight-bold text-blue">NAMA</h6>
+                                    <p>{{ $user->name }}</p><br>
+                                    <h6 class="font-weight-bold text-blue">ROLE</h6>
+                                    <p>{{ $user->role }}</p><br>
+                                    <h6 class="font-weight-bold text-blue">SEKSI</h6>
+                                    <p>{{ $user->seksi }}</p><br>
+                                    <div class="form-group">
+                                        <a class="btn btn-primary" href="{{route('user.index')}}">Back</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-2">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h6 class="font-weight-bold text-blue">ROLE</h6>
-                            <p>{{ $user->role }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group float-right">
-                    <a class="btn btn-primary" href="{{route('user.index')}}">Back</a>
-                </div>
-            </div>
         </div>
     </div>
 </div>
