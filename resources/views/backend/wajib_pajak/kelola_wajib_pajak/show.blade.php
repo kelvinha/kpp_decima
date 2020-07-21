@@ -21,56 +21,55 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-2">
+                            <div class="col-lg-2 col-md-2" align="center">
+                                <img src="{{ asset('vendor')}}/dist/img/undraw1.png" width="100%" class="img-fluid" alt="undraw">
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-2">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <h6 class="font-weight-bold text-gray">NPWP</h6>
                                         <p>{{ $wp->npwp }}</p>
-                                        <h6 class="font-weight-bold text-gray">NAMA</h6>
-                                        <p>{{ $wp->nama }}</p>
+                                        <h6 class="font-weight-bold text-gray">KELURAHAN</h6>
+                                        <p>{{ $wp->kelurahan }}</p>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <h6 class="font-weight-bold text-gray">ALAMAT</h6>
-                                        <p>{{ $wp->alamat }}</p>
-                                        <h6 class="font-weight-bold text-gray">KATEGORI WAJIB PAJAK</h6>
-                                        <p>{{ $wp->kategori_wp }}</p>
+                                    <div class="col-sm-4">
+                                        <h6 class="font-weight-bold text-gray">KODE KPP</h6>
+                                        <p>{{ $wp->kd_kpp }}</p>
+                                        <h6 class="font-weight-bold text-gray">KECAMATAN</h6>
+                                        <p>{{ $wp->kecamatan}}</p>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <h6 class="font-weight-bold text-gray">KODE CABANG</h6>
+                                        <p>{{ $wp->kd_cabang }}</p>
+                                        <h6 class="font-weight-bold text-gray">KOTA</h6>
+                                        <p>{{ $wp->kota }}</p>
+                                        
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-2">
+                            <div class="col-lg-5 col-md-5 col-sm-2">
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <h6 class="font-weight-bold text-gray">NAMA SEKSI</h6>
-                                        <p>{{ $wp->nama_seksi }}</p>
-                                        <h6 class="font-weight-bold text-gray">JENIS SPT</h6>
-                                        <p>{{ $wp->jenis_spt }}</p>
+                                    <div class="col-sm-4">
+                                        <h6 class="font-weight-bold text-gray">NAMA WP</h6>
+                                        <p>{{ $wp->nama_wp }}</p>
+                                        <h6 class="font-weight-bold text-gray">PROVINSI</h6>
+                                        <p>{{ $wp->propinsi }}</p>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
+                                        <h6 class="font-weight-bold text-gray">JENIS WP</h6>
+                                        <p>{{ $wp->wajib_jeniswp }}</p>
+                                        <h6 class="font-weight-bold text-gray">NAMA AR</h6>
+                                        <p>{{ $wp->nama_ar}}</p>
+                                    </div>
+                                    <div class="col-sm-4">
                                         <h6 class="font-weight-bold text-gray">TAHUN PAJAK</h6>
-                                        <p>{{ $wp->tahun_pajak }}</p>
+                                        <p>{{ $wp->tahun }}</p>
+                                        <h6 class="font-weight-bold text-gray">NAMA SEKSI</h6>
+                                        <p>{{ $wp->seksi }}</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-2">
-                                <h6 class="font-weight-bold text-gray">STATUS & TAHUN PAJAK</h6>
-                                <ul>
-                                    @if ($wp->status_lapor == 'Sudah Lapor')
-                                    <li><span class="badge badge-success">{{ $wp->tahun_pajak }}</span>&nbsp;pas</li>
-                                    @else
-                                    <li><span class="badge badge-danger">{{ $wp->tahun_pajak }}</span>&nbsp;pas</li> 
-                                    @endif
-                                </ul>
                             </div>
                         </div>
-                        <p><span style="color: red">*</span>Keterangan :</p>
-                        <ul>
-                            <li>
-                                <p>Warna hijau : sudah lapor</p>
-                            </li>
-                            <li>
-                                <p>Warna merah : belum lapor</p>
-                            </li>
-                        </ul>
                     </div>
                     <div class="card-footer" align="right">
                         <button onclick="window.history.back();" class="btn elevation-2 btn-warning">Kembali</button>

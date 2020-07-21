@@ -22,6 +22,7 @@ Auth::routes();
 // })->name('register');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'backend\DashboardController@index')->name('dashboard');
 Route::get('/tambah-data','backend\WajibPajakController@TambahData')->name('wp.tambah');
 Route::prefix('admin')->group(function (){
     
@@ -61,9 +62,9 @@ Route::prefix('admin')->group(function (){
     Route::post('/data-pegawai/update/{id}','backend\UserController@update')->name('user.update');
     Route::get('/data-pegawai/destroy/{id}','backend\UserController@destroy')->name('user.destroy');
     Route::get('/data-pegawai/detail/{id}','backend\UserController@show')->name('user.show');
+    
+    //Waskon
+    Route::get('/waskon-4','backend\WaskonController@indexWaskon4')->name('waskon4.index');
+    Route::get('/ekstensifikasi-dan-penyuluhan','backend\WaskonController@indexEkspen')->name('ekspen.index');
+
 });
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
