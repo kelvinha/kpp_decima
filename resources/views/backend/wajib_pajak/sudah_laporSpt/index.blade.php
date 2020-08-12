@@ -22,9 +22,8 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-6 col-md-12">
-                                <p>Cari Berdasarkan: </p>
                                 <form class="form" action="" method="">
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="form-group col-md-5">
                                             <select name="kategori_wp" class="form-control">
                                                 <option selected disabled>Pilih Kategori WP</option>
@@ -45,12 +44,8 @@
                                         <div class="form-group col-md-2">
                                             <button class="btn btn-success" type="submit">Submit</button>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </form>
-                            </div>
-                            <div class="col-sm-6 col-md-4">
-                                <button class="btn btn-primary"><i class="fa fa-upload"></i> &nbsp;Export to
-                                    Excel</button>
                             </div>
                         </div>
                         <table id="example1" class="table table-bordered table-striped text-center">
@@ -59,12 +54,11 @@
                                     <th>No.</th>
                                     <th>NPWP</th>
                                     <th>Nama</th>
-                                    <th>Kategori WP</th>
-                                    <th>Nama Seksi</th>
-                                    <th>Alamat</th>
+                                    <th>Nama AR</th>
+                                    <th>Seksi</th>
                                     <th>Jenis SPT</th>
                                     <th>Tahun Pajak</th>
-                                    <th>Status Lapor</th>
+                                    <th>Status SPT</th>
                                     <th>Tanggal</th>
                                 </tr>
                             </thead>
@@ -73,22 +67,15 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->npwp }}</td>
-                                    <td>{{ $item->nama}}</td>
-                                    <td>{{ $item->kategori_wp }}</td>
-                                    <td>{{ $item->nama_seksi}}</td>
-                                    <td>{{ $item->alamat}}</td>
+                                    <td>{{ $item->nama_wp}}</td>
+                                    <td>{{ $item->nama_ar}}</td>
+                                    <td>{{ $item->seksi}}</td>
                                     <td>{{ $item->jenis_spt }}</td>
-                                    <td>{{ $item->tahun_pajak }}</td>
+                                    <td>{{ $item->tahun }}</td>
                                     <td>
-                                        <span class="badge badge-success">
-                                            {{ $item->status_lapor }}
-                                        </span>
+                                        <strong>{{ $item->status_spt }}</strong>
                                     </td>
-                                    @if ($item->tanggal_lapor === NULL)
-                                        <td> - </td>
-                                    @else
-                                    <td>{{ $item->tanggal_lapor }}</td>
-                                    @endif
+                                    <td>{{ $item->tgl_spt }}</td>
                                     {{-- <td class="text-nowrap">
                                         <button class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></button>
                                         <button class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></button>

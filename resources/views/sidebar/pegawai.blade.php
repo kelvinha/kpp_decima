@@ -14,7 +14,7 @@
                 <img src="{{asset('vendor')}}/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                <a href="{{ route('dashboard') }}" class="d-block">{{ substr(Auth::user()->name,0,20) }}</a>
             </div>
         </div>
 

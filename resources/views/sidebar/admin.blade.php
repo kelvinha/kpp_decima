@@ -31,7 +31,7 @@
                 />
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                <a href="{{ route('dashboard') }}" class="d-block">{{ strlen(Auth::user()->name) >= 20 ? substr(Auth::user()->name,0,20) : Auth::user()->name }}</a>
             </div>
         </div>
 
@@ -84,7 +84,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('waskon2.index')}}" class="nav-link {{Request::is('admin/waskon-2')? 'active' : null }}">
                                 <i class="far fa-dot-circle nav-icon"></i>
                                 <p>Seksi Pengawasan </p>
                                 <br />
@@ -94,7 +94,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('waskon3.index')}}" class="nav-link {{Request::is('admin/waskon-3')? 'active' : null }}">
                                 <i class="far fa-dot-circle nav-icon"></i>
                                 <p>Seksi Pengawasan </p>
                                 <br />

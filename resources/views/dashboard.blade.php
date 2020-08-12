@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h5 class="m-0 text-dark">Selamat Datang {{ Auth::user()->name }} !<br>di Aplikasi Monitoring Kepatuhan
+                <h5 class="m-0 text-dark">Selamat Datang <strong>{{ Auth::user()->name }}</strong> !<br>di Aplikasi Monitoring Kepatuhan
                     Wajib Pajak </h5>
             </div>
             <div class="col-sm-6">
@@ -20,6 +20,44 @@
 
 
 <!-- Main content -->
+{{-- <section class="content px-4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-sm-6 col-lg-12">
+                <div class="card elevation-2">
+                    <div class="card-header bg-kpp text-center">
+                        <p>Filter Seluruh Data Berdasarkan</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <select class="form-control text-center" id="filter">
+                                        <option selected disabled>-- Pilih Berdasarkan --</option>
+                                        @foreach ($kecamatan as $item)
+                                            <option value="{{ $item->kecamatan }}">Kecamatan {{ $item->kecamatan }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <select class="form-control text-center" id="masuk">
+                                        <option selected disabled>-- Pilih Berdasarkan --</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="form-group">
+                                    <button class="btn bg-kpp px-5">Cari Data</button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> --}}
 <section class="content px-4 py-4">
     <div class="container-fluid">
         <div class="row">
@@ -103,145 +141,6 @@
     </div>
 </section>
 
-{{-- <section class="content px-3 py-2">
-    <div class="container">
-        <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="card elevation-2">
-                <div class="card-header">
-                    <h5 align="center">
-                        Persentase Capaian Kepatuhan Wajib Pajak
-                    </h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="card card-primary areaChart">
-                                <div class="card-header">
-                                    <h3 class="card-title">Area Chart</h3>
-
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                                class="fas fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                                class="fas fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart">
-                                        <canvas id="areaChart"
-                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <div class="card card-danger donutChart">
-                                <div class="card-header">
-                                    <h3 class="card-title">Donut Chart</h3>
-
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                                class="fas fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                                class="fas fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <canvas id="donutChart"
-                                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <div class="card card-danger pieChart">
-                                <div class="card-header">
-                                    <h3 class="card-title">Pie Chart</h3>
-
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                                class="fas fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                                class="fas fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <canvas id="pieChart"
-                                        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <div class="card card-info lineChart">
-                                <div class="card-header">
-                                    <h3 class="card-title">Line Chart</h3>
-
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                                class="fas fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                                class="fas fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart">
-                                        <canvas id="lineChart"
-                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <div class="card card-success stackChart">
-                                <div class="card-header">
-                                    <h3 class="card-title">Stacked Bar Chart</h3>
-
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                                class="fas fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                                                class="fas fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart">
-                                        <canvas id="stackedBarChart"
-                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <div class="card card-success barChart">
-                                <div class="card-body elevation-2">
-                                    <div class="chart">
-                                        <canvas id="barChart"
-                                            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="progress-group">
-                                Target Lapor SPT
-                                <span class="float-right"><b>160</b>/200</span>
-                                <progress value="20" max="25"></progress>
-                            <div class="progress-group">
-                                Sudah Lapor SPT
-                                <span class="float-right"><b>{{ $totalsudahlapor }} orang </b>/ {{ $totalwp }} orang</span>
-                                <progress value="{{ $totalsudahlapor }}" max="{{ $totalwp }}" class="sudah-lapor"></progress>
-                            </div>
-                            <div class="progress-group">
-                                Belom Lapor SPT
-                                <span class="float-right"><b>{{ $totalbelumlapor }} orang </b>/ {{ $totalwp }} orang</span>
-                                <progress value="{{ $totalbelumlapor }}" max="{{ $totalwp }}" class="belum-lapor"></progress>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> --}}
 <!-- /.content -->
 @endsection
 {{-- chart js --}}
@@ -427,5 +326,21 @@
         })
     })
 
+</script>
+<script>
+    $(document).ready(function(){
+        $('#filter').on('change', function(e){
+            var kec = e.target.value;
+            // alert(kec);
+            $.get('/dashboard/json?kecamatan=' + kec, function(data){
+                $('#masuk').empty();
+                $.each(data, function(index, objek){
+                    $('#masuk').append(
+                        '<option value="'+objek.kelurahan+'"> Kelurahan '+objek.kelurahan+'</option>'
+                    );
+                })
+            })
+        });
+    });
 </script>
 @endsection
