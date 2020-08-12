@@ -44,6 +44,10 @@
             background-color: #253664;
             color: #ffc107;
         }
+        .btn.bg-kpp:hover{
+            background-color: #202e55;
+            color: #ffc107;
+        }
         label {
             text-align: left;
         }

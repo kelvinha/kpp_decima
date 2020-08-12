@@ -83,9 +83,16 @@
                             </div>
                         </div>
                         @if ($message = Session::get('error'))
-                        <div class="alert alert-danger" role="alert">
-                            <button type="button" class="close success">×</button> 
-                            <h4 align="center">Maaf,{{ $message }}</h4>
+                        <div class="callout callout-info alert" style="color: green;">
+                            <p>Hasil Pencarian Data dengan Keyword : <b style="color: red;">{{ $message }}</b> Tidak tersedia</p>
+                        </div>
+                        @elseif ($m = Request::get('tahun'))
+                        <div class="callout callout-info" style="color: green;">
+                            <p>Hasil Pencarian Data dengan Keyword : <b>{{ $m }}</b></p>
+                        </div>
+                        @elseif ($m = Request::get('cari'))
+                        <div class="callout callout-info" style="color: green;">
+                            <p>Hasil Pencarian Data dengan Keyword : <b>{{ $m }}</b></p>
                         </div>
                         @endif
                         @if ($data_wp->count() == 0)
@@ -103,6 +110,7 @@
                                     <th>Nama AR</th>
                                     <th>Seksi</th>
                                     <th>Tahun Pajak</th>
+                                    <th>Status SPT</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -124,6 +132,13 @@
                                     <td>{{ $item->nama_ar }}</td>
                                     <td>{{ $item->seksi }}</td>
                                     <td>{{ $item->tahun }}</td>
+                                    @if ($item->no_tandaterima === null)
+                                    <td>
+                                        <span class="badge badge-danger">Belum Lapor</span>
+                                    </td>
+                                    @else
+                                    <td><span class="badge badge-success">{{ $item->status_spt }}</span></td>
+                                    @endif
                                     <td>
                                         <a href="{{ route('wp.show',['id' => $item->wajib_spt_id]) }}" class="btn btn-primary" title="Detail"><i class="fa fa-info-circle"></i></a>
                                     </td>

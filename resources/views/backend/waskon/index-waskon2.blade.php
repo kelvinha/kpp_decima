@@ -35,47 +35,21 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row mb-2">
-                            <div class="col-sm-6 col-md-6 mr-auto">
-                                <form class="form-inline ps" action="{{route('wp.index')}}" method="get">
-                                    <div class="form-group mx-sm-3">
-                                        <select class="form-control" name="tahun" required>
-                                            <option disabled selected>Pilih Tahun</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2019">2019</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <button class="btn btn-primary" type="submit">Tampilkan</button>
-                                    </div>
-                                </form>
-                            </div>
-                            {{-- <div class="col-sm-6 col-md-8" align="right">
-                                <a href="{{ route('wp.tambah') }}" class="btn btn-primary"><i class="fa fa-plus"></i> &nbsp;Tambah Data Dummy</a>
-                            </div> --}}
                             <div class="col-md-6 col-sm-4 mb-2">
                                 @if(Request::get('cari'))
-                                <form action="{{ route('wp.index') }}" method="get" class="form-inline" style="margin-left: 165px;">
+                                <form action="{{ route('waskon2.index') }}" method="get" class="form-inline">
                                     <div class="form-group">
                                         <label for="">Search</label>
-                                        <input type="text" name="cari" class="ml-2 form-control" placeholder="Search.." required>
+                                        <input type="text" name="cari" class="ml-2 form-control" placeholder="Search by name.." required>
                                         <button type="submit" class="btn btn-info ml-2">Cari</button>
-                                        <a href="{{route('wp.index')}}" class="btn btn-danger ml-2">Kembali</a>
-                                    </div>
-                                </form>
-                                @elseif(Request::get('tahun'))
-                                <form action="{{ route('wp.index') }}" method="get" class="form-inline" style="margin-left: 165px;">
-                                    <div class="form-group">
-                                        <label for="">Search</label>
-                                        <input type="text" name="cari" class="ml-2 form-control" placeholder="Search.." required>
-                                        <button type="submit" class="btn btn-info ml-2">Cari</button>
-                                        <a href="{{route('wp.index')}}" class="btn btn-danger ml-2">Kembali</a>
+                                        <a href="{{route('waskon2.index')}}" class="btn btn-danger ml-2">Kembali</a>
                                     </div>
                                 </form>
                                 @else
-                                <form action="{{ route('wp.index') }}" method="get" class="form-inline ps1">
+                                <form action="{{ route('waskon2.index') }}" method="get" class="form-inline">
                                     <div class="form-group">
                                         <label for="">Search</label>
-                                        <input type="text" name="cari" class="ml-2 form-control" placeholder="Search.." required>
+                                        <input type="text" name="cari" class="ml-2 form-control" placeholder="Search by name.." required>
                                         <button type="submit" class="btn btn-info ml-2">Cari</button>
                                     </div>
                                 </form>
@@ -98,7 +72,6 @@
                                     <th>No.</th>
                                     <th>NIP</th>
                                     <th>Nama Ar</th>
-                                    <th>Jenis WP</th>
                                     <th>Seksi</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -109,15 +82,15 @@
                                         <td colspan="12" class="text-center">No Data Available</td>
                                     </tr>
                                 @endif
-                                @foreach ($waskon2 as $i => $item)
+                                @foreach ($waskon2 as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nip }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->jenis_wp }}</td>
                                     <td>{{ $item->seksi }}</td>
                                     <td>
                                         {{-- <a href="{{ route('wp.show',['id' => $item->wajib_spt_id]) }}" class="btn btn-primary" title="Detail"><i class="fa fa-info-circle"></i></a> --}}
+                                        <button class="btn btn-primary"> <i class="fa fa-info-circle"></i> </button>
                                     </td>
                                     {{-- <td class="text-nowrap">
                                     <a href="{{ route('wp.edit',['id' => $item->id_wp]) }}" class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></a>
@@ -137,7 +110,7 @@
                                 </div>
                                 <div class="col-8">
                                     <div class="d-flex justify-content-end mt-4">
-                                        {{-- {{ $waskon2->links() }} --}}
+                                        {{ $waskon2->links() }}
                                     </div>
                                 </div>
                             </div>

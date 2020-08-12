@@ -21,53 +21,117 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-2 col-md-2" align="center">
-                                <img src="{{ asset('vendor')}}/dist/img/undraw1.png" width="100%" class="img-fluid" alt="undraw">
+                            <div class="col-2">
+                                <select name="" id="" class="form-control">
+                                    <option>Tahun 2020</option>
+                                </select>
                             </div>
-                            <div class="col-lg-5 col-md-5 col-sm-2">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <h6 class="font-weight-bold text-gray">NPWP</h6>
-                                        <p>{{ $wp->npwp }}</p>
-                                        <h6 class="font-weight-bold text-gray">KELURAHAN</h6>
-                                        <p>{{ $wp->kelurahan }}</p>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <h6 class="font-weight-bold text-gray">KODE KPP</h6>
-                                        <p>{{ $wp->kd_kpp }}</p>
-                                        <h6 class="font-weight-bold text-gray">KECAMATAN</h6>
-                                        <p>{{ $wp->kecamatan}}</p>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <h6 class="font-weight-bold text-gray">KODE CABANG</h6>
-                                        <p>{{ $wp->kd_cabang }}</p>
-                                        <h6 class="font-weight-bold text-gray">KOTA</h6>
-                                        <p>{{ $wp->kota }}</p>
-                                        
-                                    </div>
-                                </div>
+                            <button class="btn btn-info mb-4">cari</button>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <p>Data Wajib Pajak:</p>
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>NPWP</th>
+                                            <th>Kode KPP</th>
+                                            <th>Kode Cabang</th>
+                                            <th>Nama</th>
+                                            <th>Jenis WP</th>
+                                            <th>Tahun Pajak</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $wp->npwp }}</td>
+                                            <td>{{ $wp->kd_kpp }}</td>
+                                            <td>{{ $wp->kd_cabang }}</td>
+                                            <td>{{ $wp->nama_wp }}</td>
+                                            <td>{{ $wp->jenis_wp }}</td>
+                                            <td>{{ $wp->tahun }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="col-lg-5 col-md-5 col-sm-2">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <h6 class="font-weight-bold text-gray">NAMA WP</h6>
-                                        <p>{{ $wp->nama_wp }}</p>
-                                        <h6 class="font-weight-bold text-gray">PROVINSI</h6>
-                                        <p>{{ $wp->propinsi }}</p>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <h6 class="font-weight-bold text-gray">JENIS WP</h6>
-                                        <p>{{ $wp->wajib_jeniswp }}</p>
-                                        <h6 class="font-weight-bold text-gray">NAMA AR</h6>
-                                        <p>{{ $wp->nama_ar}}</p>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <h6 class="font-weight-bold text-gray">TAHUN PAJAK</h6>
-                                        <p>{{ $wp->tahun }}</p>
-                                        <h6 class="font-weight-bold text-gray">NAMA SEKSI</h6>
-                                        <p>{{ $wp->seksi }}</p>
-                                    </div>
-                                </div>
+                            <div class="col-md-5">
+                                <p>Alamat:</p>
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Kelurahan</th>
+                                            <th>Kecamatan</th>
+                                            <th>Kota</th>
+                                            <th>Provinsi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $wp->kelurahan }}</td>
+                                            <td>{{ $wp->kecamatan }}</td>
+                                            <td>{{ $wp->kota }}</td>
+                                            <td>{{ $wp->propinsi }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <p>Data AR / Seksi:</p>
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama AR</th>
+                                            <th>Seksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $wp->nama_ar }}</td>
+                                            <td>{{ $wp->seksi }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-7">
+                                <p>Data SPT:</p>
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>No. Tanda Terima</th>
+                                            <th>Jenis SPT</th>
+                                            <th>Tanggal SPT</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $wp->no_tandaterima }}</td>
+                                            <td>{{ $wp->jenis_spt }}</td>
+                                            <td>{{ $wp->tgl_spt }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Status SPT:</p>
+                                <table class="table table-striped table-bordered text-center">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="2">Status SPT</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if ($wp->no_tandaterima == null)
+                                        <td colspan="2"><span class="badge badge-danger">Belum Lapor</span> </td>
+                                        @else
+                                        <td>{{ $wp->status_spt }}</td>
+                                        <td><span class="badge badge-success">Sudah Lapor</span> </td>
+                                        @endif
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

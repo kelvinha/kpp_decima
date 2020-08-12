@@ -30,7 +30,7 @@
         // console.log( id );
         });
     
-      for($i = 1; $i <=4; $i++)
+      for($i = 1; $i <=8; $i++)
       {
           $('#tes'+$i).mouseover(function(){
           $(this).removeClass('bg-light elevation-3');

@@ -48,7 +48,7 @@ class WajibPajakController extends Controller
             $data['data_wp']->appends(['cari'=>$cari]);
             if($data['data_wp']->count() == 0)
             {
-                return redirect()->route('wp.index')->with('error','data tidak tersedia');
+                return redirect()->route('wp.index')->with('error',$cari);
             }
         }
         elseif($tahun){
@@ -59,26 +59,27 @@ class WajibPajakController extends Controller
             $data['data_wp']->appends(['tahun'=>$tahun]);
             if($data['data_wp']->count() == 0)
             {
-                return redirect()->route('wp.index')->with('error','data tidak tersedia');
+                return redirect()->route('wp.index')->with('error',$tahun);
             }
         }
         else{
         $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                        ->select('master_npwp.*','wajib_spt.id as wajib_spt_id','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
-                                        ->paginate(10);
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->select('master_npwp.*','wajib_spt.id as wajib_spt_id','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp','master_spt.no_tandaterima','master_spt.status_spt')
+                                    ->paginate(10);
         }
         $data['total'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                    ->select('master_npwp.*','wajib_spt.id as wajib_spt_id','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
-                                    ->get()->count();
+                                  ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                  ->select('master_npwp.*','wajib_spt.id as wajib_spt_id','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
+                                  ->get()->count();
         return view('backend.wajib_pajak.kelola_wajib_pajak.index', $data);
     }
     
     public function indexSudahlapor()
     {
-        $laporanspt = LaporanSpt::join('wajib_pajak','spt.npwp_wp','wajib_pajak.npwp')
-                      ->where('spt.status_lapor','Sudah Lapor')
-                      ->select('wajib_pajak.*','spt.*')
-                      ->get();
+        $laporanspt = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                              ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                              ->get();
         $data['laporan'] = $laporanspt;
         $data['tahun'] = range(date('Y'), 1990);
         return view('backend.wajib_pajak.sudah_laporSpt.index',$data);
@@ -86,10 +87,11 @@ class WajibPajakController extends Controller
     
     public function indexBelumlapor()
     {
-        $laporanspt = LaporanSpt::join('wajib_pajak','spt.npwp_wp','wajib_pajak.npwp')
-                      ->where('spt.status_lapor','Belum Lapor')
-                      ->select('wajib_pajak.*','spt.*')
-                      ->get();
+        $laporanspt = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                               ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                               ->where('master_spt.no_tandaterima',null)
+                               ->select('master_npwp.*','wajib_spt.tahun','master_spt.status_spt','master_spt.jenis_spt','master_spt.tgl_spt')
+                               ->get();
         $data['laporan'] = $laporanspt;
         $data['tahun'] = range(date('Y'), 1990);
         return view('backend.wajib_pajak.belum_laporSpt.index',$data);
@@ -174,8 +176,9 @@ class WajibPajakController extends Controller
     {
         // dd($id);
         $data['wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('wajib_spt.id',$id)
-                                    ->select('master_npwp.*','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
+                                    ->select('master_npwp.*','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp','master_spt.*')
                                     ->first();
         return view('backend.wajib_pajak.kelola_wajib_pajak.show',$data);
     }
