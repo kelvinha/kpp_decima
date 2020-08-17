@@ -20,13 +20,14 @@ class DashboardController extends Controller
    
     public function index()
    {
+        $waskon = 'Pengawasan dan Konsultasi III';
+        $waskon1 = 'Pengawasan dan Konsultasi IV';
+        $waskon2 = 'Seksi Ekstensifikasi dan Penyuluhan';
         $data['totaladmin'] = User::get()->count();
 
         $data['totalwp'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->get()->count();
-        // $data['totalwp'] = WajibSpt::join('master_spt','wajib_spt.npwp','master_spt.key_npwp')->get()->count();
-        // $data['totalwp'] = MasterSpt::join('master_npwp','master_spt.npwp','master_npwp.npwp')->get()->count();
         $data['totalsudahlapor'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                             ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                             ->get()
@@ -37,9 +38,27 @@ class DashboardController extends Controller
                                     ->get()
                                     ->count();
         $data['kecamatan'] = DimWilayah::select('kecamatan')->distinct()->get();
-        // dd($data['kecamatan']);
-        // dd($data['totalbelumlapor']);
-        
+       
+        $data['waskon2'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.seksi','NOT LIKE','%'.$waskon.'%')
+                                    ->where('master_npwp.seksi','NOT LIKE','%'.$waskon1.'%')
+                                    ->where('master_npwp.seksi','NOT LIKE','%'.$waskon2.'%')
+                                    ->get()->count();
+        $data['waskon3'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.seksi','LIKE','%'.$waskon.'%')
+                                    ->get()->count();
+        $data['waskon4'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.seksi','LIKE','%'.$waskon1.'%')
+                                    ->get()->count();
+        $data['ekspen'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.seksi','LIKE','%'.$waskon2.'%')
+                                    ->get()->count();
+        // dd($data['ekspen']);
+
         if(Auth::user()->role === 'admin' || Auth::user()->role === 'pegawai')
         {
             return view('dashboard',$data);

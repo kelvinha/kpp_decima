@@ -6,7 +6,10 @@
         <div class="row mb-2">
             <div class="col-sm-6">
                 <h5 class="m-0 text-dark">Selamat Datang <strong>{{ Auth::user()->name }}</strong> !<br>di Aplikasi Monitoring Kepatuhan
-                    Wajib Pajak </h5>
+                    Wajib Pajak </h5> 
+                <div class="row container">
+                    <p>Target Capaian per AR Tahun ini </p><span class="blinking">86%</span>
+                </div>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -131,6 +134,84 @@
                                 </div>
                                 <div class="col-sm-10 col-md-8 pt-1">
                                     <span class="h4">{{ $totalbelumlapor }} Orang</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <a href="javascript:void(0)">
+                    <div class="card bg-light elevation-3" id="tes5">
+                        <div class="card-header">
+                            <h4 class="font-weight-light">Pengawasan dan Konsultasi 2</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-2 col-md-4">
+                                    <i class="fas far fas fa-users fa-3x"></i>
+                                </div>
+                                <div class="col-sm-10 col-md-8 pt-1">
+                                    <span class="h4">{{ $waskon2 }} Wajib Pajak</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="javascript:void(0)">
+                    <div class="card bg-light elevation-3" id="tes6">
+                        <div class="card-header">
+                            <h4 class="font-weight-light">Pengawasan dan Konsultasi 3</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-2 col-md-4">
+                                    <i class="fas far fas fa-users fa-3x"></i>
+                                </div>
+                                <div class="col-sm-10 col-md-8 pt-1">
+                                    <span class="h4">{{ $waskon3 }} Wajib Pajak</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="javascript:void(0)">
+                    <div class="card bg-light elevation-3" id="tes7">
+                        <div class="card-header">
+                            <h4 class="font-weight-light">Pengawasan dan Konsultasi 4</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-2 col-md-4">
+                                    <i class="fas far fas fa-users fa-3x"></i>
+                                </div>
+                                <div class="col-sm-10 col-md-8 pt-1">
+                                    <span class="h4">{{ $waskon4 }} Wajib Pajak</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="javascript:void(0)">
+                    <div class="card bg-light elevation-3" id="tes8">
+                        <div class="card-header">
+                            <h4 class="font-weight-light">Ekstensifikasi dan Penyuluhan</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-2 col-md-4">
+                                    <i class="fas far fas fa-users fa-3x"></i>
+                                </div>
+                                <div class="col-sm-10 col-md-8 pt-1">
+                                    <span class="h4">{{ $ekspen }} Wajib Pajak</span>
                                 </div>
                             </div>
                         </div>

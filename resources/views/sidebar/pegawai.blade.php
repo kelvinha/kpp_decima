@@ -36,7 +36,7 @@
                         <p>Data Wajib Pajak</p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview {{Request::is('admin/waskon-*')? 'menu-open' : Request::is('admin/ekstensifikasi-dan-penyuluhan')? 'menu-open' : null }}">
+                <li class="nav-item has-treeview {{Request::is('admin/waskon-*')? 'menu-open' : Request::is('admin/ekstensifikasi-dan-penyuluhan')? 'menu-open' : Request::is('admin/waskon-*/*')? 'menu-open':Request::is('admin/ekstensifikasi-dan-penyuluhan/*')? 'menu-open': null }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-friends"></i>
                         <p>
@@ -46,7 +46,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('waskon2.index')}}" class="nav-link {{Request::is('admin/waskon-2')? 'active' :Request::is('admin/waskon-2/*')? 'active' : null }}">
                                 <i class="far fa-dot-circle nav-icon"></i>
                                 <p>Seksi Pengawasan </p>
                                 <br />
@@ -56,7 +56,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('waskon3.index')}}" class="nav-link {{Request::is('admin/waskon-3')? 'active' :Request::is('admin/waskon-3/*')? 'active': null }}">
                                 <i class="far fa-dot-circle nav-icon"></i>
                                 <p>Seksi Pengawasan </p>
                                 <br />
@@ -66,7 +66,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('waskon4.index') }}" class="nav-link {{Request::is('admin/waskon-4')? 'active' : null }}">
+                            <a href="{{ route('waskon4.index') }}" class="nav-link {{Request::is('admin/waskon-4')? 'active' : Request::is('admin/waskon-4/*')? 'active' : null }}">
                                 <i class="far fa-dot-circle nav-icon"></i>
                                 <p>Seksi Pengawasan </p>
                                 <br />
@@ -76,7 +76,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('ekspen.index') }}" class="nav-link {{Request::is('admin/ekstensifikasi-dan-penyuluhan')? 'active' : null }}">
+                            <a href="{{ route('ekspen.index') }}" class="nav-link {{Request::is('admin/ekstensifikasi-dan-penyuluhan')? 'active' :Request::is('admin/ekstensifikasi-dan-penyuluhan/*')? 'active': null }}">
                                 <i class="far fa-dot-circle nav-icon"></i>
                                 <p>Seksi Ekstensifikasi</p>
                                 <br />

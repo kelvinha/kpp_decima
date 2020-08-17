@@ -29,13 +29,21 @@
                                             <th>NIP</th>
                                             <th>Nama</th>
                                             <th>Seksi</th>
+                                            <th>Total Wajib Pajak</th>
+                                            <th>Total Realisasi SPT</th>
+                                            <th>Capaian Ar</th>
+                                            <th>Capaian Target</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{ $waskon4->nip }}</td>
-                                            <td>{{ $waskon4->name }}</td>
-                                            <td>{{ $waskon4->seksi }}</td>
+                                            <td>{{ $ekspen->nip }}</td>
+                                            <td>{{ $ekspen->name }}</td>
+                                            <td>{{ $ekspen->seksi }}</td>
+                                            <td>{{ $totalwp }}</td>
+                                            <td>{{ $totalspt }}</td>
+                                            <td>{{ $capaian_ar * 100 }}%</td>
+                                            <td>86%</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -59,7 +67,7 @@
                                         @endif
                                         @foreach ($karyawan as $item)
                                         <tr>
-                                            <td>{{ $item->npwp }}</td>
+                                            <td>{{ substr($item->npwp,0,9) }}</td>
                                             <td>{{ $item->nama_wp }}</td>
                                             <td>{{ $item->jenis_wp }}</td>
                                         </tr>
@@ -83,7 +91,7 @@
                                         @endif
                                         @foreach ($nonkaryawan as $item)
                                         <tr>
-                                            <td>{{ $item->npwp }}</td>
+                                            <td>{{ substr($item->npwp,0,9) }}</td>
                                             <td>{{ $item->nama_wp }}</td>
                                             <td>{{ $item->jenis_wp }}</td>
                                         </tr>
@@ -107,11 +115,39 @@
                                         @endif
                                         @foreach ($badan as $item)
                                         <tr>
-                                            <td>{{ $item->npwp }}</td>
+                                            <td>{{ substr($item->npwp,0,9) }}</td>
                                             <td>{{ $item->nama_wp }}</td>
                                             <td>{{ $item->jenis_wp }}</td>
                                         </tr>
                                         @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h4 class="text-center mt-2">Data Realisasi SPT:</h4>
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3" class="text-center bg-gray">Terealisasi SPT</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">Karyawan</th>
+                                            <th class="text-center">Non Karyawan</th>
+                                            <th class="text-center">Badan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if ($karSpt + $nonkarSpt + $bdnSpt == 0)
+                                            <td colspan="3" class="text-center">Tidak Ada</td>
+                                        @else
+                                        <tr class="text-center">
+                                            <td>{{ $karSpt }}</td>
+                                            <td>{{ $nonkarSpt }}</td>
+                                            <td>{{ $bdnSpt }}</td>
+                                        </tr>
+                                        @endif
                                     </tbody>
                                 </table>
                             </div>

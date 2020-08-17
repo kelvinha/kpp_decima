@@ -29,6 +29,7 @@ Route::prefix('admin')->group(function (){
     
     // wajib pajak
     Route::get('/data-wajib-pajak','backend\WajibPajakController@index')->name('wp.index');
+    Route::get('/data-wajib-pajak/json','backend\WajibPajakController@jsonFilter')->name('wp.json');
     Route::get('/data-wajib-pajak/create','backend\WajibPajakController@create')->name('wp.create');
     Route::post('/data-wajib-pajak/store','backend\WajibPajakController@store')->name('wp.store');
     Route::get('/data-wajib-pajak/edit/{id}','backend\WajibPajakController@edit')->name('wp.edit');
@@ -38,9 +39,7 @@ Route::prefix('admin')->group(function (){
 
     // import
     Route::get('/import-data','backend\WajibPajakController@import')->name('index.import');
-    Route::post('/import-master-npwp','backend\WajibPajakController@ImportMasterNpwp')->name('import.master-npwp');
-    Route::post('/import-wajib-spt','backend\WajibPajakController@ImportWajibSpt')->name('import.wajib-spt');
-    Route::post('/import-master-spt','backend\WajibPajakController@ImportMasterSpt')->name('import.master-spt');
+    Route::post('/import-master-wp','backend\WajibPajakController@ImportMasterWp')->name('import.master-wp');
     Route::post('/import-dim-wilayah','backend\WajibPajakController@ImportWilayah')->name('import.dim-wilayah');
     Route::post('/import-pegawai','backend\WajibPajakController@ImportPegawai')->name('import.pegawai');
 
@@ -66,12 +65,15 @@ Route::prefix('admin')->group(function (){
     
     //Waskon
     Route::get('/waskon-2','backend\WaskonController@indexWaskon2')->name('waskon2.index');
-
+    Route::get('/waskon-2/{id}','backend\WaskonController@showWaskon2')->name('waskon2.show');
+    
     Route::get('/waskon-3','backend\WaskonController@indexWaskon3')->name('waskon3.index');
+    Route::get('/waskon-3/{id}','backend\WaskonController@showWaskon3')->name('waskon3.show');
     
     Route::get('/waskon-4','backend\WaskonController@indexWaskon4')->name('waskon4.index');
     Route::get('/waskon-4/{id}','backend\WaskonController@showWaskon4')->name('waskon4.show');
     
     Route::get('/ekstensifikasi-dan-penyuluhan','backend\WaskonController@indexEkspen')->name('ekspen.index');
+    Route::get('/ekstensifikasi-dan-penyuluhan/{id}','backend\WaskonController@showEkspen')->name('ekspen.show');
 
 });

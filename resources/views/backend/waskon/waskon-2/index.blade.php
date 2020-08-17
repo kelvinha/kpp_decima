@@ -89,16 +89,8 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->seksi }}</td>
                                     <td>
-                                        {{-- <a href="{{ route('wp.show',['id' => $item->wajib_spt_id]) }}" class="btn btn-primary" title="Detail"><i class="fa fa-info-circle"></i></a> --}}
-                                        <button class="btn btn-primary"> <i class="fa fa-info-circle"></i> </button>
+                                        <a href="{{ route('waskon2.show',['id'=> $item->id]) }}" class="btn btn-primary"> <i class="fa fa-info-circle"></i> </a>
                                     </td>
-                                    {{-- <td class="text-nowrap">
-                                    <a href="{{ route('wp.edit',['id' => $item->id_wp]) }}" class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></a>
-                                    <button type="button" class="btn btn-danger" title="Hapus" data-toggle="modal"
-                                    data-target="#delete" data-myid="{{ $item->npwp }}">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td> --}}
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -121,28 +113,6 @@
         </div>
     </div>
 </section>
-<div class="modal fade" id="delete">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-kpp">
-                <h4 class="modal-title">Perhatian ! </h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('wp.destroy') }}" method="GET">
-                <div class="modal-body">
-                    <p>Apakah anda yakin ingin menghapus ?</p>
-                <input type="hidden" id="idnpwp" name="idnpwp" value="">
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
-                    <button type="submit" class="btn btn-danger">Ya, Hapus</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 @endsection
 @section('js')
 <!-- DataTables -->
