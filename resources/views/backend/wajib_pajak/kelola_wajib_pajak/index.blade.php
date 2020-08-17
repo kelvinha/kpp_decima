@@ -35,7 +35,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row mb-2">
-                            <div class="col-sm-6 col-md-6 mr-auto">
+                            <div class="col-sm-6 col-md-6">
                                 <form class="form-inline ps" action="{{route('wp.index')}}" method="get">
                                     <div class="form-group mx-sm-3">
                                         <select class="form-control" name="tahun" required>
@@ -49,12 +49,9 @@
                                     </div>
                                 </form>
                             </div>
-                            {{-- <div class="col-sm-6 col-md-8" align="right">
-                                <a href="{{ route('wp.tambah') }}" class="btn btn-primary"><i class="fa fa-plus"></i> &nbsp;Tambah Data Dummy</a>
-                            </div> --}}
-                            <div class="col-md-6 col-sm-4 mb-2">
+                            <div class="col-md-6 col-sm-4 mb-2 d-flex justify-content-end">
                                 @if(Request::get('cari'))
-                                <form action="{{ route('wp.index') }}" method="get" class="form-inline" style="margin-left: 165px;">
+                                <form action="{{ route('wp.index') }}" method="get" class="form-inline">
                                     <div class="form-group">
                                         <label for="">Search</label>
                                         <input type="text" name="cari" class="ml-2 form-control" placeholder="Search.." required>
@@ -63,7 +60,7 @@
                                     </div>
                                 </form>
                                 @elseif(Request::get('tahun'))
-                                <form action="{{ route('wp.index') }}" method="get" class="form-inline" style="margin-left: 165px;">
+                                <form action="{{ route('wp.index') }}" method="get" class="form-inline">
                                     <div class="form-group">
                                         <label for="">Search</label>
                                         <input type="text" name="cari" class="ml-2 form-control" placeholder="Search.." required>
@@ -72,7 +69,7 @@
                                     </div>
                                 </form>
                                 @else
-                                <form action="{{ route('wp.index') }}" method="get" class="form-inline ps1">
+                                <form action="{{ route('wp.index') }}" method="get" class="form-inline">
                                     <div class="form-group">
                                         <label for="">Search</label>
                                         <input type="text" name="cari" class="ml-2 form-control" placeholder="Search.." required>
@@ -82,6 +79,42 @@
                                 @endif
                             </div>
                         </div>
+                        <p>Cari Berdasrkan Kecamatan Dan Kelurahan:</p>
+                        <form action="{{ route('wp.index') }}" method="get">
+                        <div class="row">
+                                <div class="col-lg-5">
+                                    <div class="form-group">
+                                        <select class="form-control text-center" name="kecamatan" id="filter">
+                                            <option selected disabled>-- Pilih Berdasarkan --</option>
+                                            @foreach ($kecamatan as $item)
+                                                <option value="{{ $item->kecamatan }}">Kecamatan {{ $item->kecamatan }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="form-group">
+                                        <select class="form-control text-center" name="kelurahan" id="masuk">
+                                            <option selected disabled>-- Pilih Berdasarkan --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                @if (Request::get('kecamatan'))
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <button class="btn bg-kpp" type="submit">Cari Data</button>
+                                        <a href="{{ route('wp.index') }}" class="btn btn-danger">Kembali</a>
+                                    </div>
+                                </div>
+                                @else                                    
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        <button class="btn bg-kpp px-5" type="submit">Cari Data</button>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+                        </form>
                         @if ($message = Session::get('error'))
                         <div class="callout callout-info alert" style="color: green;">
                             <p>Hasil Pencarian Data dengan Keyword : <b style="color: red;">{{ $message }}</b> Tidak tersedia</p>
@@ -132,7 +165,7 @@
                                     <td>{{ $item->nama_ar }}</td>
                                     <td>{{ $item->seksi }}</td>
                                     <td>{{ $item->tahun }}</td>
-                                    @if ($item->no_tandaterima === null)
+                                    @if ($item->status_spt === null)
                                     <td>
                                         <span class="badge badge-danger">Belum Lapor</span>
                                     </td>
@@ -142,13 +175,6 @@
                                     <td>
                                         <a href="{{ route('wp.show',['id' => $item->wajib_spt_id]) }}" class="btn btn-primary" title="Detail"><i class="fa fa-info-circle"></i></a>
                                     </td>
-                                    {{-- <td class="text-nowrap">
-                                    <a href="{{ route('wp.edit',['id' => $item->id_wp]) }}" class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></a>
-                                    <button type="button" class="btn btn-danger" title="Hapus" data-toggle="modal"
-                                    data-target="#delete" data-myid="{{ $item->npwp }}">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td> --}}
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -225,5 +251,21 @@
         $('.alert').delay(2000).slideUp(500);
     });
 
+</script>
+<script>
+    $(document).ready(function(){
+        $('#filter').on('change', function(e){
+            var kec = e.target.value;
+            // alert(kec);
+            $.get('/admin/data-wajib-pajak/json?kecamatan=' + kec, function(data){
+                $('#masuk').empty();
+                $.each(data, function(index, objek){
+                    $('#masuk').append(
+                        '<option value="'+objek.kelurahan+'"> Kelurahan '+objek.kelurahan+'</option>'
+                    );
+                })
+            })
+        });
+    });
 </script>
 @endsection

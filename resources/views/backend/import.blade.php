@@ -37,15 +37,11 @@
                                         <h4 class="alert-heading"><i class="fas fa-exclamation-circle"></i> Ketentuan:</h4>
                                         <ul>
                                             <li><p>File yang di-import harus berekstensi <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv!</p></li>
-                                            <li><p>Import Master Npwp dan Wajib Spt, keduanya wajib di import.</p></li>
+                                            <li><p>Import Master Npwp, Master SPT dan Wajib Spt, ketiganya wajib di import.</p></li>
                                         </ul>
                                     </div>
                                     <div class="mb-2 d-flex justify-content-between">
-                                        <button class="btn btn-success" data-target="#import-m-npwp" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Master NPWP</button>
-                                        <button class="btn btn-success" data-target="#import-wajib-spt" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Wajib SPT</button>
-                                        <button class="btn btn-success" data-target="#import-m-spt" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Master SPT</button>
-                                    </div>
-                                    <div class="mb-2 d-flex justify-content-around">
+                                        <button class="btn btn-success" data-target="#import-m-wp" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Master Wajib Pajak</button>
                                         <button class="btn btn-success" data-target="#import-pegawai" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Data Pegawai</button>
                                         <button class="btn btn-success" data-target="#import-wilayah" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Data Wilayah</button>
                                     </div>
@@ -81,7 +77,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="import-m-npwp">
+<div class="modal fade" id="import-m-wp">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-kpp">
@@ -90,34 +86,15 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('import.master-npwp') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('import.master-wp') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-body">
-                    <p>Masukan file bertipe <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv</p>
-                    <input type="file" class="form-control" name="import-master-npwp" required>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="import-wajib-spt">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-kpp">
-                <h4 class="modal-title">Import Data Wajib SPT </h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('import.wajib-spt') }}" method="POST" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                <div class="modal-body">
-                    <p>Masukan file bertipe <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv</p>
-                    <input type="file" class="form-control" name="import-wajib-spt" required>
+                    <p>Import Master NPWP <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv</p>
+                    <input type="file" class="form-control" name="import-master-npwp" required><br>
+                    <p>Import Master SPT <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv</p>
+                    <input type="file" class="form-control" name="import-master-spt" required><br>
+                    <p>Import Wajib SPT <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv</p>
+                    <input type="file" class="form-control" name="import-wajib-spt" required><br>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="submit" class="btn btn-primary">Upload</button>
@@ -141,29 +118,6 @@
                 <div class="modal-body">
                     <p>Masukan file bertipe <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv</p>
                     <input type="file" class="form-control" name="import-wilayah" required>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="import-m-spt">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-kpp">
-                <h4 class="modal-title">Import Data Master SPT</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('import.master-spt') }}" method="POST" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                <div class="modal-body">
-                    <p>Masukan file bertipe <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv</p>
-                    <input type="file" class="form-control" name="import-master-spt" required>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="submit" class="btn btn-primary">Upload</button>

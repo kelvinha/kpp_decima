@@ -48,7 +48,7 @@
                                             <td>{{ $wp->kd_kpp }}</td>
                                             <td>{{ $wp->kd_cabang }}</td>
                                             <td>{{ $wp->nama_wp }}</td>
-                                            <td>{{ $wp->jenis_wp }}</td>
+                                            <td>{{ $wp->wajib_jeniswp }}</td>
                                             <td>{{ $wp->tahun }}</td>
                                         </tr>
                                     </tbody>
