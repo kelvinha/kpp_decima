@@ -78,7 +78,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-user-friends"></i>
                         <p>
-                            Data per Waskon
+                            Data per Seksi
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>

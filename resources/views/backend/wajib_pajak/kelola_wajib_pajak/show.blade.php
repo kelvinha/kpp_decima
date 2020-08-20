@@ -20,14 +20,14 @@
                         <p>Detail Data Wajib Pajak</p>
                     </div>
                     <div class="card-body">
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-2">
                                 <select name="" id="" class="form-control">
                                     <option>Tahun 2020</option>
                                 </select>
                             </div>
                             <button class="btn btn-info mb-4">cari</button>
-                        </div>
+                        </div> --}}
                         <div class="row">
                             <div class="col-md-7">
                                 <p>Data Wajib Pajak:</p>

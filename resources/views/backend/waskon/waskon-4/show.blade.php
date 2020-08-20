@@ -29,7 +29,7 @@
                                             <th>NIP</th>
                                             <th>Nama</th>
                                             <th>Seksi</th>
-                                            <th>Total Wajib Pajak</th>
+                                            <th>Total Wajib SPT</th>
                                             <th>Total Realisasi SPT</th>
                                             <th>Capaian Ar</th>
                                             <th>Capaian Target</th>
