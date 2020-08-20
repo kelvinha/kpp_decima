@@ -87,7 +87,7 @@
                 <a href="{{ route('wp.index') }}">
                     <div class="card bg-light elevation-3" id="tes2">
                         <div class="card-header">
-                            <h4 class="font-weight-light">Data Wajib Pajak</h4>
+                            <h4 class="font-weight-light">Data Wajib SPT</h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
