@@ -77,7 +77,7 @@
                                 <td class="text-nowrap">
                                     <form method="get" action="{{route('user.destroy',[$item->id])}}" onsubmit="return confirm('Apakah Anda yakin akan menghapus data ini?')">
                                     {{csrf_field()}}
-                                    <a href="{{route('user.show',[$item->id])}}" class="btn btn-info btn-sm" title="Detail"><i class="fa fa-eye"></i></a>
+                                    <a href="{{route('user.show',[$item->id])}}" class="btn btn-primary btn-sm" title="Detail"><i class="fa fa-info-circle"></i></a>
                                     <a href="{{route('user.edit',[$item->id])}}" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
                                     <button class="btn btn-danger btn-sm" title="Hapus" data-toggle="modal" data-target="#delete" data-myid="{{ $item->user }}">
                                         <i class="fa fa-trash"></i>
