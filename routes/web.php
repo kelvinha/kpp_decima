@@ -95,4 +95,8 @@ Route::prefix('admin')->group(function (){
     Route::get('/kecamatan-tapos/detail/{id}','backend\WilayahController@showTapos')->name('tapos.show');
 
 
+    //Ubah Password
+    Route::get('/change-password', 'backend\PasswordController@changePasswordForm')->name('password.ubah');
+    Route::post('/change-password', 'backend\PasswordController@changePassword')->name('password.ubah');
+    Route::get('/change-photo', 'backend\PasswordController@getProfilFoto')->name('foto.ubah');
 });

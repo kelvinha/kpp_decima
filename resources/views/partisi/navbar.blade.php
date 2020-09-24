@@ -5,12 +5,42 @@
         <h5 style="color: #fcd511;">Kantor Pelayanan Pajak Depok Cimanggis</h5>
     </div>
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown">
+        <div class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle btn btn-warning" href="javascript:void()"
                 style="color: #1e2f5f; text-transform: uppercase" role="button" data-toggle="dropdown">
                 {{ Auth::user()->name }} <span class="caret"></span>
             </a>
+            <div class="dropdown-menu pad0B float-right">
+                <div class="box-sm">
+                    <div class="image">
+                        <center>
+                        <img src="{{ asset('vendor') }}/dist/img/avatar5.png"
+                            class="img-circle elevation-2"
+                            alt="User Image"
+                            style="width:100px; height=100px;">
+                        </center>
+                    </div>
+                    <div class="user-info">
+                        <span>
+                            Nama  : {{ Auth::user()->name }}<br>
+                            NIP   : {{ Auth::user()->nip }}<br>
+                            Seksi : {{ Auth::user()->seksi }}<br><br>
+                        </span>
+                        {{-- <a href="{{ route('foto.ubah') }}" title><center>[Change Photo]</center></a> --}}
+                        <a href="{{ route('password.ubah') }}" title><center>[Change Password]</center></a><br>
+                    </div>
+                </div>
+                <div class="pad5A button-pane button-pane-alt text-center">
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();" class="btn display-block font-normal btn-danger">
+                    Logout
+                </a>
 
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                </div>
+            </div>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 @php
                     $target_capaian = App\Models\TargetCapaian::first();
@@ -23,6 +53,7 @@
                     @endif
                     <hr>
                 @endif
+
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
                     <i class="fas fa-sign-out-alt"></i> Logout
@@ -31,7 +62,6 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-                
             </div>
         </li>
     </ul>
