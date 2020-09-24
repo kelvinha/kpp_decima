@@ -24,6 +24,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'backend\DashboardController@index')->name('dashboard');
 Route::get('/dashboard/json', 'backend\DashboardController@jsonFilter')->name('json.filter');
+Route::post('/dashboard/create-target', 'backend\DashboardController@createTarget')->name('create.target');
+Route::post('/dashboard/update-target', 'backend\DashboardController@updateTarget')->name('update.target');
 Route::get('/tambah-data','backend\WajibPajakController@TambahData')->name('wp.tambah');
 Route::prefix('admin')->group(function (){
     
@@ -75,5 +77,22 @@ Route::prefix('admin')->group(function (){
     
     Route::get('/ekstensifikasi-dan-penyuluhan','backend\WaskonController@indexEkspen')->name('ekspen.index');
     Route::get('/ekstensifikasi-dan-penyuluhan/{id}','backend\WaskonController@showEkspen')->name('ekspen.show');
+    
+    // wilayah
+    Route::get('/kecamatan-cilodong','backend\WilayahController@indexCilodong')->name('cilodong.index');
+    Route::get('/kecamatan-cilodong/detail/{id}','backend\WilayahController@showCilodong')->name('cilodong.show');
+    
+    Route::get('/kecamatan-cimanggis','backend\WilayahController@indexCimanggis')->name('cimanggis.index');
+    Route::get('/kecamatan-cimanggis/detail/{id}','backend\WilayahController@showCimanggis')->name('cimanggis.show');
+    
+    Route::get('/kecamatan-cipayung','backend\WilayahController@indexCipayung')->name('cipayung.index');
+    Route::get('/kecamatan-cipayung/detail/{id}','backend\WilayahController@showCipayung')->name('cipayung.show');
+    
+    Route::get('/kecamatan-sukmajaya','backend\WilayahController@indexSukmajaya')->name('sukmajaya.index');
+    Route::get('/kecamatan-sukmajaya/detail/{id}','backend\WilayahController@showSukmajaya')->name('sukmajaya.show');
+    
+    Route::get('/kecamatan-tapos','backend\WilayahController@indexTapos')->name('tapos.index');
+    Route::get('/kecamatan-tapos/detail/{id}','backend\WilayahController@showTapos')->name('tapos.show');
+
 
 });

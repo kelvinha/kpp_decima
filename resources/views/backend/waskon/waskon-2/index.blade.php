@@ -18,20 +18,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                @if ($message = Session::get('success'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="close success">×</button> 
-                    <h4 class="alert-heading">Selamat !</h4>
-                    <p>{{ $message }}</p>
-                </div>
-                @endif
-                @if ($message = Session::get('deleted'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="close success">×</button> 
-                    <h4 class="alert-heading">Selamat !</h4>
-                    <p>{{ $message }}</p>
-                </div>
-                @endif
                 <div class="card">
                     <div class="card-body">
                         <div class="row mb-2">
@@ -56,12 +42,6 @@
                                 @endif
                             </div>
                         </div>
-                        @if ($message = Session::get('error'))
-                        <div class="alert alert-danger" role="alert">
-                            <button type="button" class="close success">×</button> 
-                            <h4 align="center">Maaf,{{ $message }}</h4>
-                        </div>
-                        @endif
                         @if ($waskon2->count() == 0)
                         <table class="table table-bordered table-striped text-center">
                         @else

@@ -29,6 +29,15 @@
         modal.find('.modal-body #idnpwp').val(id);
         // console.log( id );
         });
+    $('#ubah-capaian-target').on('shown.bs.modal',function (e){
+        var btn = $(e.relatedTarget);
+        var id = btn.data('myid');
+        var target = btn.data('mytarget');
+        var modal = $(this);
+        modal.find('.modal-body #target').val(target);
+        modal.find('.modal-body #idtarget').val(id);
+        // alert( target );
+      });
     
       for($i = 1; $i <=8; $i++)
       {
