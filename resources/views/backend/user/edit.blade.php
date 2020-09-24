@@ -44,12 +44,12 @@
                     <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" value="{{$user->email}}">
                     </div>
                 </div>
-                <div class="form-group row">
+                {{-- <div class="form-group row">
                     <label for="password" class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-8">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password">
                     </div>
-                </div>
+                </div> --}}
                 <div class="form-group row">
                     <label for="seksi" class="col-sm-2 col-form-label">Seksi</label>
                     <div class="col-sm-8">
