@@ -76,4 +76,8 @@ Route::prefix('admin')->group(function (){
     Route::get('/ekstensifikasi-dan-penyuluhan','backend\WaskonController@indexEkspen')->name('ekspen.index');
     Route::get('/ekstensifikasi-dan-penyuluhan/{id}','backend\WaskonController@showEkspen')->name('ekspen.show');
 
+    //Ubah Password
+    Route::get('/change-password', 'backend\PasswordController@changePasswordForm')->name('password.ubah');
+    Route::post('/change-password', 'backend\PasswordController@changePassword')->name('password.ubah');
+    Route::get('/change-photo', 'backend\PasswordController@getProfilFoto')->name('foto.ubah');
 });

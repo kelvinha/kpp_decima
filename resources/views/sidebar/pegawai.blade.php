@@ -10,8 +10,18 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            {{-- <div class="image">
+                <img src="{{ asset('vendor') }}/dist/img/avatar/{{ Auth::user()->foto}}"
+                    class="img-circle elevation-2"
+                    alt="User Image"
+                    style="width:50px; height=50px;">
+              </div> --}}
             <div class="image">
-                <img src="{{asset('vendor')}}/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+                <img
+                    src="{{ asset('vendor') }}/dist/img/avatar5.png"
+                    class="img-circle elevation-2"
+                    alt="User Image"
+                    style="width:50px; height=50px;">
             </div>
             <div class="info">
                 <a href="{{ route('dashboard') }}" class="d-block">{{ substr(Auth::user()->name,0,20) }}</a>

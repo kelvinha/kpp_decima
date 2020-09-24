@@ -38,12 +38,12 @@
                         <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan Nama Pegawai" value="{{old('name')}}">
                         </div>
                     </div>
-                    <div class="form-group row">
+                    {{-- <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-8">
                         <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" value="{{old('email')}}">
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group row">
                         <label for="password" class="col-sm-2 col-form-label">Password*</label>
                         <div class="col-sm-8">
