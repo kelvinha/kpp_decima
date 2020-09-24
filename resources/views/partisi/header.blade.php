@@ -16,6 +16,4 @@
     <link rel="stylesheet" href="{{asset('vendor')}}/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="{{asset('vendor')}}/dist/css/style.css">
     <link rel="icon" href="{{asset('vendor')}}/dist/img/djp.ico">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>

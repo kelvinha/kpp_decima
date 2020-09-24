@@ -86,6 +86,62 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item has-treeview {{Request::is('admin/kecamatan-*')? 'menu-open' : Request::is('admin/kecamatan-*/*')? 'menu-open': null }}">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-user-friends"></i>
+                        <p>
+                            Data per Wilayah
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('cilodong.index')}}" class="nav-link {{ Request::is('admin/kecamatan-cilodong')? 'active' : Request::is('admin/kecamatan-cilodong/*')? 'active' : null }}">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Kecamatan</p>
+                                <br />
+                                <i class="far fa-space nav-icon"></i>
+                                <p>Cilodong</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('cimanggis.index')}}" class="nav-link {{ Request::is('admin/kecamatan-cimanggis')? 'active' : Request::is('admin/kecamatan-cimanggis/*')? 'active' : null }}">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Kecamatan</p>
+                                <br />
+                                <i class="far fa-space nav-icon"></i>
+                                <p>Cimanggis</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('cipayung.index')}}" class="nav-link {{ Request::is('admin/kecamatan-cipayung')? 'active' : Request::is('admin/kecamatan-cipayung/*')? 'active' : null }}">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Kecamatan</p>
+                                <br />
+                                <i class="far fa-space nav-icon"></i>
+                                <p>Cipayung</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('sukmajaya.index')}}" class="nav-link {{ Request::is('admin/kecamatan-sukmajaya')? 'active' : Request::is('admin/kecamatan-sukmajaya/*')? 'active' : null }}">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Kecamatan</p>
+                                <br />
+                                <i class="far fa-space nav-icon"></i>
+                                <p>Sukmajaya</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('tapos.index')}}" class="nav-link {{ Request::is('admin/kecamatan-tapos')? 'active' : Request::is('admin/kecamatan-tapos/*')? 'active' : null }}">
+                                <i class="far fa-dot-circle nav-icon"></i>
+                                <p>Kecamatan</p>
+                                <br />
+                                <i class="far fa-space nav-icon"></i>
+                                <p>Tapos</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

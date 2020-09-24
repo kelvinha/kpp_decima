@@ -73,7 +73,8 @@ class WajibPajakController extends Controller
             $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                         ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                         ->Where('master_npwp.kecamatan','LIKE','%'.$kecamatan.'%')
-                                        ->Where('master_npwp.kelurahan','LIKE','%'.$kelurahan.'%')
+                                        // ->Where('master_npwp.kelurahan','LIKE','%'.$kelurahan.'%')
+                                        ->Where('master_npwp.kelurahan',$kelurahan)
                                         ->select('master_npwp.*','wajib_spt.id as wajib_spt_id','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp','master_spt.no_tandaterima','master_spt.status_spt')
                                         ->orderBy('nama_wp')->paginate(10);
             // $data['data_wp']->appends(['cari'=>$cari]);

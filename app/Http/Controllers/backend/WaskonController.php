@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\WajibPajak;
 use App\Models\WajibSpt;
 use App\Models\MasterNpwp;
+use App\Models\TargetCapaian;
 use App\User;
 use Auth;
 class WaskonController extends Controller
@@ -25,14 +26,7 @@ class WaskonController extends Controller
         $cari = $request->get('cari');
         if($cari)
         {
-            // $data['waskon2'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-            //                         ->join('users','master_npwp.nip_pendek','users.nip')
-            //                         ->select('users.*','wajib_spt.*')
-            //                         ->where('users.seksi','NOT LIKE', '%'.$waskon.'%')
-            //                         ->where('users.seksi','NOT LIKE', '%'.$waskon1.'%')
-            //                         ->where('users.seksi','NOT LIKE', '%'.$waskon2.'%')
-            //                         ->where('users.name','LIKE','%'.$cari.'%')
-            //                         ->paginate(10);
+            
             $data['waskon2'] = User::where('seksi','NOT LIKE', '%'.$waskon.'%')
                                    ->where('seksi','NOT LIKE', '%'.$waskon1.'%')
                                    ->where('seksi','NOT LIKE', '%'.$waskon2.'%')
@@ -41,13 +35,6 @@ class WaskonController extends Controller
         }
         else 
         {
-            // $data['waskon2'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-            //                             ->join('users','master_npwp.nip_pendek','users.nip')
-            //                             ->select('users.*','wajib_spt.*')
-            //                             ->where('users.seksi','NOT LIKE', '%'.$waskon.'%')
-            //                             ->where('users.seksi','NOT LIKE', '%'.$waskon1.'%')
-            //                             ->where('users.seksi','NOT LIKE', '%'.$waskon2.'%')
-            //                             ->paginate(10);
             $data['waskon2'] = User::where('seksi','NOT LIKE', '%'.$waskon.'%')
                                    ->where('seksi','NOT LIKE', '%'.$waskon1.'%')
                                    ->where('seksi','NOT LIKE', '%'.$waskon2.'%')
@@ -60,27 +47,17 @@ class WaskonController extends Controller
     public function showWaskon2($id)
     {
         // dd($id);
+        $target_pusat = TargetCapaian::first();
+        $data['targetPusat'] = $target_pusat;
         $waskon2 = User::where('id',$id)->first();
         $data['waskon2'] = $waskon2;
-        $data['karyawan'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+        $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->join('users','master_npwp.nip_pendek','users.nip')
-                                    ->select('users.*','wajib_spt.*')
+                                    ->select('users.*','wajib_spt.*','master_spt.no_tandaterima as bukti')
                                     ->where('master_npwp.nip_pendek',$waskon2->nip)
-                                    ->where('wajib_spt.jenis_wp','NOT LIKE','%non%')
-                                    ->where('wajib_spt.jenis_wp','NOT LIKE','%badan%')
-                                    ->get();
-        $data['nonkaryawan'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                    ->join('users','master_npwp.nip_pendek','users.nip')
-                                    ->select('users.*','wajib_spt.*')
-                                    ->where('master_npwp.nip_pendek',$waskon2->nip)
-                                    ->where('wajib_spt.jenis_wp','LIKE','%non%')
-                                    ->get();
-        $data['badan'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                    ->join('users','master_npwp.nip_pendek','users.nip')
-                                    ->select('users.*','wajib_spt.*')
-                                    ->where('master_npwp.nip_pendek',$waskon2->nip)
-                                    ->where('wajib_spt.jenis_wp','LIKE','%badan%')
-                                    ->get();
+                                    ->orderBy('wajib_spt.nama_wp')->get();
+        // perhitungan
         $data['totalwp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('users','master_npwp.nip_pendek','users.nip')
                                     ->select('users.*','wajib_spt.*')
@@ -114,7 +91,8 @@ class WaskonController extends Controller
                                     ->where('wajib_spt.jenis_wp','LIKE','%badan%')
                                     ->where('master_spt.pembetulan','>=',0)
                                     ->get()->count();
-        $data['capaian_ar'] = (($data['totalspt']/$data['totalwp']));
+        $data['realisasi'] = (($data['totalspt']/$data['totalwp']) * 100);
+        $data['capaian'] = ((($data['totalspt']/$data['totalwp']) * 100) / $target_pusat->target) * 100;
         // dd($data['karyawan']);
 
         return view('backend.waskon.waskon-2.show',$data);
@@ -154,33 +132,23 @@ class WaskonController extends Controller
     public function showWaskon3($id)
     {
         // dd($id);
+        $target_pusat = TargetCapaian::first();
+        $data['targetPusat'] = $target_pusat;
         $waskon3 = User::where('id',$id)->first();
         $data['waskon3'] = $waskon3;
-        $data['karyawan'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+        $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->join('users','master_npwp.nip_pendek','users.nip')
-                                    ->select('users.*','wajib_spt.*')
+                                    ->select('users.*','wajib_spt.*','master_spt.no_tandaterima as bukti')
                                     ->where('master_npwp.nip_pendek',$waskon3->nip)
-                                    ->where('wajib_spt.jenis_wp','NOT LIKE','%non%')
-                                    ->where('wajib_spt.jenis_wp','NOT LIKE','%badan%')
-                                    ->get();
-        $data['nonkaryawan'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                    ->join('users','master_npwp.nip_pendek','users.nip')
-                                    ->select('users.*','wajib_spt.*')
-                                    ->where('master_npwp.nip_pendek',$waskon3->nip)
-                                    ->where('wajib_spt.jenis_wp','LIKE','%non%')
-                                    ->get();
-        $data['badan'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                    ->join('users','master_npwp.nip_pendek','users.nip')
-                                    ->select('users.*','wajib_spt.*')
-                                    ->where('master_npwp.nip_pendek',$waskon3->nip)
-                                    ->where('wajib_spt.jenis_wp','LIKE','%badan%')
-                                    ->get();
+                                    ->orderBy('wajib_spt.nama_wp')->get();
+        // perhitungan
         $data['totalwp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('users','master_npwp.nip_pendek','users.nip')
                                     ->select('users.*','wajib_spt.*')
                                     ->where('master_npwp.nip_pendek',$waskon3->nip)
                                     ->get()->count();
-        // perhitungan
+        
         $data['totalspt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->select('wajib_spt.*','master_spt.pembetulan')
@@ -209,7 +177,10 @@ class WaskonController extends Controller
                                     ->where('wajib_spt.jenis_wp','LIKE','%badan%')
                                     ->where('master_spt.pembetulan','>=',0)
                                     ->get()->count();
-        $data['capaian_ar'] = (($data['totalspt']/$data['totalwp']));
+        $data['realisasi'] = (($data['totalspt']/$data['totalwp']) * 100);
+        $data['capaian'] = ((($data['totalspt']/$data['totalwp']) * 100) / $target_pusat->target) * 100;
+        // $data['realisasi'] = (1400/2235) * 100;
+        // $data['capaian'] = (((1400/2235) * 100) / $target_pusat->target) * 100;
         
         // dd($data['capaian_ar']*100);
         return view('backend.waskon.waskon-3.show',$data);
@@ -245,33 +216,22 @@ class WaskonController extends Controller
     public function showWaskon4($id)
     {
         // dd($id);
+        $target_pusat = TargetCapaian::first();
+        $data['targetPusat'] = $target_pusat;
         $waskon4 = User::where('id',$id)->first();
         $data['waskon4'] = $waskon4;
-        $data['karyawan'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+        $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->join('users','master_npwp.nip_pendek','users.nip')
-                                    ->select('users.*','wajib_spt.*')
+                                    ->select('users.*','wajib_spt.*','master_spt.no_tandaterima as bukti')
                                     ->where('master_npwp.nip_pendek',$waskon4->nip)
-                                    ->where('wajib_spt.jenis_wp','NOT LIKE','%non%')
-                                    ->where('wajib_spt.jenis_wp','NOT LIKE','%badan%')
-                                    ->get();
-        $data['nonkaryawan'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                    ->join('users','master_npwp.nip_pendek','users.nip')
-                                    ->select('users.*','wajib_spt.*')
-                                    ->where('master_npwp.nip_pendek',$waskon4->nip)
-                                    ->where('wajib_spt.jenis_wp','LIKE','%non%')
-                                    ->get();
-        $data['badan'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                    ->join('users','master_npwp.nip_pendek','users.nip')
-                                    ->select('users.*','wajib_spt.*')
-                                    ->where('master_npwp.nip_pendek',$waskon4->nip)
-                                    ->where('wajib_spt.jenis_wp','LIKE','%badan%')
-                                    ->get();
+                                    ->orderBy('wajib_spt.nama_wp')->get();
+        // perhitungan
         $data['totalwp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('users','master_npwp.nip_pendek','users.nip')
                                     ->select('users.*','wajib_spt.*')
                                     ->where('master_npwp.nip_pendek',$waskon4->nip)
                                     ->get()->count();
-
         $data['totalspt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->select('wajib_spt.*','master_spt.pembetulan')
@@ -300,7 +260,8 @@ class WaskonController extends Controller
                                     ->where('wajib_spt.jenis_wp','LIKE','%badan%')
                                     ->where('master_spt.pembetulan','>=',0)
                                     ->get()->count();
-        $data['capaian_ar'] = (($data['totalspt']/$data['totalwp']));
+        $data['realisasi'] = (($data['totalspt']/$data['totalwp']) * 100);
+        $data['capaian'] = ((($data['totalspt']/$data['totalwp']) * 100) / $target_pusat->target) * 100;
         // dd($data['karyawan']);
 
         return view('backend.waskon.waskon-4.show',$data);
@@ -333,28 +294,18 @@ class WaskonController extends Controller
     public function showEkspen($id)
     {
         // dd($id);
+        $target_pusat = TargetCapaian::first();
+        $data['targetPusat'] = $target_pusat;
         $ekspen = User::where('id',$id)->first();
         $data['ekspen'] = $ekspen;
-        $data['karyawan'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+        $data['data_wp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->join('users','master_npwp.nip_pendek','users.nip')
-                                    ->select('users.*','wajib_spt.*')
+                                    ->select('users.*','wajib_spt.*','master_spt.no_tandaterima as bukti')
                                     ->where('master_npwp.nip_pendek',$ekspen->nip)
-                                    ->where('wajib_spt.jenis_wp','NOT LIKE','%non%')
-                                    ->where('wajib_spt.jenis_wp','NOT LIKE','%badan%')
-                                    ->get();
-        $data['nonkaryawan'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                    ->join('users','master_npwp.nip_pendek','users.nip')
-                                    ->select('users.*','wajib_spt.*')
-                                    ->where('master_npwp.nip_pendek',$ekspen->nip)
-                                    ->where('wajib_spt.jenis_wp','LIKE','%non%')
-                                    ->get();
-        $data['badan'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-                                    ->join('users','master_npwp.nip_pendek','users.nip')
-                                    ->select('users.*','wajib_spt.*')
-                                    ->where('master_npwp.nip_pendek',$ekspen->nip)
-                                    ->where('wajib_spt.jenis_wp','LIKE','%badan%')
-                                    ->get();
+                                    ->orderBy('wajib_spt.nama_wp')->get();
         // dd($data['tes']);
+        // perhitungan
         $data['totalwp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                 ->join('users','master_npwp.nip_pendek','users.nip')
                                 ->select('users.*','wajib_spt.*')
@@ -388,7 +339,8 @@ class WaskonController extends Controller
                                 ->where('wajib_spt.jenis_wp','LIKE','%badan%')
                                 ->where('master_spt.pembetulan','>=',0)
                                 ->get()->count();
-        $data['capaian_ar'] = ($data['totalspt']/$data['totalwp']);
+        $data['realisasi'] = (($data['totalspt']/$data['totalwp']) * 100);
+        $data['capaian'] = ((($data['totalspt']/$data['totalwp']) * 100) / $target_pusat->target) * 100;
         // dd($data['capaian_ar']);
         return view('backend.waskon.ekspen.show',$data);
     }
