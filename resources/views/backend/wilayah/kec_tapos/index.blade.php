@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h3>Ekstensifikasi dan Penyuluhan</h3>
+                <h3>Kecamatan Tapos</h3>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Ekstensifikasi dan Penyuluhan</li>
+                    <li class="breadcrumb-item active">Kecamatan Tapos</li>
                 </ol>
             </div>
         </div>
@@ -23,26 +23,26 @@
                         <div class="row mb-2">
                             <div class="col-md-6 col-sm-4 mb-2">
                                 @if(Request::get('cari'))
-                                <form action="{{ route('ekspen.index') }}" method="get" class="form-inline">
+                                <form action="{{ route('tapos.index') }}" method="get" class="form-inline">
                                     <div class="form-group">
                                         <label for="">Search</label>
-                                        <input type="text" name="cari" class="ml-2 form-control" placeholder="Search by name.." required>
+                                        <input type="text" name="cari" class="ml-2 form-control" placeholder="Search by kelurahan.." required>
                                         <button type="submit" class="btn btn-info ml-2">Cari</button>
-                                        <a href="{{route('ekspen.index')}}" class="btn btn-danger ml-2">Kembali</a>
+                                        <a href="{{route('tapos.index')}}" class="btn btn-danger ml-2">Kembali</a>
                                     </div>
                                 </form>
                                 @else
-                                <form action="{{ route('ekspen.index') }}" method="get" class="form-inline">
+                                <form action="{{ route('tapos.index') }}" method="get" class="form-inline">
                                     <div class="form-group">
                                         <label for="">Search</label>
-                                        <input type="text" name="cari" class="ml-2 form-control" placeholder="Search by name.." required>
+                                        <input type="text" name="cari" class="ml-2 form-control" placeholder="Search by kelurahan" required>
                                         <button type="submit" class="btn btn-info ml-2">Cari</button>
                                     </div>
                                 </form>
                                 @endif
                             </div>
                         </div>
-                        @if ($ekspen->count() == 0)
+                        @if ($wilayah->count() == 0)
                         <table class="table table-bordered table-striped text-center">
                         @else
                         <table class="table table-bordered table-striped text-center">
@@ -50,26 +50,24 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>NIP</th>
-                                    <th>Nama Ar</th>
-                                    <th>Seksi</th>
+                                    <th>Kelurahan</th>
+                                    <th>Kecamatan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if ($ekspen->count() == 0)
+                                @if ($wilayah->count() == 0)
                                     <tr>
                                         <td colspan="12" class="text-center">No Data Available</td>
                                     </tr>
                                 @endif
-                                @foreach ($ekspen as $i => $item)
+                                @foreach ($wilayah as $i => $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nip }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->seksi }}</td>
+                                    <td>{{ $item->kelurahan }}</td>
+                                    <td>{{ $item->kecamatan }}</td>
                                     <td>
-                                        <a href="{{ route('ekspen.show',['id'=> $item->id]) }}" class="btn btn-primary"> <i class="fa fa-info-circle"></i> </a>
+                                    <a href="{{ route('tapos.show',['id' => $item->id]) }}" class="btn btn-primary"> <i class="fa fa-info-circle"></i> </a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -78,11 +76,11 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-4">
-                                <p class="mt-4 font-weight-w500">Showing 1 to {{ $ekspen->count() }} of 10 entries</p>
+                                <p class="mt-4 font-weight-w500">Showing 1 to {{ $wilayah->count() }} of 10 entries</p>
                                 </div>
                                 <div class="col-8">
                                     <div class="d-flex justify-content-end mt-4">
-                                        {{ $ekspen->links() }}
+                                        {{ $wilayah->links() }}
                                     </div>
                                 </div>
                             </div>

@@ -6,7 +6,7 @@
             <div class="col-sm-6 offset-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Detail AR</li>
+                    <li class="breadcrumb-item active">Detail Wilayah</li>
                 </ol>
             </div>
         </div>
@@ -17,30 +17,27 @@
             <div class="col-md-12 col-sm-6 col-lg-12">
                 <div class="card elevation-2">
                     <div class="card-header bg-kpp">
-                        <p>Detail Data AR</p>
+                        <p>Detail Data Wilayah</p>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <p>Data AR:</p>
+                                <p>Data Wilayah:</p>
                                 <table class="table table-striped table-bordered">
-                                    <thead class="bg-gray">
+                                    <thead>
                                         <tr>
-                                            <th>NIP</th>
-                                            <th>Nama</th>
-                                            <th>Seksi</th>
+                                            <th>Kecamatan</th>
+                                            <th>Kelurahan</th>
                                             <th>Total Wajib SPT</th>
                                             <th>Total Realisasi SPT</th>
                                             <th>Realisasi</th>
                                             <th>Capaian</th>
                                             <th>Target Pusat</th>
-                                        </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{ $ekspen->nip }}</td>
-                                            <td>{{ $ekspen->name }}</td>
-                                            <td>{{ $ekspen->seksi }}</td>
+                                            <td>{{ $wilayah->kecamatan }}</td>
+                                            <td>{{ $wilayah->kelurahan }}</td>
                                             <td>{{ $totalwp }}</td>
                                             <td>{{ $totalspt }}</td>
                                             <td>{{ round($realisasi, 2) }}%</td>

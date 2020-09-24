@@ -9,6 +9,7 @@ use App\Models\WajibSpt;
 use App\Models\MasterSpt;
 use App\Models\LaporanSpt;
 use App\Models\DimWilayah;
+use App\Models\TargetCapaian;
 use App\User;
 use Auth;
 class DashboardController extends Controller
@@ -20,6 +21,7 @@ class DashboardController extends Controller
    
     public function index()
    {
+        $data['target_capaian'] = TargetCapaian::first();
         $waskon = 'Pengawasan dan Konsultasi III';
         $waskon1 = 'Pengawasan dan Konsultasi IV';
         $waskon2 = 'Seksi Ekstensifikasi dan Penyuluhan';
@@ -57,6 +59,28 @@ class DashboardController extends Controller
                                     ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.seksi','LIKE','%'.$waskon2.'%')
                                     ->get()->count();
+
+        $data['kecil'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.kecamatan','cilodong')
+                                    ->get()->count();
+        $data['kecim'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.kecamatan','cimanggis')
+                                    ->get()->count();
+        $data['kecip'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.kecamatan','cipayung')
+                                    ->get()->count();
+        $data['kesuk'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.kecamatan','sukmajaya')
+                                    ->get()->count();
+        $data['ketap'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.kecamatan','tapos')
+                                    ->get()->count();
+        
         // dd($data['ekspen']);
 
         if(Auth::user()->role === 'admin' || Auth::user()->role === 'pegawai')
@@ -77,5 +101,25 @@ class DashboardController extends Controller
     //                     ->get();
       $hasil = DimWilayah::where('kecamatan',$kecamatan)->get();
       return response()->json($hasil);
+   }
+
+   public function createTarget(Request $request)
+   {
+    //    dd($request);
+       $new_target = new TargetCapaian;
+       $new_target->target = $request->get('target');
+       $new_target->save();
+
+       return redirect()->back();
+   }
+
+   public function updateTarget(Request $request)
+   {
+    //    dd($request);
+       $update_target = TargetCapaian::where('id', $request->get('idtarget'))->first();
+       $update_target->target = $request->get('target');
+       $update_target->save();
+
+       return redirect()->back();
    }
 }
