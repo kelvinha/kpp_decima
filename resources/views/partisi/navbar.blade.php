@@ -30,18 +30,6 @@
                         <a href="{{ route('password.ubah') }}" title><center>[Change Password]</center></a><br>
                     </div>
                 </div>
-                <div class="pad5A button-pane button-pane-alt text-center">
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();" class="btn display-block font-normal btn-danger">
-                    Logout
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-                </div>
-            </div>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 @php
                     $target_capaian = App\Models\TargetCapaian::first();
                 @endphp
@@ -53,17 +41,20 @@
                     @endif
                     <hr>
                 @endif
+                <div class="pad5A button-pane button-pane-alt text-center">
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();" class="btn display-block font-normal btn-danger">
+                    Logout
+                    </a>
 
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                             document.getElementById('logout-form').submit();">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
             </div>
-        </li>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            </div>
+        </div>
     </ul>
     <!-- SEARCH FORM -->
 
@@ -84,7 +75,7 @@
                 <div class="modal-body">
                     <p>Masukan Target Baru</p>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control col-2" name="target" autocomplete="off" placeholder="Masukan Target Baru" required onkeyup="this.value=this.value.replace(/[^\d]/,'')" maxlength="3">
+                        <input type="text" class="form-control" name="target" autocomplete="off" placeholder="Masukan Target Baru" required onkeyup="this.value=this.value.replace(/[^\d]/,'')" maxlength="3">
                         <div class="input-group-append">
                           <span class="input-group-text">%</span>
                         </div>

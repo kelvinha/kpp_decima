@@ -21,7 +21,8 @@ class DashboardController extends Controller
    
     public function index()
    {
-        $data['target_capaian'] = TargetCapaian::first();
+        $target = TargetCapaian::first();
+        $data['target_capaian'] = $target;
         $waskon = 'Pengawasan dan Konsultasi III';
         $waskon1 = 'Pengawasan dan Konsultasi IV';
         $waskon2 = 'Seksi Ekstensifikasi dan Penyuluhan';
@@ -80,8 +81,10 @@ class DashboardController extends Controller
                                     ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kecamatan','tapos')
                                     ->get()->count();
-        
-        // dd($data['ekspen']);
+        // perhitungan
+        $data['jumlahSudahLapor'] = round(((($data['totalsudahlapor'] / $data['totalwp']) *100) / $target->target) * 100, 2);
+        $data['jumlahBelumLapor'] = round(((($data['totalbelumlapor'] / $data['totalwp']) *100) / $target->target) * 100, 2);
+        // dd($data['jumlahBelumLapor']);
 
         if(Auth::user()->role === 'admin' || Auth::user()->role === 'pegawai')
         {
