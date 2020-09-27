@@ -36,7 +36,7 @@
                                     <div class="alert alert-info bg-kpp elevation-2" role="alert">
                                         <h4 class="alert-heading"><i class="fas fa-exclamation-circle"></i> Ketentuan:</h4>
                                         <ul>
-                                            <li><p>File yang di-import harus berekstensi <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv!</p></li>
+                                            <li><p>File yang di-import harus berekstensi <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx !</p></li>
                                             <li><p>Import Master Npwp, Master SPT dan Wajib Spt, ketiganya wajib di import.</p></li>
                                         </ul>
                                     </div>
@@ -66,7 +66,7 @@
             <form action="{{ route('import.pegawai') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-body">
-                    <p>Masukan file bertipe <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv</p>
+                    <p>Masukan file bertipe <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx </p>
                     <input type="file" class="form-control" name="import-pegawai" required>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -89,11 +89,11 @@
             <form action="{{ route('import.master-wp') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-body">
-                    <p>Import Master NPWP <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv</p>
+                    <p>Import Master NPWP <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx </p>
                     <input type="file" class="form-control" name="import-master-npwp" required><br>
-                    <p>Import Master SPT <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv</p>
+                    <p>Import Master SPT <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx </p>
                     <input type="file" class="form-control" name="import-master-spt" required><br>
-                    <p>Import Wajib SPT <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv</p>
+                    <p>Import Wajib SPT <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx </p>
                     <input type="file" class="form-control" name="import-wajib-spt" required><br>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -116,7 +116,7 @@
             <form action="{{ route('import.dim-wilayah') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-body">
-                    <p>Masukan file bertipe <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx <span class="text-red">*</span>.csv</p>
+                    <p>Masukan file bertipe <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx </p>
                     <input type="file" class="form-control" name="import-wilayah" required>
                 </div>
                 <div class="modal-footer justify-content-between">

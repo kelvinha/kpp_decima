@@ -23,6 +23,21 @@ class WaskonController extends Controller
         $waskon = 'Pengawasan dan Konsultasi III';
         $waskon1 = 'Pengawasan dan Konsultasi IV';
         $waskon2 = 'Seksi Ekstensifikasi dan Penyuluhan';
+        $target = TargetCapaian::first();
+        $data['target_capaian'] = $target;
+        $data['total_waskon2'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.seksi','NOT LIKE','%'.$waskon.'%')
+                                    ->where('master_npwp.seksi','NOT LIKE','%'.$waskon1.'%')
+                                    ->where('master_npwp.seksi','NOT LIKE','%'.$waskon2.'%')
+                                    ->get()->count();
+        $data['capaian_waskon2'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.seksi','NOT LIKE','%'.$waskon.'%')
+                                    ->where('master_npwp.seksi','NOT LIKE','%'.$waskon1.'%')
+                                    ->where('master_npwp.seksi','NOT LIKE','%'.$waskon2.'%')
+                                    ->where('master_spt.no_tandaterima','!=',NULL)
+                                    ->get()->count();
         $cari = $request->get('cari');
         if($cari)
         {
@@ -101,30 +116,49 @@ class WaskonController extends Controller
     public function indexWaskon3(Request $request)
     {
         $waskon = 'Pengawasan dan Konsultasi III';
+        $target = TargetCapaian::first();
+        $data['target_capaian'] = $target;
+        $data['total_waskon3'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.seksi','LIKE','%'.$waskon.'%')
+                                    ->get()->count();
+        $data['capaian_waskon3'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.seksi','LIKE','%'.$waskon.'%')
+                                    ->where('master_spt.no_tandaterima','!=',NULL)
+                                    ->get()->count();
+        // dd($data['capaian_waskon3']);
         $cari = $request->get('cari');
         if($cari)
         {
-            // $data['waskon3'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-            //                         ->join('users','master_npwp.nip_pendek','users.nip')
-            //                         ->select('users.*','wajib_spt.jenis_wp')
-            //                         ->where('users.seksi','LIKE', '%'.$waskon.'%')
-            //                         ->where('users.name','LIKE', '%'.$cari.'%')
-            //                         ->paginate(10);
+            
             $data['waskon3'] = User::where('seksi','LIKE', '%'.$waskon.'%')
                                     ->where('name','LIKE','%'.$cari.'%')
                                     ->orderBy('name')
                                     ->paginate(10);
         }
         else {
-            // $data['waskon3'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
-            //                             ->join('users','master_npwp.nip_pendek','users.nip')
-            //                             ->select('users.*','wajib_spt.jenis_wp')
-            //                             ->where('users.seksi','LIKE', '%'.$waskon.'%')
-            //                             ->paginate(10);
             $data['waskon3'] = User::where('seksi','LIKE', '%'.$waskon.'%')
                                    ->orderBy('name')
                                    ->paginate(10);
-            // dd($tes);
+            // $coba = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+            //                 ->select('master_npwp.*')
+            //                 ->where('master_npwp.seksi','LIKE','%'.$waskon.'%')
+            //                 ->get();
+            // $coba1 = User::get();
+            // // $coba = MasterNpwp::get();
+            // foreach ($coba as $i => $item) {
+            //     $varB[$i] = User::where('nip',$item->nip_pendek)->get();
+            //     // $varB[$i] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+            //     //             ->select('master_npwp.nama_wp')
+            //     //             ->where('master_npwp.seksi',$waskon)
+            //     //             ->where('master_npwp.nip_pendek','LIKE','%'.$item->nip.'%')
+            //     //             ->get();
+            // }
+            // $data['hasil'] = $varB;
+            // dd($data['hasil']);
+            // dd($coba1);
+            
         }
         return view('backend.waskon.waskon-3.index',$data);
     }
@@ -190,6 +224,17 @@ class WaskonController extends Controller
     {
         $cari = $request->get('cari');
         $waskon = 'Pengawasan dan Konsultasi IV';
+        $target = TargetCapaian::first();
+        $data['target_capaian'] = $target;
+        $data['total_waskon4'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.seksi','LIKE','%'.$waskon.'%')
+                                    ->get()->count();
+        $data['capaian_waskon4'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.seksi','LIKE','%'.$waskon.'%')
+                                    ->where('master_spt.no_tandaterima','!=',NULL)
+                                    ->get()->count();
         if($cari)
         {
             
@@ -271,6 +316,18 @@ class WaskonController extends Controller
     {
         $cari = $request->get('cari');
         $waskon = 'Seksi Ekstensifikasi dan Penyuluhan';
+        $target = TargetCapaian::first();
+        $data['target_capaian'] = $target;
+        
+        $data['total_ekspen'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.seksi','LIKE','%'.$waskon.'%')
+                                    ->get()->count();
+        $data['capaian_ekspen'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
+                                    ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
+                                    ->where('master_npwp.seksi','LIKE','%'.$waskon.'%')
+                                    ->where('master_spt.no_tandaterima','!=',NULL)
+                                    ->get()->count();
         if($cari)
         {
             $data['ekspen'] = User::where('seksi','LIKE', '%'.$waskon.'%')

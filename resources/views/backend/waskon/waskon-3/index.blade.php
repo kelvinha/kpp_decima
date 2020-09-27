@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h3>Pengawasan dan Konsultasi III</h3>
+                <h3>Pengawasan dan Konsultasi III <span class="badge badge-success" style="font-size: 20px;">{{ round(((($capaian_waskon3 / $total_waskon3) * 100) / $target_capaian->target)*100,2) }} %</span></h3>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Pengawasan dan Konsultasi III</li>
+                <li class="breadcrumb-item active">Pengawasan dan Konsultasi III</li>
                 </ol>
             </div>
         </div>
@@ -52,7 +52,6 @@
                                     <th>No.</th>
                                     <th>NIP</th>
                                     <th>Nama Ar</th>
-                                    <th>Seksi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -67,7 +66,6 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nip }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->seksi }}</td>
                                     <td>
                                         <a href="{{ route('waskon3.show',['id'=> $item->id]) }}" class="btn btn-primary"> <i class="fa fa-info-circle"></i> </a>
                                     </td>

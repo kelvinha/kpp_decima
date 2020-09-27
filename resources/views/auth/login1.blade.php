@@ -29,7 +29,7 @@
                         @enderror
                     </div>
                     <div class="input-group mb-4">
-                        <input type="password" name="password" class="form-control" required placeholder="Password">
+                        <input type="password" name="password" class="form-control" required placeholder="Password" minlength="8">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock" style="color: #1e2f5f"></span>
