@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h3>Kecamatan Cimanggis</h3>
+                <h3>Kecamatan Cimanggis <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $capaian_kecim/ $total_kecim) * 100) / $target_capaian->target)*100,2) }} %</span></h3>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -51,7 +51,6 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Kelurahan</th>
-                                    <th>Kecamatan</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -65,7 +64,6 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->kelurahan }}</td>
-                                    <td>{{ $item->kecamatan }}</td>
                                     <td>
                                         <a href="{{ route('cimanggis.show',['id' => $item->id ])}}" class="btn btn-primary"> <i class="fa fa-info-circle"></i> </a>
                                     </td>

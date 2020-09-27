@@ -4,9 +4,8 @@
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
-            <div class="col-sm-6">
-                <h5 class="m-0 text-dark">Selamat Datang <strong>{{ Auth::user()->name }}</strong> !<br>di Aplikasi Monitoring Kepatuhan
-                    Wajib Pajak </h5> 
+            <div class="col-sm-8">
+                <h5 class="m-0 text-dark">Selamat Datang <strong>{{ Auth::user()->name }}</strong>,</h5> 
                 <div class="row container">
                     @if ($target_capaian == null)
                     <p>Target Capaian per AR Tahun ini </p><span class="blinking"> 0%</span>
@@ -15,7 +14,7 @@
                     @endif
                 </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/home">Home</a></li>
                     <li class="breadcrumb-item active">Dashboard</li>
@@ -25,8 +24,15 @@
     </div>
 </div>
 
-<section class="content px-4 py-4">
+<section class="content px-1">
     <div class="container-fluid">
+        <div class="alert bg-kpp" role="alert">
+            @if ($laporan_import == NULL)
+            <h6>Tanggal Terakhir Import: <b>Tidak ada</b>, Oleh: <b>Belum ada</b></h6>    
+            @else
+            <h6>Tanggal Terakhir Import: <b>{{ date('d M Y', strtotime($laporan_import->created_at)) }}</b>, Oleh: <b>{{ $laporan_import->nama_admin }}</b></h6>
+            @endif
+        </div>
         <div class="row">
             <div class="col-lg-6">
                 <div class="row">
@@ -116,7 +122,7 @@
                         <h4>Presentase Capaian KPP</h4>
                     </div>
                     <div class="card-body">
-                        <canvas id="myChart" width="400" height="auto"></canvas>
+                        <div id="chartContainer" style="height: 215px; width: 100%;"></div>
                     </div>
                 </div>
             </div>
@@ -140,25 +146,36 @@
                                 <tr>
                                     <th>Seksi</th>
                                     <th>Jumlah</th>
+                                    <th>Persentase</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @if ($totalwp == null)
                                 <tr>
-                                    <td>Pengawasan dan Konsultasi II</td>
-                                    <td>{{ $waskon2 }} / {{ $totalwp }}</td>
+                                    <td colspan="3" align="center">Tidak ada data</td>
+                                </tr>
+                                @else
+                                <tr>
+                                    <td><a href="{{ route('waskon2.index') }}">Pengawasan dan Konsultasi II</a></td>
+                                    <td>{{ $capaian_waskon2 }} / {{ $total_waskon2 }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $capaian_waskon2/ $total_waskon2) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
-                                    <td>Pengawasan dan Konsultasi III</td>
-                                    <td>{{ $waskon3 }} / {{ $totalwp }}</td>
+                                    <td><a href="{{ route('waskon3.index') }}">Pengawasan dan Konsultasi III</a></td>
+                                    <td>{{ $capaian_waskon3 }} / {{ $total_waskon3 }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((($capaian_waskon3 / $total_waskon3) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
-                                    <td>Pengawasan dan Konsultasi IV</td>
-                                    <td>{{ $waskon4 }} / {{ $totalwp }}</td>
+                                    <td><a href="{{ route('waskon4.index') }}">Pengawasan dan Konsultasi IV</a></td>
+                                    <td>{{ $capaian_waskon4 }} / {{ $total_waskon4 }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((($capaian_waskon4 / $total_waskon4) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
-                                    <td>Ekstensifikasi dan Penyluhan</td>
-                                    <td>{{ $ekspen }} / {{ $totalwp }}</td>
+                                    <td><a href="{{ route('ekspen.index') }}">Ekstensifikasi dan Penyuluhan</a></td>
+                                    <td>{{ $capaian_ekspen }} / {{ $total_ekspen }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((($capaian_ekspen / $total_ekspen) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -182,29 +199,41 @@
                                 <tr>
                                     <th>Kecamatan</th>
                                     <th>Jumlah</th>
+                                    <th>Persentase</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @if ($totalwp == 0)
+                                    <tr>
+                                        <td colspan="3" align="center">Tidak ada data</td>
+                                    </tr>
+                                @else
                                 <tr>
-                                    <td>Kecamatan Cilodong</td>
-                                    <td>{{ $kecil }} / {{ $totalwp }}</td>
+                                    <td><a href="{{ route('cilodong.index') }}">Kecamatan Cilodong</a></td>
+                                    <td>{{ $capaian_kecil }} / {{ $total_kecil }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $capaian_kecil/ $total_kecil) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
-                                    <td>Kecamatan Cimanggis</td>
-                                    <td>{{ $kecim }} / {{ $totalwp }}</td>
+                                    <td><a href="{{ route('cimanggis.index') }}">Kecamatan Cimanggis</a></td>
+                                    <td>{{ $capaian_kecim }} / {{ $total_kecim }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $capaian_kecim/ $total_kecim) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
-                                    <td>Kecamatan Cipayung</td>
-                                    <td>{{ $kecip }} / {{ $totalwp }}</td>
+                                    <td><a href="{{ route('cipayung.index') }}">Kecamatan Cipayung</a></td>
+                                    <td>{{ $capaian_kecip }} / {{ $total_kecip }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $capaian_kecip/ $total_kecip) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
-                                    <td>Kecamatan Sukmajaya</td>
-                                    <td>{{ $kesuk }} / {{ $totalwp }}</td>
+                                    <td><a href="{{ route('sukmajaya.index') }}">Kecamatan Sukmajaya</a></td>
+                                    <td>{{ $capaian_kesuk }} / {{ $total_kesuk }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $capaian_kesuk/ $total_kesuk) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
-                                    <td>Kecamatan Tapos</td>
-                                    <td>{{ $ketap }} / {{ $totalwp }}</td>
+                                    <td><a href="{{ route('tapos.index') }}">Kecamatan Tapos</a></td>
+                                    <td>{{ $capaian_ketap }} / {{ $total_ketap }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $capaian_ketap/ $total_ketap) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -218,40 +247,28 @@
 @endsection
 {{-- chart js --}}
 @section('js')
-<script src="{{ asset('vendor') }}/dist/js/Chart.bundle.js" integrity="sha512-G8JE1Xbr0egZE5gNGyUm1fF764iHVfRXshIoUWCTPAbKkkItp/6qal5YAHXrxEu4HNfPTQs6HOu3D5vCGS1j3w==" crossorigin="anonymous"></script>
+<script src="{{ asset('vendor') }}/dist/js/canvasjs.min.js"></script>
 <script>
-    var ctx = document.getElementById('myChart');
+    window.onload = function() {
     var SudahLapor = {{$jumlahSudahLapor }};
     var BelumLapor = {{$jumlahBelumLapor }};
-    var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Sudah Lapor ','Belum Lapor '],
-            datasets: [{
-                label: '# of Votes',
-                data: [SudahLapor,BelumLapor],
-                backgroundColor: [
-                    'rgba(116, 254, 39, 0.8)',
-                    'rgba(254, 34, 67, 0.8)',
-                ],
-                borderColor: [
-                    'rgba(116, 254, 39, 0.8)',
-                    'rgba(254, 34, 67, 0.8)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            // scales: {
-            //     yAxes: [{
-            //         ticks: {
-            //             beginAtZero: true
-            //         }
-            //     }]
-            // }
-        }
+    var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        data: [{
+            type: "pie",
+            startAngle: 270,
+            yValueFormatString: "##0.00\"%\"",
+            indexLabel: "{label} {y}",
+            dataPoints: [
+                {y: SudahLapor, label: "Sudah Lapor", color: '#28a745', indexLabelFontSize: 20},
+                {y: BelumLapor, label: "Belum Lapor", color: '#dc3545', indexLabelFontSize: 20},
+            ]
+        }]
     });
-    </script>
+    chart.render();
+    
+    }
+</script>
 <script>
     $(document).ready(function(){
         $('#filter').on('change', function(e){

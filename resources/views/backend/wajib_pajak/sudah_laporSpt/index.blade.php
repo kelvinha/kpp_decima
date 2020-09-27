@@ -17,37 +17,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title"><p><span class="font-weight-w500">Belom Lapor SPT</span></p></div>
+                        <div class="card-title"><p><span class="font-weight-w500">Sudah Lapor SPT</span></p></div>
+                        <div align="right"> <button class="btn btn-danger" onclick="window.history.back()">Kembali</button></div>
                     </div>
                     <div class="card-body">
-                        <div class="row mb-2">
-                            <div class="col-sm-6 col-md-12">
-                                <form class="form" action="" method="">
-                                    {{-- <div class="row">
-                                        <div class="form-group col-md-5">
-                                            <select name="kategori_wp" class="form-control">
-                                                <option selected disabled>Pilih Kategori WP</option>
-                                                <option value="Badan">Badan</option>
-                                                <option value="Orang Pribadi (Karyawan)">Orang Pribadi (Karyawan)</option>
-                                                <option value="Orang Pribadi (Non-Karyawan)">Orang Pribadi (Non-Karyawan)</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-5">
-                                            <select name="nama_seksi" class="form-control">
-                                                <option selected disabled>Nama Seksi</option>
-                                                <option value="waskon 1">Waskon 1</option>
-                                                <option value="waskon 2">Waskon 2</option>
-                                                <option value="waskon 3">Waskon 3</option>
-                                                <option value="waskon 4">Waskon 4</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                            <button class="btn btn-success" type="submit">Submit</button>
-                                        </div>
-                                    </div> --}}
-                                </form>
-                            </div>
-                        </div>
                         <table id="example1" class="table table-bordered table-striped text-center">
                             <thead>
                                 <tr>
@@ -76,14 +49,6 @@
                                         <strong>{{ $item->status_spt }}</strong>
                                     </td>
                                     <td>{{ $item->tgl_spt }}</td>
-                                    {{-- <td class="text-nowrap">
-                                        <button class="btn btn-info" title="Detail"><i class="fa fa-eye"></i></button>
-                                        <button class="btn btn-warning" title="Ubah"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-danger" title="Hapus" data-toggle="modal"
-                                        data-target="#hapus" data-myid="{{ $item->npwp }}">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td> --}}
                                 </tr>
                                 @endforeach
                             </tbody>
