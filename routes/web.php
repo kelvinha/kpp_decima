@@ -64,6 +64,7 @@ Route::prefix('admin')->group(function (){
     Route::post('/data-pegawai/update/{id}','backend\UserController@update')->name('user.update');
     Route::get('/data-pegawai/destroy/{id}','backend\UserController@destroy')->name('user.destroy');
     Route::get('/data-pegawai/detail/{id}','backend\UserController@show')->name('user.show');
+    Route::get('/data-pegawai/reset/{id}', 'backend\UserController@resetPassword')->name('user.reset');
     
     //Waskon
     Route::get('/waskon-2','backend\WaskonController@indexWaskon2')->name('waskon2.index');
@@ -94,9 +95,8 @@ Route::prefix('admin')->group(function (){
     Route::get('/kecamatan-tapos','backend\WilayahController@indexTapos')->name('tapos.index');
     Route::get('/kecamatan-tapos/detail/{id}','backend\WilayahController@showTapos')->name('tapos.show');
 
-
     //Ubah Password
     Route::get('/change-password', 'backend\PasswordController@changePasswordForm')->name('password.ubah');
     Route::post('/change-password', 'backend\PasswordController@changePassword')->name('password.ubah');
-    Route::get('/change-photo', 'backend\PasswordController@getProfilFoto')->name('foto.ubah');
+    // Route::get('/change-photo', 'backend\PasswordController@getProfilFoto')->name('foto.ubah');
 });

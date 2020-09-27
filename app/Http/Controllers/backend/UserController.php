@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Hash;
 use Validator;
 use Illuminate\Support\Arr;
 
@@ -121,6 +122,14 @@ class UserController extends Controller
         }
         $user->update($data);
         return redirect()->route('user.index')->with('status','Data Pegawai Berhasil Diupdate');
+    }
+    
+    public function resetPassword(Request $request, $id)
+    {
+        $userPass = User::find($id);
+        $userPass->password = \Hash::make('password');
+        $userPass->save();
+        return redirect()->back()->with('status','Password User Berhasil Direset');
     }
 
     /**
