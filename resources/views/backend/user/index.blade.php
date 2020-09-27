@@ -74,15 +74,21 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->seksi }}</td>
                                 <td>{{ $item->role }}</td>
-                                <td class="text-nowrap">
-                                    <form method="get" action="{{route('user.destroy',[$item->id])}}" onsubmit="return confirm('Apakah Anda yakin akan menghapus data ini?')">
-                                    {{csrf_field()}}
+                                <td>
                                     <a href="{{route('user.show',[$item->id])}}" class="btn btn-primary btn-sm" title="Detail"><i class="fa fa-info-circle"></i></a>
                                     <a href="{{route('user.edit',[$item->id])}}" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
-                                    <button class="btn btn-danger btn-sm" title="Hapus" data-toggle="modal" data-target="#delete" data-myid="{{ $item->user }}">
+                                    <a href="{{route('user.reset',[$item->id])}}" method="get" onclick="return confirm('Apakah Anda yakin akan mereset password?')">
+                                        {{csrf_field()}}
+                                    <button class="btn btn-success btn-sm" title="Reset Password" data-toggle="modal" data-target="#reset" data-myid="{{ $item->user }}">
+                                        <i class="fas fa-unlock-alt"></i>
+                                    </button>
+                                    </a>
+                                    <a href="{{route('user.destroy',[$item->id])}}" method="get" onclick="return confirm('Apakah Anda yakin akan menghapus data ini?')">
+                                        {{csrf_field()}}
+                                    <button class="btn btn-danger btn-sm" title="Delete" data-toggle="modal" data-target="#delete" data-myid="{{ $item->user }}">
                                         <i class="fa fa-trash"></i>
                                     </button>
-                                    </form>
+                                    </a>
                                 </td>
                                 </tr>
                                 @endforeach
