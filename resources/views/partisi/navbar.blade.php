@@ -2,7 +2,8 @@
     <!-- Left navbar links -->
     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars" style="color: yellow;"></i></a>
     <div class="mr-auto">
-        <h5 style="color: #fcd511;">Kantor Pelayanan Pajak Depok Cimanggis</h5>
+        <h5 style="color: #fcd511;">Aplikasi Monitoring Kepatuhan
+            Wajib Pajak </h5>
     </div>
     <ul class="navbar-nav ml-auto">
         <div class="nav-item dropdown">
@@ -104,7 +105,7 @@
                     <p>Ubah Target Capaian</p>
                     <div class="input-group mb-3">
                         <input type="hidden" id="idtarget" name="idtarget">
-                        <input type="text" class="form-control col-2" id="target" name="target" required onkeyup="this.value=this.value.replace(/[^\d]/,'')" maxlength="3">
+                        <input type="text" class="form-control col-2" id="target" autocomplete="off" name="target" required onkeyup="this.value=this.value.replace(/[^\d]/,'')" maxlength="3">
                         <div class="input-group-append">
                           <span class="input-group-text">%</span>
                         </div>

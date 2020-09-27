@@ -134,9 +134,11 @@ progress.belum-lapor::-moz-progress-bar {
 
 span.blinking {
     font-family: 'Poppins';
+    font-weight: 700;
+    text-align: center;
     /* background-color: red; */
     border-radius: 5px;
-    width: 40px;
+    width: 50px;
     height: 2%;
     margin-left: 5px;
     padding: 2px 4px 2px 4px;
@@ -227,55 +229,70 @@ span.blinking {
 /* tutup responsif */
 
 /* logout */
-    .box-sm {
-    width: 325px!important;
-    }
-    
-    .dropdown-menu, .minicolors-panel, .popover, .ui-datepicker, .ui-dialog, .ui-menu {
-        position: absolute;
-        z-index: 1050;
-        top: 105%;
-        left: 0;
-        display: none;
-        float: left;
-        min-width: 150px;
-        margin: 5px 0 0;
-        padding: 5px;
-        list-style: none;
-        text-align: left;
-        border-width: 1px;
-        border-style: solid;
-        border-color: rgba(0,0,0,.2);
-        background: rgb(228, 232, 235);
-    }
+.box-sm {
+    width: 325px !important;
+}
 
-    .login-box .user-info a {
-        line-height: 16px;
-        display: inline-block;
-        height: 16px;
-        margin-right: 5px;
-        padding-right: 5px;
-    }
+.dropdown-menu,
+.minicolors-panel,
+.popover,
+.ui-datepicker,
+.ui-dialog,
+.ui-menu {
+    position: absolute;
+    z-index: 1050;
+    top: 105%;
+    left: 0;
+    display: none;
+    float: left;
+    min-width: 150px;
+    margin: 5px 0 0;
+    padding: 5px;
+    list-style: none;
+    text-align: left;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, .2);
+    background: rgb(228, 232, 235);
+}
 
-    .pad5A {
-        padding: 1px!important;
-    }
+.login-box .user-info a {
+    line-height: 16px;
+    display: inline-block;
+    height: 16px;
+    margin-right: 5px;
+    padding-right: 5px;
+}
 
-    body .button-pane.button-pane-alt {
-        background: 0 0!important;
-    }
+.pad5A {
+    padding: 1px !important;
+}
 
-    .ui-dialog-buttonpane, body .button-pane {
-        padding: 5px;
-        text-align: center;
-        border-style: solid;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-    }
+body .button-pane.button-pane-alt {
+    background: 0 0 !important;
+}
 
-    .button-pane, .content-box-header.bg-default .icon-separator, .content-box-header.bg-gray .icon-separator, .content-box-header.bg-white .icon-separator, .tile-box.bg-default .tile-header, .tile-box.bg-gray .tile-header, .tile-box.bg-white .tile-header, .tile-box.btn-default .tile-header, .ui-datepicker-buttonpane, .ui-dialog-buttonpane {
-        background: rgba(0,0,0,.02);
-    }
+.ui-dialog-buttonpane,
+body .button-pane {
+    padding: 5px;
+    text-align: center;
+    border-style: solid;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.button-pane,
+.content-box-header.bg-default .icon-separator,
+.content-box-header.bg-gray .icon-separator,
+.content-box-header.bg-white .icon-separator,
+.tile-box.bg-default .tile-header,
+.tile-box.bg-gray .tile-header,
+.tile-box.bg-white .tile-header,
+.tile-box.btn-default .tile-header,
+.ui-datepicker-buttonpane,
+.ui-dialog-buttonpane {
+    background: rgba(0, 0, 0, .02);
+}
 
 
 /* tutup logout */

@@ -79,12 +79,12 @@
                                 @endif
                             </div>
                         </div>
-                        <p>Cari Berdasrkan Kecamatan Dan Kelurahan:</p>
+                        <p>Cari Berdasarkan Kecamatan Dan Kelurahan:</p>
                         <form action="{{ route('wp.index') }}" method="get">
                         <div class="row">
                                 <div class="col-lg-5">
                                     <div class="form-group">
-                                        <select class="form-control text-center" name="kecamatan" id="filter">
+                                        <select class="form-control text-center" required name="kecamatan" id="filter">
                                             <option selected disabled>-- Pilih Berdasarkan --</option>
                                             @foreach ($kecamatan as $item)
                                                 <option value="{{ $item->kecamatan }}">Kecamatan {{ $item->kecamatan }}</option>
@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="col-lg-5">
                                     <div class="form-group">
-                                        <select class="form-control text-center" name="kelurahan" id="masuk">
+                                        <select class="form-control text-center" required name="kelurahan" id="masuk">
                                             <option selected disabled>-- Pilih Berdasarkan --</option>
                                         </select>
                                     </div>
