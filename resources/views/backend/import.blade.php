@@ -41,7 +41,11 @@
                                         </ul>
                                     </div>
                                     <div class="mb-2 d-flex justify-content-between">
-                                        <button class="btn btn-success" data-target="#import-m-wp" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Master Wajib Pajak</button>
+                                        <button class="btn btn-success" data-target="#import-master-npwp" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Master NPWP</button>
+                                        <button class="btn btn-success" data-target="#import-master-spt" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Master SPT</button>
+                                        <button class="btn btn-success" data-target="#import-wajib-spt" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Wajib SPT</button>
+                                    </div>
+                                    <div class="mb-2 d-flex justify-content-around">
                                         <button class="btn btn-success" data-target="#import-pegawai" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Data Pegawai</button>
                                         <button class="btn btn-success" data-target="#import-wilayah" data-toggle="modal"><i class="fa fa-download"></i> &nbsp;Import Data Wilayah</button>
                                     </div>
@@ -77,7 +81,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="import-m-wp">
+<div class="modal fade" id="import-master-npwp">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-kpp">
@@ -89,10 +93,52 @@
             <form action="{{ route('import.master-wp') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-body">
-                    <p>Import Master NPWP <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx </p>
+                     <p>Import Master NPWP <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx </p>
                     <input type="file" class="form-control" name="import-master-npwp" required><br>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="import-master-spt">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-kpp">
+                <h4 class="modal-title">Import Data Wajib Pajak </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('import.master-wp') }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="modal-body">
                     <p>Import Master SPT <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx </p>
                     <input type="file" class="form-control" name="import-master-spt" required><br>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="import-wajib-spt">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-kpp">
+                <h4 class="modal-title">Import Data Wajib Pajak </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('import.master-wp') }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="modal-body">
                     <p>Import Wajib SPT <span class="text-red">*</span>.xls <span class="text-red">*</span>.xlsx </p>
                     <input type="file" class="form-control" name="import-wajib-spt" required><br>
                 </div>
