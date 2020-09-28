@@ -26,6 +26,7 @@ class WajibPajakController extends Controller
     {
         $this->middleware('auth');
         // $this->middleware('role:admin');
+        set_time_limit(8000000);
     }
 
     public function index(Request $request)
@@ -163,14 +164,19 @@ class WajibPajakController extends Controller
         //     'import-master-spt' => 'required|mimes:csv,xls,xlsx',
         //     'import-wajib-spt' => 'required|mimes:csv,xls,xlsx'
         // ]);
-        $masternpwp = $request->file('import-master-npwp');
-        Excel::import(new MasterNpwpImport, $masternpwp);
-
-        $wajibspt = $request->file('import-wajib-spt');
-        Excel::import(new WajibSptImport, $wajibspt);
+        if ($request->file('import-master-npwp')) {
+            $masternpwp = $request->file('import-master-npwp');
+            Excel::import(new MasterNpwpImport, $masternpwp);
+            
+        } else if($request->file('import-wajib-spt')) {
+            $wajibspt = $request->file('import-wajib-spt');
+            Excel::import(new WajibSptImport, $wajibspt);
+            
+        } else if($request->file('import-master-spt')){
+            $masterspt = $request->file('import-master-spt');
+            Excel::import(new MasterSptImport, $masterspt);
+        }
         
-        $masterspt = $request->file('import-master-spt');
-        Excel::import(new MasterSptImport, $masterspt);
 
         $laporan = LaporanImport::get();
         if ($laporan->count() == 0) {
