@@ -18,6 +18,7 @@ use App\Imports\WajibSptImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Auth;
 class WajibPajakController extends Controller
 {
@@ -32,6 +33,7 @@ class WajibPajakController extends Controller
     public function index(Request $request)
     {        
         $data['kecamatan'] = DimWilayah::select('kecamatan')->distinct()->get();
+        $data['tahun'] = range(date('Y'), 2005);
         // dd($request);
         $cari = $request->get('cari');
         $tahun = $request->get('tahun');
@@ -165,14 +167,17 @@ class WajibPajakController extends Controller
         //     'import-wajib-spt' => 'required|mimes:csv,xls,xlsx'
         // ]);
         if ($request->file('import-master-npwp')) {
+            DB::table('master_npwp')->truncate();
             $masternpwp = $request->file('import-master-npwp');
             Excel::import(new MasterNpwpImport, $masternpwp);
             
         } else if($request->file('import-wajib-spt')) {
+            DB::table('wajib_spt')->truncate();
             $wajibspt = $request->file('import-wajib-spt');
             Excel::import(new WajibSptImport, $wajibspt);
             
         } else if($request->file('import-master-spt')){
+            DB::table('master_spt')->truncate();
             $masterspt = $request->file('import-master-spt');
             Excel::import(new MasterSptImport, $masterspt);
         }
