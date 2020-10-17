@@ -23,7 +23,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'backend\DashboardController@index')->name('dashboard');
-Route::get('/dashboard/json', 'backend\DashboardController@jsonFilter')->name('json.filter');
 Route::post('/dashboard/create-target', 'backend\DashboardController@createTarget')->name('create.target');
 Route::post('/dashboard/update-target', 'backend\DashboardController@updateTarget')->name('update.target');
 Route::get('/tambah-data','backend\WajibPajakController@TambahData')->name('wp.tambah');

@@ -40,8 +40,9 @@
                                     <div class="form-group mx-sm-3">
                                         <select class="form-control" name="tahun" required>
                                             <option disabled selected>Pilih Tahun</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2019">2019</option>
+                                            @foreach ($tahun as $item)
+                                            <option value="{{$item}}">{{$item}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -182,7 +183,7 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-4">
-                                <p class="mt-4 font-weight-w500">Showing 1 to {{ $data_wp->count() }} of {{ $total }} entries</p>
+                                    <p class="mt-4 font-weight-w500">Showing 1 to {{ $data_wp->count() }} of {{ $total }} entries</p>
                                 </div>
                                 <div class="col-8">
                                     <div class="d-flex justify-content-end mt-4">
@@ -257,7 +258,7 @@
         $('#filter').on('change', function(e){
             var kec = e.target.value;
             // alert(kec);
-            $.get('/admin/data-wajib-pajak/json?kecamatan=' + kec, function(data){
+            $.get('{{route('wp.json')}}'+'?kecamatan='+ kec, function(data){
                 $('#masuk').empty();
                 $.each(data, function(index, objek){
                     $('#masuk').append(
