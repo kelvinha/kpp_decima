@@ -128,6 +128,10 @@
                         <div class="callout callout-info" style="color: green;">
                             <p>Hasil Pencarian Data dengan Keyword : <b>{{ $m }}</b></p>
                         </div>
+                        @elseif ($kec = Request::get('kecamatan'))
+                        <div class="callout callout-info" style="color: green;">
+                            <p>Hasil Pencarian Data dengan Keyword : Kecamatan <b>{{ $kec }}</b> dan Kelurahan <b>{{ Request::get('kelurahan') }}</b></p>
+                        </div>
                         @endif
                         @if ($data_wp->count() == 0)
                         <table class="table table-bordered table-striped text-center">
@@ -156,7 +160,7 @@
                                 @endif
                                 @foreach ($data_wp as $i => $item)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $data_wp->firstItem() + $i }}</td>
                                     <td>{{ $item->wajib_npwp }}</td>
                                     <td>{{ $item->nama_wp }}</td>
                                     <td>{{ $item->wajib_jeniswp }}</td>
@@ -182,6 +186,34 @@
                         </table>
                         <div class="col-12">
                             <div class="row">
+                                @if ($m = Request::get('tahun'))
+                                <div class="col-4">
+                                    <p class="mt-4 font-weight-w500">Showing {{ $data_wp->firstItem() }} to {{ ($data_wp->firstItem() - 1) + $data_wp->count() }} of {{ $total_data_dpt }} entries</p>
+                                </div>
+                                <div class="col-8">
+                                    <div class="d-flex justify-content-end mt-4">
+                                        {{ $data_wp->links() }}
+                                    </div>
+                                </div>
+                                @elseif ($m = Request::get('cari'))
+                                <div class="col-4">
+                                    <p class="mt-4 font-weight-w500">Showing {{ $data_wp->firstItem() }} to {{ ($data_wp->firstItem() - 1) + $data_wp->count() }} of {{ $total_data_dpt }} entries</p>
+                                </div>
+                                <div class="col-8">
+                                    <div class="d-flex justify-content-end mt-4">
+                                        {{ $data_wp->links() }}
+                                    </div>
+                                </div>
+                                @elseif ($m = Request::get('kecamatan'))
+                                <div class="col-4">
+                                    <p class="mt-4 font-weight-w500">Showing {{ $data_wp->firstItem() }} to {{ ($data_wp->firstItem() - 1) + $data_wp->count() }} of {{ $total_data_dpt }} entries</p>
+                                </div>
+                                <div class="col-8">
+                                    <div class="d-flex justify-content-end mt-4">
+                                        {{ $data_wp->links() }}
+                                    </div>
+                                </div>
+                                @else
                                 <div class="col-4">
                                     <p class="mt-4 font-weight-w500">Showing 1 to {{ $data_wp->count() }} of {{ $total }} entries</p>
                                 </div>
@@ -190,6 +222,7 @@
                                         {{ $data_wp->links() }}
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>

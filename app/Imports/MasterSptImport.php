@@ -5,8 +5,9 @@ namespace App\Imports;
 use App\models\MasterSpt;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class MasterSptImport implements ToModel, WithHeadingRow
+class MasterSptImport implements ToModel, WithChunkReading, WithHeadingRow
 {
     /**
     * @param array $row
@@ -31,6 +32,10 @@ class MasterSptImport implements ToModel, WithHeadingRow
             'status_spt' => $row['status_spt'],
         ]);
     
-        
+    }
+
+    public function chunkSize(): int
+    {
+        return 10000;
     }
 }

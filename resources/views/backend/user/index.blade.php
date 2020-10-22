@@ -97,7 +97,7 @@
                         <div class="col-12">
                             <div class="row">
                                 <div class="col-4">
-                                <p class="mt-4 font-weight-w500">Showing 1 to {{ $user->count() }} of {{ $user->total() }} entries</p>
+                                    <p class="mt-4 font-weight-w500">Showing {{ $user->firstItem() }} to {{ ($user->firstItem() - 1) + $user->count() }} of {{ $user->total() }} entries</p>
                                 </div>
                                 <div class="col-8">
                                     <div class="d-flex justify-content-end mt-4">

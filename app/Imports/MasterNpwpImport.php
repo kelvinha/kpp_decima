@@ -36,6 +36,6 @@ class MasterNpwpImport implements ToModel, WithChunkReading, WithHeadingRow
 
     public function chunkSize(): int
     {
-        return 1000;
+        return 10000;
     }
 }
