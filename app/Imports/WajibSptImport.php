@@ -5,8 +5,9 @@ namespace App\Imports;
 use App\models\WajibSpt;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 
-class WajibSptImport implements ToModel, WithHeadingRow
+class WajibSptImport implements ToModel, WithChunkReading, WithHeadingRow
 {
     /**
     * @param array $row
@@ -23,5 +24,10 @@ class WajibSptImport implements ToModel, WithHeadingRow
             'tahun' => $row['tahun'],
         ]);
         
+    }
+
+    public function chunkSize(): int
+    {
+        return 10000;
     }
 }
