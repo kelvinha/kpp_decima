@@ -18,6 +18,7 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        set_time_limit(8000000);
     }
    
     public function index()
