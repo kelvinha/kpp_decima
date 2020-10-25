@@ -120,7 +120,7 @@ class WajibPajakController extends Controller
         $data['total'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                   ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                   ->select('master_npwp.*','wajib_spt.id as wajib_spt_id','wajib_spt.tahun','wajib_spt.jenis_wp as wajib_jeniswp','wajib_spt.npwp as wajib_npwp')
-                                  ->get()->count();
+                                  ->count();
         return view('backend.wajib_pajak.kelola_wajib_pajak.index', $data);
     }
     
@@ -207,18 +207,6 @@ class WajibPajakController extends Controller
             DB::table('master_spt')->truncate();
             $masterspt = $request->file('import-master-spt');
             Excel::import(new MasterSptImport, $masterspt);
-        }
-        
-
-        $laporan = LaporanImport::get();
-        if ($laporan->count() == 0) {
-            $laporan1 = new LaporanImport;
-            $laporan1->nama_admin = Auth::user()->name;
-            $laporan1->save();
-        } else {
-            $laporan1 = LaporanImport::find(1);
-            $laporan1->nama_admin = Auth::user()->name;
-            $laporan1->save();
         }
 
         // $tes = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')

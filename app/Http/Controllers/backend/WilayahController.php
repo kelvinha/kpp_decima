@@ -29,12 +29,12 @@ class WilayahController extends Controller
         $data['total_kecil'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                         ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                         ->where('master_npwp.kecamatan','cilodong')
-                                        ->get()->count();
+                                        ->count();
         $data['capaian_kecil'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                         ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                         ->where('master_npwp.kecamatan','cilodong')
                                         ->where('master_spt.no_tandaterima','!=',NULL)
-                                        ->get()->count();
+                                        ->count();
         if($cari){
 
             $data['wilayah'] = DimWilayah::where('kecamatan','LIKE','%'.$kecamatan.'%')
@@ -66,31 +66,31 @@ class WilayahController extends Controller
         // perhitungan
         $data['totalwp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
-                                    ->get()->count();
+                                    ->count();
         $data['totalspt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['karSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','NOT LIKE','%non%')
                                     ->where('wajib_spt.jenis_wp','NOT LIKE','%badan%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['nonkarSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','LIKE','%non%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['bdnSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','LIKE','%badan%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['realisasi'] = (($data['totalspt']/$data['totalwp']) * 100);
         $data['capaian'] = ((($data['totalspt']/$data['totalwp']) * 100) / $target_pusat->target) * 100;
 
@@ -106,12 +106,12 @@ class WilayahController extends Controller
         $data['total_kecim'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kecamatan','cimanggis')
-                                    ->get()->count();
+                                    ->count();
         $data['capaian_kecim'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kecamatan','cimanggis')
                                     ->where('master_spt.no_tandaterima','!=',NULL)
-                                    ->get()->count();
+                                    ->count();
         if($cari){
 
             $data['wilayah'] = DimWilayah::where('kecamatan','LIKE','%'.$kecamatan.'%')
@@ -144,31 +144,31 @@ class WilayahController extends Controller
         // perhitungan
         $data['totalwp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
-                                    ->get()->count();
+                                    ->count();
         $data['totalspt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['karSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','NOT LIKE','%non%')
                                     ->where('wajib_spt.jenis_wp','NOT LIKE','%badan%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['nonkarSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','LIKE','%non%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['bdnSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','LIKE','%badan%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['realisasi'] = (($data['totalspt']/$data['totalwp']) * 100);
         $data['capaian'] = ((($data['totalspt']/$data['totalwp']) * 100) / $target_pusat->target) * 100;
 
@@ -184,12 +184,12 @@ class WilayahController extends Controller
         $data['total_kecip'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kecamatan','cipayung')
-                                    ->get()->count();
+                                    ->count();
         $data['capaian_kecip'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kecamatan','cipayung')
                                     ->where('master_spt.no_tandaterima','!=',NULL)
-                                    ->get()->count();
+                                    ->count();
         if($cari){
 
             $data['wilayah'] = DimWilayah::where('kecamatan','LIKE','%'.$kecamatan.'%')
@@ -222,31 +222,31 @@ class WilayahController extends Controller
         // perhitungan
         $data['totalwp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
-                                    ->get()->count();
+                                    ->count();
         $data['totalspt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['karSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','NOT LIKE','%non%')
                                     ->where('wajib_spt.jenis_wp','NOT LIKE','%badan%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['nonkarSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','LIKE','%non%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['bdnSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','LIKE','%badan%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['realisasi'] = (($data['totalspt']/$data['totalwp']) * 100);
         $data['capaian'] = ((($data['totalspt']/$data['totalwp']) * 100) / $target_pusat->target) * 100;
 
@@ -262,12 +262,12 @@ class WilayahController extends Controller
         $data['total_kesuk'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kecamatan','sukmajaya')
-                                    ->get()->count();
+                                    ->count();
         $data['capaian_kesuk'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kecamatan','sukmajaya')
                                     ->where('master_spt.no_tandaterima','!=',NULL)
-                                    ->get()->count();
+                                    ->count();
         if($cari){
 
             $data['wilayah'] = DimWilayah::where('kecamatan','LIKE','%'.$kecamatan.'%')
@@ -300,31 +300,31 @@ class WilayahController extends Controller
         // perhitungan
         $data['totalwp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
-                                    ->get()->count();
+                                    ->count();
         $data['totalspt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['karSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','NOT LIKE','%non%')
                                     ->where('wajib_spt.jenis_wp','NOT LIKE','%badan%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['nonkarSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','LIKE','%non%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['bdnSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','LIKE','%badan%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['realisasi'] = (($data['totalspt']/$data['totalwp']) * 100);
         $data['capaian'] = ((($data['totalspt']/$data['totalwp']) * 100) / $target_pusat->target) * 100;
 
@@ -340,12 +340,12 @@ class WilayahController extends Controller
         $data['total_ketap'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kecamatan','tapos')
-                                    ->get()->count();
+                                    ->count();
         $data['capaian_ketap'] =  WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->leftjoin('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kecamatan','tapos')
                                     ->where('master_spt.no_tandaterima','!=',NULL)
-                                    ->get()->count();
+                                    ->count();
         if($cari){
 
             $data['wilayah'] = DimWilayah::where('kecamatan','LIKE','%'.$kecamatan.'%')
@@ -377,31 +377,31 @@ class WilayahController extends Controller
         // perhitungan
         $data['totalwp'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
-                                    ->get()->count();
+                                    ->count();
         $data['totalspt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['karSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','NOT LIKE','%non%')
                                     ->where('wajib_spt.jenis_wp','NOT LIKE','%badan%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['nonkarSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','LIKE','%non%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['bdnSpt'] = WajibSpt::join('master_npwp','wajib_spt.npwp','master_npwp.key_npwp')
                                     ->join('master_spt','wajib_spt.npwp','master_spt.key_npwp')
                                     ->where('master_npwp.kelurahan',$wilayah->kelurahan)
                                     ->where('wajib_spt.jenis_wp','LIKE','%badan%')
                                     ->where('master_spt.pembetulan','>=',0)
-                                    ->get()->count();
+                                    ->count();
         $data['realisasi'] = (($data['totalspt']/$data['totalwp']) * 100);
         $data['capaian'] = ((($data['totalspt']/$data['totalwp']) * 100) / $target_pusat->target) * 100;
 

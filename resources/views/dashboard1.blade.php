@@ -33,7 +33,7 @@
                     <h6>Tanggal Terakhir Import:-, Oleh: -</h6>
                 </div>
                 <div align="right">
-                    <button class="btn btn-success">Refresh</button>
+                    <a href="{{ route('refresh') }}" class="btn btn-success" style="text-decoration: none">Refresh</a>
                 </div>
             </div>  
             @else
@@ -47,6 +47,7 @@
             </div>
             @endif
         </div>
+        @if ($dashboard != NULL)
         <div class="row">
             <div class="col-lg-6">
                 <div class="row">
@@ -62,7 +63,7 @@
                                             <i class="fas fa-id-card fa-3x"></i>
                                         </div>
                                         <div class="col-sm-10 col-md-8 pt-1">
-                                            <span class="h4">{{ $totaladmin }} Orang</span>
+                                            <span class="h4">{{ $dashboard->jumlah_ar }} Orang</span>
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +82,7 @@
                                             <i class="fas fa-user-friends fa-3x"></i>
                                         </div>
                                         <div class="col-sm-10 col-md-8">
-                                            <span class="h4">{{$totalwp}} Wajib SPT</span>
+                                            <span class="h4">{{$dashboard->data_wajib_spt}} Wajib SPT</span>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +103,7 @@
                                             <i class="fas fa-user-check fa-3x"></i>
                                         </div>
                                         <div class="col-sm-10 col-md-8 pt-1">
-                                            <span class="h4">{{ $totalsudahlapor }} Wajib SPT</span>
+                                            <span class="h4">{{ $dashboard->sudah_lapor_spt }} Wajib SPT</span>
                                         </div>
                                     </div>
                                 </div>
@@ -121,7 +122,7 @@
                                             <i class="fas fa-user-slash fa-3x"></i>
                                         </div>
                                         <div class="col-sm-10 col-md-8 pt-1">
-                                            <span class="h4">{{ $totalbelumlapor }} Wajib SPT</span>
+                                            <span class="h4">{{ $dashboard->belum_lapor_spt }} Wajib SPT</span>
                                         </div>
                                     </div>
                                 </div>
@@ -164,30 +165,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if ($totalwp == null)
+                                @if ($dashboard == null)
                                 <tr>
                                     <td colspan="3" align="center">Tidak ada data</td>
                                 </tr>
                                 @else
                                 <tr>
                                     <td><a href="{{ route('waskon2.index') }}">Pengawasan dan Konsultasi II</a></td>
-                                    <td>{{ $capaian_waskon2 }} / {{ $total_waskon2 }}</td>
-                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $capaian_waskon2/ $total_waskon2) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
+                                    <td>{{ $dashboard->cap_waskon2 }} / {{ $dashboard->waskon2 }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $dashboard->cap_waskon2 / $dashboard->waskon2) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
                                     <td><a href="{{ route('waskon3.index') }}">Pengawasan dan Konsultasi III</a></td>
-                                    <td>{{ $capaian_waskon3 }} / {{ $total_waskon3 }}</td>
-                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((($capaian_waskon3 / $total_waskon3) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
+                                    <td>{{ $dashboard->cap_waskon3 }} / {{ $dashboard->waskon3 }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $dashboard->cap_waskon3 / $dashboard->waskon3) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
                                     <td><a href="{{ route('waskon4.index') }}">Pengawasan dan Konsultasi IV</a></td>
-                                    <td>{{ $capaian_waskon4 }} / {{ $total_waskon4 }}</td>
-                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((($capaian_waskon4 / $total_waskon4) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
+                                    <td>{{ $dashboard->cap_waskon4 }} / {{ $dashboard->waskon4 }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $dashboard->cap_waskon4 / $dashboard->waskon4) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
                                     <td><a href="{{ route('ekspen.index') }}">Ekstensifikasi dan Penyuluhan</a></td>
-                                    <td>{{ $capaian_ekspen }} / {{ $total_ekspen }}</td>
-                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((($capaian_ekspen / $total_ekspen) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
+                                    <td>{{ $dashboard->cap_ekspen }} / {{ $dashboard->ekspen }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $dashboard->cap_ekspen / $dashboard->ekspen) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 @endif
                             </tbody>
@@ -217,35 +218,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if ($totalwp == 0)
-                                    <tr>
-                                        <td colspan="3" align="center">Tidak ada data</td>
-                                    </tr>
+                                @if ($dashboard == null)
+                                <tr>
+                                    <td colspan="3" align="center">Tidak ada data</td>
+                                </tr>
                                 @else
                                 <tr>
                                     <td><a href="{{ route('cilodong.index') }}">Kecamatan Cilodong</a></td>
-                                    <td>{{ $capaian_kecil }} / {{ $total_kecil }}</td>
-                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $capaian_kecil/ $total_kecil) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
+                                    <td>{{ $dashboard->cap_kecil }} / {{ $dashboard->kecil }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $dashboard->cap_kecil/ $dashboard->kecil) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
                                     <td><a href="{{ route('cimanggis.index') }}">Kecamatan Cimanggis</a></td>
-                                    <td>{{ $capaian_kecim }} / {{ $total_kecim }}</td>
-                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $capaian_kecim/ $total_kecim) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
+                                    <td>{{ $dashboard->cap_kecim }} / {{ $dashboard->kecim }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $dashboard->cap_kecim/ $dashboard->kecim) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
                                     <td><a href="{{ route('cipayung.index') }}">Kecamatan Cipayung</a></td>
-                                    <td>{{ $capaian_kecip }} / {{ $total_kecip }}</td>
-                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $capaian_kecip/ $total_kecip) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
+                                    <td>{{ $dashboard->cap_kecip }} / {{ $dashboard->kecip }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $dashboard->cap_kecip/ $dashboard->kecip) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
                                     <td><a href="{{ route('sukmajaya.index') }}">Kecamatan Sukmajaya</a></td>
-                                    <td>{{ $capaian_kesuk }} / {{ $total_kesuk }}</td>
-                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $capaian_kesuk/ $total_kesuk) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
+                                    <td>{{ $dashboard->cap_kesuk }} / {{ $dashboard->kesuk }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $dashboard->cap_kesuk/ $dashboard->kesuk) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 <tr>
                                     <td><a href="{{ route('tapos.index') }}">Kecamatan Tapos</a></td>
-                                    <td>{{ $capaian_ketap }} / {{ $total_ketap }}</td>
-                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $capaian_ketap/ $total_ketap) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
+                                    <td>{{ $dashboard->cap_ketap }} / {{ $dashboard->ketap }}</td>
+                                    <td> <span class="badge badge-success" style="font-size: 20px;">{{ round(((( $dashboard->cap_ketap/ $dashboard->ketap) * 100) / $target_capaian->target)*100,2) }} %</span> </td>
                                 </tr>
                                 @endif
                             </tbody>
@@ -254,6 +255,22 @@
                 </div>
             </div>
         </div>
+        @else
+        <div class="alert bg-danger" role="alert">
+            <div class="row">
+                <div class="col-1">
+                    <i class="fas fa-4x fa-info-circle"></i>
+                </div>
+                <div class="col">
+                    <h4 class="font-weight-bold">Perhatian: </h4>
+                    <ul>
+                        <li>Lakukan import data melalui PhpMyAdmin</li>
+                        <li>Silahkan Tekan Tombol Refresh, untuk melakukan Pembaruan Data</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @endif
     </div>
 </section>
 
@@ -264,8 +281,8 @@
 <script src="{{ asset('vendor') }}/dist/js/canvasjs.min.js"></script>
 <script>
     window.onload = function() {
-    var SudahLapor = {{$jumlahSudahLapor }};
-    var BelumLapor = {{$jumlahBelumLapor }};
+    var SudahLapor = {{ $jumlahSudahLapor }};
+    var BelumLapor = {{ $jumlahBelumLapor }};
     var chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
         data: [{
